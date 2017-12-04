@@ -150,7 +150,13 @@ public class AccountActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO check if the user has already got the account
                 Log.d("submit","click!!");
-                saveInfoToMysql();
+                if(name.getText().toString()!=null && sexT!=null &&
+                        student_id.getText().toString()!=null &&
+                        phoneNum.getText().toString()!=null && email.getText().toString()!=null){
+                    saveInfoToMysql();
+                }else{
+                    Toast.makeText(AccountActivity.this, "please finish info above!!", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
@@ -178,7 +184,7 @@ public class AccountActivity extends AppCompatActivity {
                                             bundle.putString("id",id.getText().toString());
                                             intent.putExtras(bundle);
                                             startActivity(intent);
-                                            finish();
+//                                            finish();
                                         }
                                     },1200); //1 sec
                                 }else{

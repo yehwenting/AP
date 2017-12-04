@@ -20,6 +20,10 @@
     <string name="email_label">Email :</string>
     <string name="email">Enter you email</string>
     <string name="submit">NEXT</string>
+    //friendsActivity
+    <string name="permission_message">AP requires permission to access your Facebook friend list to use Find Friends</string>
+    <string name="friend">friend</string>
+
 </resources>
 
 

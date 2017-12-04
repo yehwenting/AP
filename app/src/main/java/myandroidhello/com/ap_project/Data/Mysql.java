@@ -14,9 +14,9 @@ public class Mysql {
     }
 
     public String updateUserDetailToMysql(String id,String height,String weight,String ezcard){
-        String updatesql="update login set height='" +height+ "',weight='"+weight+
+        String updatesql="UPDATE login SET height='" +height+ "',weight='"+weight+
                 "',ezcard='"+ezcard+"'\n" +
-                "where uid='"+id+"';";
+                "where fb_id='"+id+"';";
         return updatesql;
     }
 

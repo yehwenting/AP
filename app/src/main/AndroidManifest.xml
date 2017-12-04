@@ -49,7 +49,8 @@
                 <data android:scheme="@string/ak_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity"
+        <activity
+            android:name=".Activity.LoginActivity"
             android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,8 +60,8 @@
         </activity>
         <activity android:name=".Activity.AccountActivity" />
         <activity android:name=".Activity.MainpageActivity" />
-        <activity android:name=".Activity.AccountDetailActivity">
-        </activity>
+        <activity android:name=".Activity.AccountDetailActivity"></activity>
+        <activity android:name=".Activity.FriendsActivity"></activity>
     </application>
 
 </manifest>
