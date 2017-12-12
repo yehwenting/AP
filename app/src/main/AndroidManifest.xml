@@ -58,10 +58,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.AccountActivity" />
+        <activity
+            android:name=".Activity.AccountActivity"
+             />
         <activity android:name=".Activity.MainpageActivity" />
-        <activity android:name=".Activity.AccountDetailActivity"></activity>
-        <activity android:name=".Activity.FriendsActivity"></activity>
+        <activity
+            android:name=".Activity.AccountDetailActivity"
+             />
+        <activity android:name=".Activity.FriendsActivity" />
+        <activity android:name=".Activity.ReserveActivity"></activity>
     </application>
 
 </manifest>

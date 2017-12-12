@@ -6,7 +6,7 @@
 
     <color name="accountBackground">#61727f</color>
     <color name="accountLabel">#7d97ad</color>
-    <color name="accountText">#61727f</color>
+    <color name="accountText">#ffffff</color>
     <color name="accountLogoutLabel">#fc6240</color>
 
     <color name="ak_background">#d5f0ec</color>

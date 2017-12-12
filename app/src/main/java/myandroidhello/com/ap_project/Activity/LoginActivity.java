@@ -1,13 +1,23 @@
 package myandroidhello.com.ap_project.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -22,9 +32,17 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import java.util.Locale;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
+
+import myandroidhello.com.ap_project.Data.MySingleTon;
+import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.font.FontHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText loginText;
     Button accountkitButton;
     AppEventsLogger logger;
+    String currentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +85,9 @@ public class LoginActivity extends AppCompatActivity {
         fbLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                launchAccountActivity();
+                currentId =loginResult.getAccessToken().getUserId().toString();
+                Log.d("test", currentId);
+                checkExistedAccount();
             }
 
             @Override
@@ -89,7 +110,8 @@ public class LoginActivity extends AppCompatActivity {
         com.facebook.AccessToken loginToken = com.facebook.AccessToken.getCurrentAccessToken();
         if (accessToken != null || loginToken !=null) {
             // if previously logged in, proceed to the account activity
-            launchAccountActivity();
+            Log.d("test","exist!!");
+            launchMainpageActivity();
         }
     }
 
@@ -107,8 +129,12 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
             } else if (loginResult.getAccessToken() != null) {
                 // on successful login, proceed to the account activity
-                launchAccountActivity();
+                Log.d("test",String.valueOf(loginResult.getAccessToken().getAccountId()));
+                currentId=loginResult.getAccessToken().getAccountId();
+//                launchAccountActivity();
+                checkExistedAccount();
             }
+
         }
     }
 
@@ -142,5 +168,65 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AccountActivity.class);
         startActivity(intent);
         finish();
+    }
+    private void launchMainpageActivity(){
+        Intent intent = new Intent(this, MainpageActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void checkExistedAccount(){
+        Log.d("connect",String.valueOf(checkNetworkConnection()));
+        if(checkNetworkConnection()){
+            StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.d("test",response);
+                            try {
+                                JSONObject jsonObject=new JSONObject(response);
+                                if(jsonObject.isNull("response")){
+                                    launchAccountActivity();
+                                }else {
+                                    launchMainpageActivity();
+                                }
+                            } catch (JSONException e) {
+                                Log.d("error","json error");
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    Log.d("error","do not save to mysql 2");
+
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> params=new HashMap<>();
+                    Mysql mysql=new Mysql();
+                    String query=mysql.checkExistId(currentId);
+                    params.put("query",query);
+                    return params;
+                }
+            };
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    10000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            MySingleTon.getmInstance(LoginActivity.this).addToRequestque(stringRequest);
+        }else{
+            Log.d("error","map error");
+        }
+
+
+    }
+    public boolean checkNetworkConnection(){
+        ConnectivityManager connectivityManager=(ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+        return (networkInfo!=null && networkInfo.isConnected());
     }
 }

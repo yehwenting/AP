@@ -1,6 +1,7 @@
 package myandroidhello.com.ap_project.Activity;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
     @Override
     public FriendAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_friends, parent, false);
+                .inflate(R.layout.adapter_friends, parent, false);
         return new FriendAdapter.ViewHolder(view);
     }
 
@@ -55,6 +56,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
         FontHelper.setCustomTypeface(holder.mView);
 
         // set name and display profile pic
+        Log.d("friend",friendItem.name);
         holder.mFriendName.setText(friendItem.name);
         displayProfilePic(holder.mFriendImage, friendItem.image);
 
@@ -66,7 +68,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mValues.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

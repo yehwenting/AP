@@ -3,7 +3,9 @@ package myandroidhello.com.ap_project.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +52,8 @@ public class FriendsActivity extends AppCompatActivity {
 
         emptyText = (TextView) findViewById(R.id.emptytext);
         recyclerView = (RecyclerView) findViewById(R.id.friends_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
         callbackManager = CallbackManager.Factory.create();
 
         // check for required permissions
@@ -132,6 +136,7 @@ public class FriendsActivity extends AppCompatActivity {
                         }
 
                         // initialize the list view adapter
+                        Log.d("fff","success");
                         FriendAdapter friendsAdapter = new FriendAdapter(friendList);
                         recyclerView.setAdapter(friendsAdapter);
 

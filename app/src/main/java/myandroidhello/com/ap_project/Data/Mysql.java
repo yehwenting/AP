@@ -20,6 +20,10 @@ public class Mysql {
         return updatesql;
     }
 
+    public String checkExistId(String id){
+        return "select * from login where fb_id='"+id+"'";
+    }
+
 
 
 }
