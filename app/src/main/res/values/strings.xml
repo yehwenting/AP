@@ -23,6 +23,24 @@
     //friendsActivity
     <string name="permission_message">AP requires permission to access your Facebook friend list to use Find Friends</string>
     <string name="friend">friend</string>
+    //navigation
+    <string name="view_one">首頁</string>
+    <string name="view_two">個人資料</string>
+    <string name="view_three">即時查詢</string>
+    <string name="view_fore">推薦菜單</string>
+    <string name="view_five">健康紀錄</string>
+    <string name="view_six">本週排行</string>
+    <string name="view_seven">登出</string>
+    <string name="view_eight">我的好友</string>
+
+
+
+    <string name="open_navigation">hi</string>
+    <string name="close_navigation">bye</string>
+
+
+
+
 
 </resources>
 

@@ -2,7 +2,6 @@ package myandroidhello.com.ap_project.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,10 +28,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import myandroidhello.com.ap_project.Adapter.FriendAdapter;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.font.FontHelper;
 
-public class FriendsActivity extends AppCompatActivity {
+public class FriendsActivity extends Navigation_BaseActivity {
 
     CallbackManager callbackManager;
     RecyclerView recyclerView;
@@ -43,6 +43,13 @@ public class FriendsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friends);
         FontHelper.setCustomTypeface(findViewById(R.id.view_root));
+
+        //toolbar
+        toolbar.setTitle(R.string.view_eight);//設置ToolBar Title
+        setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
+        CurrentMenuItem = 2;
+        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
+
 
         if (AccessToken.getCurrentAccessToken() == null) {
             // a Facebook Login access token is required

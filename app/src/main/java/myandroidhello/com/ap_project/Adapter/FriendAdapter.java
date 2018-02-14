@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.Activity;
+package myandroidhello.com.ap_project.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

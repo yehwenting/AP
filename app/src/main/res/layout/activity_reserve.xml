@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="myandroidhello.com.ap_project.Activity.ReserveActivity">
+    tools:context="myandroidhello.com.ap_project.Activity.ReserveActivity"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <com.github.florent37.bubbletab.BubbleTab
+        android:id="@+id/bubbleTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:clipToPadding="false"
+        android:elevation="10dp"
+        app:bubbleTab_circleColor="@color/colorPrimary"
+        app:bubbleTab_circleRatio="1.25">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:src="@drawable/bubbletab_ic_swimmingpool"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:src="@drawable/bubbletab_ic_stadium"
+            tools:ignore="ContentDescription"/>
+
+    </com.github.florent37.bubbletab.BubbleTab>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

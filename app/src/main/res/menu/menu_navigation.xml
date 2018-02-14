@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+    <item android:id="@+id/navItemOne"
+        android:title="@string/view_one"
+        />
+    <item android:id="@+id/navItemTwo"
+        android:title="@string/view_two"
+        />
+
+    <item android:id="@+id/navItemEight"
+          android:title="@string/view_eight"
+          />
+    <item android:id="@+id/navItemThree"
+        android:title="@string/view_three"
+        />
+    <item android:id="@+id/navItemFore"
+        android:title="@string/view_fore"
+        />
+    <item android:id="@+id/navItemFive"
+        android:title="@string/view_five"
+        />
+    <item android:id="@+id/navItemSix"
+        android:title="@string/view_six"
+        />
+    <item android:id="@+id/navItemSeven"
+        android:title="@string/view_seven"
+        />
+    </group>
+</menu>

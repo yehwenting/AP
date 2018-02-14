@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="13dp">
+
+    <RelativeLayout
+        android:id="@+id/childButton"
+        android:gravity="center"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="17dp"
+            android:layout_marginRight="17dp"
+            android:background="@drawable/ic_keyboard_arrow_up_black_24dp" />
+
+        <TextView
+            android:id="@+id/parentTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="85dp"
+            android:layout_marginRight="85dp"
+            android:padding="8dp"
+            android:text="this is item with child!"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:id="@+id/expendableLayout"
+        android:layout_below="@+id/childButton"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ael_duration="400"
+
+        app:ael_interpolator="bounce">
+        <TextView
+            android:id="@+id/textViewChild"
+            android:text="this is child item!"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/childButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+</RelativeLayout>

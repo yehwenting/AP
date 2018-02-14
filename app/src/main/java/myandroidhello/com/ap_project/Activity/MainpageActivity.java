@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import myandroidhello.com.ap_project.R;
 
-public class MainpageActivity extends AppCompatActivity {
+public class MainpageActivity extends Navigation_BaseActivity {
 
-    private Button friendBtn;
+
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -21,16 +18,16 @@ public class MainpageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
 
-        friendBtn=findViewById(R.id.friendBtn);
+
         bottomNavigationView=findViewById(R.id.bottom_navigation);
 
-        friendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainpageActivity.this,FriendsActivity.class);
-                startActivity(intent);
-            }
-        });
+        //toolbar
+        toolbar.setTitle(R.string.view_one);//設置ToolBar Title
+        setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
+        CurrentMenuItem = 0;
+        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
+
+
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
