@@ -24,6 +24,27 @@ public class Mysql {
         return "select * from user where fb_id='"+id+"'";
     }
 
+    public String getEquipmentName(){
+        String getData="SELECT * FROM `equipment`";
+        return getData;
+    }
+
+    public String saveReservation(int id,int start_time,int end_time,String eName,int uid,String date ){
+        String data="INSERT into reserve(number,start_time,end_time,eName,uid,date) VALUES('"
+                +id+"','"+start_time+"','"+end_time+"','"+eName+"','"+uid+"','"+date+"');";
+        return data;
+    }
+
+    public String getReservationData(String number){
+        String data="SELECT * FROM `reserve` WHERE number='"+number+"' ORDER BY start_time";
+        return data;
+    }
+
+    public String checkReserveTimeAvailable(String equipment){
+        String data="SELECT start_time,end_time FROM `reserve` WHERE `eName`='"+equipment+"'";
+        return data;
+    }
+
 
 
 }

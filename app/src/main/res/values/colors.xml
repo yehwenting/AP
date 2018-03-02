@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#ffd300</color>
-    <color name="colorPrimary">#ffd300</color>
+    <color name="colorPrimaryDark">#8C000000</color>
+    <color name="colorPrimary">#FFEB00</color>
     <color name="colorAccent">#7d97ad</color>
 
     <color name="accountBackground">#61727f</color>
@@ -10,7 +10,7 @@
     <color name="accountLogoutLabel">#fc6240</color>
 
     <color name="ak_background">#d5f0ec</color>
-    <color name="ak_text">#61727f</color>
+    <color name="ak_text">#4E4E4E</color>
     <color name="ak_buttonBackground">#ffd300</color>
     <color name="ak_buttonPressedBackground">#ffd300</color>
     <color name="ak_buttonText">#ffffff</color>

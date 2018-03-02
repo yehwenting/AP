@@ -5,7 +5,7 @@ package myandroidhello.com.ap_project.model;
  */
 
 public class Item {
-    private String text,subtext;
+    private String text,subtext,date,time,equipment;
     private Boolean isExpendable;
 
     public Item(String text, String subtext, Boolean expendable) {
@@ -36,5 +36,29 @@ public class Item {
 
     public void setExpendable(Boolean expendable) {
         isExpendable = expendable;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
     }
 }

@@ -11,7 +11,7 @@
     <string name="account">Account</string>
     <string name="sex_label">性別 : </string>
     <string name="name_label">姓名 : </string>
-    <string name="name">Enter your name</string>
+    <string name="name">請輸入您的姓名</string>
     <string name="stuID_label">學號 :</string>
     <string name="stuID">Enter your student ID</string>
     <string name="logout_label">Log Out</string>
@@ -34,12 +34,8 @@
     <string name="view_eight">我的好友</string>
 
 
-
     <string name="open_navigation">hi</string>
     <string name="close_navigation">bye</string>
-
-
-
 
 
 </resources>

@@ -80,17 +80,17 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
         FontHelper.setCustomTypeface(findViewById(R.id.view_root));
 
-        profilePic = (ImageView) findViewById(R.id.profile_image);
-        id = (TextView) findViewById(R.id.id);
-        name=(EditText)findViewById(R.id.info);
-        sex=(RadioGroup)findViewById(R.id.sex);
-        male=(RadioButton)findViewById(R.id.male);
-        female=(RadioButton)findViewById(R.id.female);
-        student_id=(EditText)findViewById(R.id.stuID);
-        phoneNum=(EditText)findViewById(R.id.phone);
-        email=(EditText)findViewById(R.id.email);
-        logout=(Button)findViewById(R.id.logout_button);
-        submit=(Button)findViewById(R.id.submit);
+        profilePic =  findViewById(R.id.profile_image);
+        id =  findViewById(R.id.id);
+        name=findViewById(R.id.info);
+        sex=findViewById(R.id.sex);
+        male=findViewById(R.id.male);
+        female=findViewById(R.id.female);
+        student_id=findViewById(R.id.stuID);
+        phoneNum=findViewById(R.id.phone);
+        email=findViewById(R.id.email);
+        logout=findViewById(R.id.logout_button);
+        submit=findViewById(R.id.submit);
 
         // defined user's sex
         sex.setOnCheckedChangeListener(listener);

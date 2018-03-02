@@ -10,7 +10,6 @@
         android:allowBackup="true"
         android:icon="@drawable/xer"
         android:label="@string/app_name"
-
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
@@ -49,25 +48,23 @@
                 <data android:scheme="@string/ak_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.LoginActivity">
 
-        </activity>
-        <activity
-            android:name=".Activity.AccountActivity"
-             />
-        <activity android:name=".Activity.MainpageActivity" >
+        <activity android:name=".Activity.LoginActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.AccountDetailActivity"
-             />
+        <activity android:name=".Activity.AccountActivity" />
+        <activity android:name=".Activity.MainpageActivity">
+        </activity>
+        <activity android:name=".Activity.AccountDetailActivity" />
         <activity android:name=".Activity.FriendsActivity" />
-        <activity android:name=".Activity.ReserveActivity"></activity>
+        <activity android:name=".Activity.ReserveActivity" />
+        <activity android:name=".Activity.ReserveCheckActivity"></activity>
     </application>
 
 </manifest>

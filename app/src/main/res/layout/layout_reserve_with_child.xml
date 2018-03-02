@@ -10,8 +10,7 @@
         android:id="@+id/childButton"
         android:gravity="center"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+
         android:layout_width="48dp"
         android:layout_height="48dp">
         <View
@@ -25,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/childButton"
+        android:layout_toStartOf="@id/childButton"
         android:padding="8dp"
         android:text="this is item with child!"
         android:textSize="20sp" />
@@ -37,18 +36,116 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:ael_duration="400"
-
         app:ael_interpolator="bounce">
 
         <TextView
-            android:id="@+id/childTextView"
+            android:id="@+id/reserve_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="58dp"
+            android:text="日期" />
+
+        <Button
+            android:id="@+id/reserve_date_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/parentTextView"
+            android:layout_toLeftOf="@+id/reserve_date"
+            android:text="選擇日期" />
+
+        <TextView
+            android:id="@+id/reserve_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/reserve_time_button"
+            android:layout_alignBottom="@+id/reserve_time_button"
+            android:layout_toStartOf="@+id/reserve_date_button"
+            android:text="開始時間" />
+
+        <!--<Button-->
+            <!--android:id="@+id/morning"-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_marginStart="19dp"-->
+            <!--android:text="早" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/afternoon"-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginStart="25dp"-->
+            <!--android:layout_toEndOf="@+id/morning"-->
+            <!--android:text="午" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/night"-->
+            <!--android:layout_width="60dp"-->
+            <!--android:layout_height="60dp"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="9dp"-->
+            <!--android:layout_toEndOf="@+id/afternoon"-->
+            <!--android:text="晚" />-->
+
+        <Button
+            android:id="@+id/reserve_time_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/reserve_date_button"
+            android:layout_below="@+id/reserve_date_button"
+            android:text="選擇開始時間" />
+
+
+        <TextView
+            android:id="@+id/workout_time_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/reserve_time_button"
+            android:text="運動時間" />
+
+        <Spinner
+            android:id="@+id/workout_time_spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@id/childButton"
-            android:padding="8dp"
-            android:text="this is child item!"
-            android:textSize="16sp" />
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/workout_time_text"
+            android:layout_marginTop="27dp" />
+
+        <TextView
+            android:id="@+id/reserve_equip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/reserve_time"
+            android:layout_below="@+id/workout_time_spinner"
+            android:layout_marginTop="8dp"
+            android:text="機台" />
+
+        <Button
+            android:id="@+id/reserve_equip_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/reserve_time_button"
+            android:layout_below="@+id/reserve_equip"
+            android:text="選擇機台"
+            />
+
+        <Button
+            android:id="@+id/reserve_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/reserve_equip_button"
+            android:layout_below="@+id/reserve_equip_button"
+            android:text="確認預約" />
 
     </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+
+
 </RelativeLayout>
