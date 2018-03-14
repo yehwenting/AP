@@ -5,18 +5,18 @@
         android:id="@+id/reserve"
         android:enabled="true"
         android:icon="@drawable/user"
-        android:title="reserve"
+        android:title="@string/bottom_nav_reserve"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/group"
         android:enabled="true"
         android:icon="@drawable/user"
-        android:title="group" />
+        android:title="@string/bottom_nav_group" />
     <item
         android:id="@+id/start"
         android:enabled="true"
         android:icon="@drawable/user"
-        android:title="start"
+        android:title="@string/bottom_nav_start"
         app:showAsAction="ifRoom"
         />
 

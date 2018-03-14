@@ -36,12 +36,19 @@ public class Mysql {
     }
 
     public String getReservationData(String number){
-        String data="SELECT * FROM `reserve` WHERE number='"+number+"' ORDER BY start_time";
+        String data="SELECT reserve.* , equipment.url FROM equipment, reserve " +
+                "WHERE reserve.eName = equipment.eName AND reserve.number='"+number+"' ORDER BY start_time";
+//        String data="SELECT * FROM `reserve` WHERE number='"+number+"' ORDER BY start_time";
         return data;
     }
 
     public String checkReserveTimeAvailable(String equipment){
         String data="SELECT start_time,end_time FROM `reserve` WHERE `eName`='"+equipment+"'";
+        return data;
+    }
+
+    public String deleteReserveData(String id){
+        String data="DELETE FROM `reserve` WHERE id="+id;
         return data;
     }
 

@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -37,7 +38,7 @@ public class Navigation_BaseActivity extends AppCompatActivity {
     private TextView userName;
     protected NavigationView NV;
     protected Toolbar toolbar;
-    protected int CurrentMenuItem = 0;//紀錄目前User位於哪一個項目
+    protected int CurrentMenuItem = 8;//紀錄目前User位於哪一個項目
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -64,6 +65,7 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                 if(!(menuItem == NV.getMenu().getItem(CurrentMenuItem))) {//判斷使者者是否點擊當前畫面的項目，若不是，根據所按的項目做出分別的動作
                     switch (menuItem.getItemId()) {
                         case R.id.navItemOne:
+                            Log.d("rrrrr","rrrrrr");
                             Intent intent = new Intent();
                             intent.setClass(Navigation_BaseActivity.this, MainpageActivity.class);
                             startActivity(intent);

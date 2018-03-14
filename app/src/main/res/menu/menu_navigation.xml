@@ -28,5 +28,8 @@
     <item android:id="@+id/navItemSeven"
         android:title="@string/view_seven"
         />
+    <item android:id="@+id/navItemNine"
+            android:title=""
+        />
     </group>
 </menu>

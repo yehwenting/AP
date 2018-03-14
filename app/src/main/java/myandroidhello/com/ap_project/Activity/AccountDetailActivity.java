@@ -52,14 +52,14 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_account_detail);
 
 
-        weight=(Spinner)findViewById(R.id.weightSpinner);
-        height=(Spinner)findViewById(R.id.heightSpinner);
-        ezcard=(EditText)findViewById(R.id.ezcard);
+        weight=findViewById(R.id.weightSpinner);
+        height=findViewById(R.id.heightSpinner);
+        ezcard=findViewById(R.id.ezcard);
         addItemsOnSpinner(weight,40,150);
         addItemsOnSpinner(height,145,210);
-        ezcard=(EditText)findViewById(R.id.ezcard);
-        finish=(Button)findViewById(R.id.finishButton);
-        back=(Button)findViewById(R.id.backButton);
+        ezcard=findViewById(R.id.ezcard);
+        finish=findViewById(R.id.finishButton);
+        back=findViewById(R.id.backButton);
 
 
 

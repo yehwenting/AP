@@ -13,29 +13,44 @@
     <string name="name_label">姓名 : </string>
     <string name="name">請輸入您的姓名</string>
     <string name="stuID_label">學號 :</string>
-    <string name="stuID">Enter your student ID</string>
+    <string name="stuID">請輸入您的學號</string>
     <string name="logout_label">Log Out</string>
     <string name="phone_label">手機 :</string>
-    <string name="phone">Enter your phone number</string>
+    <string name="phone">請輸入您的手機號碼</string>
     <string name="email_label">Email :</string>
-    <string name="email">Enter you email</string>
-    <string name="submit">NEXT</string>
+    <string name="email">請輸入您的Email</string>
+    <string name="submit">下一步</string>
+    <string name="account_back">返回</string>
+    <string name="account_finish">註冊</string>
+    <string name="account_ezcard">請輸入悠遊卡卡號</string>
+
+
+
     //friendsActivity
     <string name="permission_message">AP requires permission to access your Facebook friend list to use Find Friends</string>
     <string name="friend">friend</string>
     //navigation
-    <string name="view_one">首頁</string>
-    <string name="view_two">個人資料</string>
-    <string name="view_three">即時查詢</string>
-    <string name="view_fore">推薦菜單</string>
-    <string name="view_five">健康紀錄</string>
-    <string name="view_six">本週排行</string>
-    <string name="view_seven">登出</string>
-    <string name="view_eight">我的好友</string>
+    <string name="view_one">首 頁</string>
+    <string name="view_two">個 人 資 料</string>
+    <string name="view_three">即 時 查 詢</string>
+    <string name="view_fore">推 薦 菜 單</string>
+    <string name="view_five">健 康 紀 錄</string>
+    <string name="view_six">本 週 排 行</string>
+    <string name="view_seven">登 出</string>
+    <string name="view_eight">我 的 好 友</string>
+    <string name="reserve">預 約</string>
+    //bottom nav
+    <string name="bottom_nav_reserve">預約器材</string>
+    <string name="bottom_nav_group">揪團</string>
+    <string name="bottom_nav_start">開始運動</string>
+
+
 
 
     <string name="open_navigation">hi</string>
     <string name="close_navigation">bye</string>
+    <string name="ok">確定</string>
+    <string name="cancel">取消</string>
 
 
 </resources>

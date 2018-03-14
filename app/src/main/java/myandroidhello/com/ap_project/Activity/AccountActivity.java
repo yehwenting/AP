@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -61,18 +60,18 @@ public class AccountActivity extends AppCompatActivity {
     //TODO　typescreen
     public ProfileTracker profileTracker;
     public ImageView profilePic;
-    public TextView id;
+//    public TextView id;
     public EditText name;
     public EditText student_id;
     public EditText phoneNum;
     public EditText email;
-    public Button logout;
     public Button submit;
     public RadioGroup sex;
     public RadioButton male;
     public RadioButton female;
     public String sexT;
     public String nameCorrect;
+    private String ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,8 +79,6 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account);
         FontHelper.setCustomTypeface(findViewById(R.id.view_root));
 
-        profilePic =  findViewById(R.id.profile_image);
-        id =  findViewById(R.id.id);
         name=findViewById(R.id.info);
         sex=findViewById(R.id.sex);
         male=findViewById(R.id.male);
@@ -89,7 +86,6 @@ public class AccountActivity extends AppCompatActivity {
         student_id=findViewById(R.id.stuID);
         phoneNum=findViewById(R.id.phone);
         email=findViewById(R.id.email);
-        logout=findViewById(R.id.logout_button);
         submit=findViewById(R.id.submit);
 
         // defined user's sex
@@ -123,7 +119,7 @@ public class AccountActivity extends AppCompatActivity {
                 public void onSuccess(final Account account) {
                     // get Account Kit ID
                     String accountKitId = account.getId();
-                    id.setText(accountKitId);
+                    ID=accountKitId;
 
                     PhoneNumber phoneNumber = account.getPhoneNumber();
                     if (account.getPhoneNumber() != null) {
@@ -160,12 +156,6 @@ public class AccountActivity extends AppCompatActivity {
 
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onLogout(view);
-            }
-        });
     }
 
     private void saveInfoToMysql(){
@@ -187,7 +177,7 @@ public class AccountActivity extends AppCompatActivity {
                                             //start new activity
                                             Intent intent=new Intent(AccountActivity.this,AccountDetailActivity.class);
                                             Bundle bundle = new Bundle();
-                                            bundle.putString("id",id.getText().toString());
+                                            bundle.putString("id",ID);
                                             intent.putExtras(bundle);
                                             startActivity(intent);
 //                                            finish();
@@ -221,7 +211,7 @@ public class AccountActivity extends AppCompatActivity {
                     }
                     Log.d("id",sexT);
                     Mysql mysql=new Mysql();
-                    String query=mysql.addUserToMysql(id.getText().toString(),nameCorrect,student_id.getText().toString(),phoneNum.getText().toString(),email.getText().toString(),sexT);
+                    String query=mysql.addUserToMysql(ID,nameCorrect,student_id.getText().toString(),phoneNum.getText().toString(),email.getText().toString(),sexT);
                     params.put("query",query);
                     return params;
                 }
@@ -264,7 +254,7 @@ public class AccountActivity extends AppCompatActivity {
     private void displayProfileInfo(Profile profile) {
         // get Profile ID
         String profileId = profile.getId();
-        id.setText(profileId);
+        ID=profileId;
 
         // display the Profile name
         String name = profile.getName();

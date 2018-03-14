@@ -81,7 +81,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
 
             mView=itemView;
             mFriendName=itemView.findViewById(R.id.friendName);
-            mFriendImage=itemView.findViewById(R.id.friendImage);
+            mFriendImage=itemView.findViewById(R.id.eImage);
             mFollow=itemView.findViewById(R.id.follow);
 
         }

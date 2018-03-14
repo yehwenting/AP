@@ -1,8 +1,11 @@
 package myandroidhello.com.ap_project.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,20 +21,27 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
+import myandroidhello.com.ap_project.Adapter.ReserveCheckAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
 
-public class ReserveCheckActivity extends AppCompatActivity {
+public class ReserveCheckActivity extends Navigation_BaseActivity {
 
-    public TextView reserve_data;
+    public static TextView reserve_data;
     public Button confirm;
+    private TextView toolBar_title;
+    public static RecyclerView recyclerView;
+    public static List<ReserveCheckAdapter.Data> dataList1 = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +50,39 @@ public class ReserveCheckActivity extends AppCompatActivity {
 
         reserve_data=findViewById(R.id.reserve_check_data);
         confirm=findViewById(R.id.confirm);
+        toolBar_title=findViewById(R.id.toolbar_title);
+        recyclerView =findViewById(R.id.reserve_check_RV);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        //toolbar
+        toolbar.setTitle("");//設置ToolBar Title
+        toolBar_title.setText(R.string.reserve);
+        setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
+//        CurrentMenuItem = 0;
+//        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
+
+
         showReserveData();
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.setClass(ReserveCheckActivity.this, MainpageActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
-    private void showReserveData() {
+    public void showReserveData() {
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        List<ReserveCheckAdapter.Data> dataList = new ArrayList<>();
+                        dataList1=dataList;
                         try {
                             Log.d("success",response);
                             JSONObject jsonObject=new JSONObject(response);
@@ -64,15 +99,23 @@ public class ReserveCheckActivity extends AppCompatActivity {
                                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
                                     String formattedDate = sdf.format(time);
                                     String eName=subArray.getJSONObject(i).getString("eName");
-                                    String text=reserve_data.getText().toString()+"\n"+formattedDate+"\n"+eName;
-//                                    Log.d("text",reserve_data.getText().toString());
-                                    reserve_data.setText(text);
+                                    String img=subArray.getJSONObject(i).getString("url");
+                                    String id=subArray.getJSONObject(i).getString("id");
 
+                                    // insert reserve data into data
+                                    ReserveCheckAdapter.Data data = new ReserveCheckAdapter.Data(id,formattedDate, eName,img);
+                                    dataList.add(data);
                                 }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        // initialize the list view adapter
+                        Log.d("fff","success");
+                        ReserveCheckAdapter reserveCheckAdapter = new ReserveCheckAdapter(dataList);
+                        recyclerView.setAdapter(reserveCheckAdapter);
+                        reserveCheckAdapter.notifyDataSetChanged();
+
 
                     }
                 }, new Response.ErrorListener() {
@@ -99,4 +142,6 @@ public class ReserveCheckActivity extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleTon.getmInstance(ReserveCheckActivity.this).addToRequestque(stringRequest);
     }
+
+
 }
