@@ -12,7 +12,7 @@
         card_view:cardCornerRadius="5dp">
 
         <LinearLayout
-            android:layout_width="450dp"
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -21,15 +21,18 @@
                 android:id="@+id/eImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_margin="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
                 app:srcCompat="@drawable/user" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="30dp"
-                >
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/reserve_check_date"
@@ -52,7 +55,8 @@
                 android:id="@+id/reserve_delete"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_margin="45dp"
+                android:layout_marginTop="45dp"
+                android:layout_weight="1"
                 card_view:srcCompat="@drawable/delete" />
 
 

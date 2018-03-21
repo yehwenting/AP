@@ -5,13 +5,14 @@ package myandroidhello.com.ap_project.model;
  */
 
 public class Item {
-    private String text,subtext,date,time,equipment;
+    private String text,subtext,date,time,equipment,picUrl;
     private Boolean isExpendable;
 
-    public Item(String text, String subtext, Boolean expendable) {
+    public Item(String text, String subtext, Boolean expendable,String picUrl) {
         this.text = text;
         this.subtext = subtext;
         isExpendable = expendable;
+        this.picUrl=picUrl;
     }
 
     public String getText() {
@@ -60,5 +61,13 @@ public class Item {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
     }
 }

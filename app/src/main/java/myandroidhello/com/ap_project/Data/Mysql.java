@@ -7,15 +7,15 @@ package myandroidhello.com.ap_project.Data;
 public class Mysql {
 
 
-    public String addUserToMysql(String id,String name,String stu_id,String phoneNum,String email,String sex){
+    public String addUserToMysql(String id,String name,String stu_id,String phoneNum,String email,String sex,String pic){
         String addsql="INSERT into user(fb_id,name,stu_id,phoneNum,email,height,weight,ezcard,ex_status,pic_url,sex) VALUES('"
-                +id+"','"+name+"','"+stu_id+"','"+phoneNum+"','"+email+"','0','0','0','false','0','"+sex+"');";
+                +id+"','"+name+"','"+stu_id+"','"+phoneNum+"','"+email+"','0','0','0','false','"+pic+"','"+sex+"');";
         return addsql;
     }
 
-    public String updateUserDetailToMysql(String id,String height,String weight,String ezcard){
+    public String updateUserDetailToMysql(String id,String height,String weight,String ezcard,String college,String department){
         String updatesql="UPDATE user SET height='" +height+ "',weight='"+weight+
-                "',ezcard='"+ezcard+"'\n" +
+                "',ezcard='"+ezcard+"',college='"+college+"',department='"+department+"'\n" +
                 "where fb_id='"+id+"';";
         return updatesql;
     }
@@ -29,7 +29,7 @@ public class Mysql {
         return getData;
     }
 
-    public String saveReservation(int id,int start_time,int end_time,String eName,int uid,String date ){
+    public String saveReservation(int id,int start_time,int end_time,String eName,String uid,String date ){
         String data="INSERT into reserve(number,start_time,end_time,eName,uid,date) VALUES('"
                 +id+"','"+start_time+"','"+end_time+"','"+eName+"','"+uid+"','"+date+"');";
         return data;

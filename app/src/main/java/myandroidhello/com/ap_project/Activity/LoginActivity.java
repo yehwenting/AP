@@ -44,6 +44,7 @@ import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.font.FontHelper;
+import myandroidhello.com.ap_project.model.GlobalVariables;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -111,7 +112,12 @@ public class LoginActivity extends AppCompatActivity {
         if (accessToken != null || loginToken !=null) {
             // if previously logged in, proceed to the account activity
             Log.d("test","exist!!");
+            Log.d("test",String.valueOf(loginToken.getUserId()));
+//            Log.d("test",String.valueOf(accessToken.getToken()));
+            GlobalVariables User = (GlobalVariables)getApplicationContext();
+            User.setId(loginToken.getUserId());
             launchMainpageActivity();
+//            checkExistedAccount();
         }
     }
 
@@ -131,6 +137,7 @@ public class LoginActivity extends AppCompatActivity {
                 // on successful login, proceed to the account activity
                 Log.d("test",String.valueOf(loginResult.getAccessToken().getAccountId()));
                 currentId=loginResult.getAccessToken().getAccountId();
+
 //                launchAccountActivity();
                 checkExistedAccount();
             }
@@ -182,12 +189,15 @@ public class LoginActivity extends AppCompatActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            GlobalVariables User = (GlobalVariables)getApplicationContext();
+                            User.setId(currentId);
                             Log.d("test",response);
                             try {
                                 JSONObject jsonObject=new JSONObject(response);
                                 if(jsonObject.isNull("response")){
                                     launchAccountActivity();
                                 }else {
+                                    //set data to global
                                     launchMainpageActivity();
                                 }
                             } catch (JSONException e) {

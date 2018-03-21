@@ -54,6 +54,7 @@ import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.font.FontHelper;
+import myandroidhello.com.ap_project.model.User;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -72,6 +73,7 @@ public class AccountActivity extends AppCompatActivity {
     public String sexT;
     public String nameCorrect;
     private String ID;
+    private String picUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,9 +178,16 @@ public class AccountActivity extends AppCompatActivity {
                                         public void run() {
                                             //start new activity
                                             Intent intent=new Intent(AccountActivity.this,AccountDetailActivity.class);
-                                            Bundle bundle = new Bundle();
-                                            bundle.putString("id",ID);
-                                            intent.putExtras(bundle);
+//                                            Bundle bundle = new Bundle();
+//                                            bundle.putString("id",ID);
+                                            try {
+                                                nameCorrect= URLDecoder.decode(name.getText().toString(), "UTF-8");
+                                            } catch (UnsupportedEncodingException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            User user=new User(ID,phoneNum.getText().toString(),nameCorrect);
+                                            intent.putExtra("user", user);
                                             startActivity(intent);
 //                                            finish();
                                         }
@@ -211,7 +220,7 @@ public class AccountActivity extends AppCompatActivity {
                     }
                     Log.d("id",sexT);
                     Mysql mysql=new Mysql();
-                    String query=mysql.addUserToMysql(ID,nameCorrect,student_id.getText().toString(),phoneNum.getText().toString(),email.getText().toString(),sexT);
+                    String query=mysql.addUserToMysql(ID,nameCorrect,student_id.getText().toString(),phoneNum.getText().toString(),email.getText().toString(),sexT,picUrl);
                     params.put("query",query);
                     return params;
                 }
@@ -262,7 +271,8 @@ public class AccountActivity extends AppCompatActivity {
 
         // display the profile picture
         Uri profilePicUri = profile.getProfilePictureUri(100, 100);
-        displayProfilePic(profilePicUri);
+        picUrl=String.valueOf(profilePicUri);
+//        displayProfilePic(profilePicUri);
     }
 
     private void launchLoginActivity() {

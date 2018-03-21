@@ -10,10 +10,10 @@ import android.os.Parcelable;
 public class User implements Parcelable {
 
     private String user_id;
-    private long phone_number;
+    private String phone_number;
     private String username;
 
-    public User(String user_id, long phone_number, String username) {
+    public User(String user_id, String phone_number, String username) {
         this.user_id = user_id;
         this.phone_number = phone_number;
         this.username = username;
@@ -26,7 +26,7 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         user_id = in.readString();
-        phone_number = in.readLong();
+        phone_number = in.readString();
         username = in.readString();
     }
 
@@ -50,11 +50,11 @@ public class User implements Parcelable {
         this.user_id = user_id;
     }
 
-    public long getPhone_number() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhone_number(long phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
@@ -84,7 +84,7 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(user_id);
-        dest.writeLong(phone_number);
+        dest.writeString(phone_number);
         dest.writeString(username);
     }
 }

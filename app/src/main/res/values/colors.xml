@@ -18,4 +18,5 @@
     <color name="ak_inputText">#7d97ad</color>
     <color name="ak_statusBar">#ffd300</color>
     <color name="ak_icon">#ffd300</color>
+    <color name="select">#F1E27B</color>
 </resources>

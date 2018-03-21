@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.Profile;
@@ -26,6 +27,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.model.GlobalVariables;
 
 /**
  * Created by Yehwenting on 2017/12/12.
@@ -39,17 +41,29 @@ public class Navigation_BaseActivity extends AppCompatActivity {
     protected NavigationView NV;
     protected Toolbar toolbar;
     protected int CurrentMenuItem = 8;//紀錄目前User位於哪一個項目
+    private LinearLayout LL;
+    private View view;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         DL = (DrawerLayout) getLayoutInflater().inflate(R.layout.navigation_drawer, null);
+        LL = (LinearLayout) getLayoutInflater().inflate(R.layout.navigation_drawer_header,null);
         FL = DL.findViewById(R.id.content_frame);
         NV = DL.findViewById(R.id.Left_Navigation);
-        userPhoto=DL.findViewById(R.id.navigation_header_userPhoto);
-        userName=DL.findViewById(R.id.navigation_header_userID);
+        view=NV.getHeaderView(0);
+        userPhoto=view.findViewById(R.id.navigation_header_userPhoto);
+        userName=view.findViewById(R.id.navigation_header_userID);
         getLayoutInflater().inflate(layoutResID, FL, true);
         super.setContentView(DL);
         toolbar =findViewById(R.id.toolbar);
+        GlobalVariables User = (GlobalVariables)getApplicationContext();
+        userName.setText(User.getName());
+        Log.d("ooooo",userName.getText().toString());
+        if(User.getUrl().equals("")) {
+            Log.d("777","no photo");
+        }else{
+            displayProfilePic(userPhoto,User.getUrl());
+        }
         setUpNavigation();
 
 
@@ -58,6 +72,9 @@ public class Navigation_BaseActivity extends AppCompatActivity {
     }
 
     private void setUpNavigation() {
+
+
+
         // Set navigation item selected listener
         NV.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -111,6 +128,7 @@ public class Navigation_BaseActivity extends AppCompatActivity {
     }
     public void setUpToolBar() {//設置ToolBar
         setSupportActionBar(toolbar);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -139,10 +157,11 @@ public class Navigation_BaseActivity extends AppCompatActivity {
 
         // display the profile picture
         Uri profilePicUri = profile.getProfilePictureUri(100, 100);
-        displayProfilePic(profilePicUri);
+//        displayProfilePic(profilePicUri);
     }
-    private void displayProfilePic(Uri uri) {
+    private void displayProfilePic(String uri) {
         // helper method to load the profile pic in a circular imageview
+        Log.d("777","photo"+uri);
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(30)
                 .oval(false)
@@ -151,6 +170,22 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                 .load(uri)
                 .transform(transformation)
                 .into(userPhoto);
+    }
+
+    private void displayProfilePic(ImageView imageView, String url) {
+        Log.d("777","photo"+url);
+        Log.d("777",String.valueOf(imageView.getContext()));
+
+        // helper method to load the profile pic in a circular imageview
+        Transformation transformation = new RoundedTransformationBuilder()
+                .cornerRadiusDp(30)
+                .oval(false)
+                .build();
+        Picasso.with(this)
+                .load(url)
+                .placeholder(R.drawable.user)
+                .transform(transformation)
+                .into(imageView);
     }
 
 

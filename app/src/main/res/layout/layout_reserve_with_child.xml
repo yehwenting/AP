@@ -4,34 +4,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    >
 
-    <RelativeLayout
-        android:id="@+id/childButton"
-        android:gravity="center"
-        android:layout_alignParentEnd="true"
-
-        android:layout_width="48dp"
-        android:layout_height="48dp">
-        <View
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="@drawable/ic_keyboard_arrow_up_black_24dp"/>
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/parentTextView"
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@id/childButton"
-        android:padding="8dp"
-        android:text="this is item with child!"
-        android:textSize="12sp" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/exerPic"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/logo" />
+
+
+        <TextView
+            android:id="@+id/parentTextView"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="this is item with child!"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/childButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <View
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/ic_keyboard_arrow_up_black_24dp" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <com.github.aakira.expandablelayout.ExpandableLinearLayout
         android:id="@+id/expendableLayout"
-        android:layout_below="@+id/parentTextView"
+        android:layout_below="@+id/main"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -137,17 +154,16 @@
 
             <Button
                 android:id="@+id/reserve_button"
-                android:layout_width="70dp"
+                android:layout_width="69dp"
                 android:layout_height="35dp"
                 android:layout_alignStart="@+id/reserve_equip_button"
                 android:layout_below="@+id/reserve_equip_button"
-                android:background="@drawable/login_button_selector"
-                android:textColor="@android:color/white"
-                android:text="預約"
-                android:textSize="12sp"
                 android:layout_marginStart="20dp"
                 android:layout_weight="1"
-                />
+                android:background="@drawable/login_button_selector"
+                android:text="預約"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
         </LinearLayout>
 
 

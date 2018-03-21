@@ -76,8 +76,9 @@ public class ReserveFakeFragment extends Fragment {
                                     Log.d("success","responseOK");
                                 for(int i=0;i<subArray.length();i++){
                                     String text=subArray.getJSONObject(i).getString("eName");
+                                    String url=subArray.getJSONObject(i).getString("url");
                                     Log.d("response111",text);
-                                    Item item = new Item(text, "this is child item" + (i + 1), true);
+                                    Item item = new Item(text, "this is child item" + (i + 1), true,url);
                                     items.add(item);
                                     Log.d("response111",item.getText());
                                 }

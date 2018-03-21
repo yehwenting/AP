@@ -7,18 +7,37 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import myandroidhello.com.ap_project.Adapter.Home2Fragment;
 import myandroidhello.com.ap_project.Adapter.HomeFragment;
 import myandroidhello.com.ap_project.Adapter.SectionsPagerAdapter;
+import myandroidhello.com.ap_project.Data.MySingleTon;
+import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.UniversalImageLoader;
+import myandroidhello.com.ap_project.Util.Values;
+import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.model.User;
 
 public class MainpageActivity extends Navigation_BaseActivity {
 
@@ -40,6 +59,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainpage);
 
+        getGlobalData();
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         toolBar_title=findViewById(R.id.toolbar_title);
@@ -47,6 +67,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
         //toolbar
         toolbar.setTitle("");//設置ToolBar Title
         toolBar_title.setText(R.string.view_one);
+        User user=getIntent().getParcelableExtra("user");
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
         CurrentMenuItem = 0;
         NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
@@ -77,6 +98,56 @@ public class MainpageActivity extends Navigation_BaseActivity {
 
         setupViewPager();
         initImageLoader();
+    }
+
+    private void getGlobalData() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("rrrrr",response);
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            JSONArray subArray = jsonObject.getJSONArray("response");
+                            Log.d("t1",String.valueOf(jsonObject));
+                            String name=subArray.getJSONObject(0).getString("name");
+                            String picUrl=subArray.getJSONObject(0).getString("pic_url");
+                            GlobalVariables User = (GlobalVariables)getApplicationContext();
+                            User.setUrl(picUrl);
+                            User.setName(name);
+                            Log.d("tt1",User.getId()+User.getName()+User.getUrl());
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("error","do not save to mysql 2");
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                Mysql mysql=new Mysql();
+                GlobalVariables User = (GlobalVariables)getApplicationContext();
+                String id=User.getId();
+                String query=mysql.checkExistId(id);
+                params.put("query",query);
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleTon.getmInstance(MainpageActivity.this).addToRequestque(stringRequest);
+
     }
 
     private void initImageLoader(){

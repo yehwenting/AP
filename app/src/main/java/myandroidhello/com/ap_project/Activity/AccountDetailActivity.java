@@ -26,23 +26,31 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
+import myandroidhello.com.ap_project.model.User;
 
 public class AccountDetailActivity extends AppCompatActivity implements View.OnClickListener {
     //TODO back button,add to db(finish),try to make setOnItemSelectedListener efficiently
 
     public Spinner weight;
     public Spinner height;
+    public Spinner college;
+    public Spinner department;
     public EditText ezcard;
     public ArrayAdapter<Integer> adapter;
+    public ArrayAdapter<String> adapterString;
     public String selectWeight;
     public String selectHeight;
+    public String selectCollege;
+    public String selectDepartment;
     public Button finish;
     public Button back;
 
@@ -54,9 +62,13 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
 
         weight=findViewById(R.id.weightSpinner);
         height=findViewById(R.id.heightSpinner);
+        college=findViewById(R.id.collegeSpinner);
+        department=findViewById(R.id.departmentSpinner);
         ezcard=findViewById(R.id.ezcard);
         addItemsOnSpinner(weight,40,150);
         addItemsOnSpinner(height,145,210);
+        addCollegesOnSpinner(college);
+        addDepartmentsOnSpinner(department);
         ezcard=findViewById(R.id.ezcard);
         finish=findViewById(R.id.finishButton);
         back=findViewById(R.id.backButton);
@@ -82,6 +94,25 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
                 Toast.makeText(AccountDetailActivity.this, "您沒有選擇任何項目", Toast.LENGTH_LONG).show();
             }
         });
+        college.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView adapterView, View view, int position, long id){
+                selectCollege=adapterView.getSelectedItem().toString();
+                Log.d("test",selectCollege);
+            }
+            public void onNothingSelected(AdapterView arg0) {
+                Toast.makeText(AccountDetailActivity.this, "您沒有選擇任何項目", Toast.LENGTH_LONG).show();
+            }
+        });
+        department.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            public void onItemSelected(AdapterView adapterView, View view, int position, long id){
+                selectDepartment=adapterView.getSelectedItem().toString();
+                Log.d("test",selectDepartment);
+            }
+            public void onNothingSelected(AdapterView arg0) {
+                Toast.makeText(AccountDetailActivity.this, "您沒有選擇任何項目", Toast.LENGTH_LONG).show();
+            }
+        });
+
 
         //button
         finish.setOnClickListener(this);
@@ -101,14 +132,11 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
                                 String Response=jsonObject.getString("response");
                                 if(Response.equals("OK")){
                                     Log.d("success","ya");
-//                                    new Handler().postDelayed(new Runnable() {
-//                                        @Override
-//                                        public void run() {
                                             //start new activity
-                                            startActivity(new Intent(AccountDetailActivity.this,MainpageActivity.class));
+                                            Intent intent=new Intent(AccountDetailActivity.this,MainpageActivity.class);
+                                            intent.putExtra("user",getIntent().getParcelableExtra("user"));
+                                            startActivity(intent);
                                             finish();
-//                                        }
-//                                    },1200); //1 sec
                                 }else{
 //                                    saveGroceryToServer(view);
                                     Log.d("error","do not save to mysql");
@@ -130,10 +158,11 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params=new HashMap<>();
                     Bundle bundle = getIntent().getExtras();
-                    String id = bundle.getString("id");
+                    User user=getIntent().getParcelableExtra("user");
+                    String id = user.getUser_id();
                     Log.d("id",id);
                     Mysql mysql=new Mysql();
-                    String query=mysql.updateUserDetailToMysql(id,selectHeight,selectWeight,ezcard.getText().toString());
+                    String query=mysql.updateUserDetailToMysql(id,selectHeight,selectWeight,ezcard.getText().toString(),selectCollege,selectDepartment);
                     params.put("query",query);
                     return params;
                 }
@@ -166,6 +195,36 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
+    public void addCollegesOnSpinner(Spinner spinner) {
+        String[] college={"文學院","理學院","社會科學院","法學院","商學院","外國語文學院","傳播學院",
+                "國際事務學院","教育學院"};
+        List<String> newList = Arrays.asList(college);
+        ArrayList<String> list = new ArrayList<String>();
+        list.addAll(newList);
+
+        adapterString=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,list);
+        adapterString.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterString);
+    }
+    public void addDepartmentsOnSpinner(Spinner spinner) {
+        final String[] department={"中國文學系","歷史學系","哲學系",
+                "應用數學系","心理學系","資訊科學系","政治學系","社會學系",
+                "財政學系","公共行政學系","地政學系","經濟學系","民族學系",
+                "法律學系","金融學系","國際經營與貿易學系","會計學系",
+                "統計學系","企業管理學系","資訊管理學系","財務管理學系",
+                "風險管理與保險學系","英國語文學系","阿拉伯語文學系","斯拉夫語文學系",
+                "日本語文學系","韓國語文學系","土耳其語文學系","歐洲語文學系",
+                "新聞學系","廣告學系","廣播電視學系","傳播學院大一大二不分系",
+                "外交學系","教育學系"};
+        List<String> newList = Arrays.asList(department);
+        ArrayList<String> list = new ArrayList<String>();
+        list.addAll(newList);
+
+        adapterString=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+        adapterString.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterString);
+    }
+
 
 
     @Override

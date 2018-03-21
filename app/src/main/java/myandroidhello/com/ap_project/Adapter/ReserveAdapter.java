@@ -17,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +34,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.github.aakira.expandablelayout.ExpandableLayoutListenerAdapter;
 import com.github.aakira.expandablelayout.ExpandableLinearLayout;
 import com.github.aakira.expandablelayout.Utils;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,7 +54,9 @@ import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.CustomTimePickerDialog;
 import myandroidhello.com.ap_project.Util.Values;
+import myandroidhello.com.ap_project.model.GlobalVariables;
 import myandroidhello.com.ap_project.model.Item;
+
 
 /**
  * Created by Yehwenting on 2018/2/4.
@@ -58,14 +65,17 @@ import myandroidhello.com.ap_project.model.Item;
 
 class MyViewHolderWithChild extends RecyclerView.ViewHolder{
     public TextView textView;
+    public ImageView expic;
     public RelativeLayout buttonChild;
     public Button buttonDate,buttonTime,buttonEquipment,commit;
     public ExpandableLinearLayout expandableLayout;
     public Spinner workout_time;
+    public LinearLayout main;
 
     public MyViewHolderWithChild(View itemView) {
         super(itemView);
         textView=itemView.findViewById(R.id.parentTextView);
+        expic=itemView.findViewById(R.id.exerPic);
         buttonChild=itemView.findViewById(R.id.childButton);
         buttonDate=itemView.findViewById(R.id.reserve_date_button);
         buttonTime=itemView.findViewById(R.id.reserve_time_button);
@@ -73,6 +83,7 @@ class MyViewHolderWithChild extends RecyclerView.ViewHolder{
         expandableLayout=itemView.findViewById(R.id.expendableLayout);
         commit=itemView.findViewById(R.id.reserve_button);
         workout_time=itemView.findViewById(R.id.workout_time_spinner);
+        main=itemView.findViewById(R.id.main);
 
 
     }
@@ -119,12 +130,14 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                 final MyViewHolderWithChild viewHolderWithChild=(MyViewHolderWithChild)holder;
                 final Item item=items.get(position);
+//                Log.d("eeeee",item.getText());
 //                int test=componentTimeToTimestamp(2018,1,26,20,10);
 //                Log.d("ttttt",String.valueOf(test));
 
                 viewHolderWithChild.setIsRecyclable(false);
                 //更改每個健身器材名字
                 viewHolderWithChild.textView.setText(item.getText());
+                displayProfilePic(viewHolderWithChild.expic, item.getPicUrl());
 
                 viewHolderWithChild.expandableLayout.setInRecyclerView(true);
                 viewHolderWithChild.expandableLayout.setExpanded(expendState.get(position));
@@ -132,6 +145,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     @Override
                     public void onPreOpen() {
+                        viewHolderWithChild.main.setBackgroundColor(Color.parseColor("#F1E27B"));
                         changeRotate(viewHolderWithChild.buttonChild,180f,0f).start();
                         expendState.put(position,false);
 
@@ -139,6 +153,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     @Override
                     public void onPreClose() {
+                        viewHolderWithChild.main.setBackgroundColor(Color.parseColor("#ffffff"));
 
                     }
 
@@ -268,8 +283,10 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     end_time=componentTimeToTimestamp(start_year,start_month,start_day,start_time_hour,start_time_min);
                     Log.d("test",String.valueOf(end_time));
                 }
+                GlobalVariables User = (GlobalVariables)context.getApplicationContext();
+                String uid=User.getId();
 
-                String query=mysql.saveReservation(id,start_time,end_time,eName,001,date);
+                String query=mysql.saveReservation(id,start_time,end_time,eName,uid,date);
                 params.put("query",query);
                 return params;
             }
@@ -395,5 +412,18 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    private void displayProfilePic(ImageView imageView, String url) {
+        // helper method to load the profile pic in a circular imageview
+        Transformation transformation = new RoundedTransformationBuilder()
+                .cornerRadiusDp(30)
+                .oval(false)
+                .build();
+        Picasso.with(imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.logo)
+                .transform(transformation)
+                .into(imageView);
     }
 }

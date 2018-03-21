@@ -2,9 +2,12 @@ package myandroidhello.com.ap_project.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,6 +44,8 @@ public class ReserveCheckActivity extends Navigation_BaseActivity {
     private TextView toolBar_title;
     public static RecyclerView recyclerView;
     public static List<ReserveCheckAdapter.Data> dataList1 = new ArrayList<>();
+    private BottomNavigationView bottomNavigationView;
+
 
 
     @Override
@@ -54,13 +59,31 @@ public class ReserveCheckActivity extends Navigation_BaseActivity {
         recyclerView =findViewById(R.id.reserve_check_RV);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
 
         //toolbar
         toolbar.setTitle("");//設置ToolBar Title
         toolBar_title.setText(R.string.reserve);
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
-//        CurrentMenuItem = 0;
-//        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
+        //bottomNavigation
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.reserve:
+                                Intent intent=new Intent(ReserveCheckActivity.this, ReserveActivity.class);
+                                startActivity(intent);
+                                break;
+                            case R.id.group:
+                                break;
+                            case R.id.start:
+                                break;
+                        }
+
+                        return true;
+                    }
+                });
 
 
         showReserveData();
