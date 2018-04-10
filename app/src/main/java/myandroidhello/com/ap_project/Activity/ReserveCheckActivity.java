@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -40,7 +40,7 @@ import myandroidhello.com.ap_project.Util.Values;
 public class ReserveCheckActivity extends Navigation_BaseActivity {
 
     public static TextView reserve_data;
-    public Button confirm;
+    public ImageView confirm;
     private TextView toolBar_title;
     public static RecyclerView recyclerView;
     public static List<ReserveCheckAdapter.Data> dataList1 = new ArrayList<>();
@@ -76,6 +76,8 @@ public class ReserveCheckActivity extends Navigation_BaseActivity {
                                 startActivity(intent);
                                 break;
                             case R.id.group:
+                                Intent intent1=new Intent(ReserveCheckActivity.this, JFGroupActivity.class);
+                                startActivity(intent1);
                                 break;
                             case R.id.start:
                                 break;

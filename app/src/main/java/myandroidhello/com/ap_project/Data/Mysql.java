@@ -13,6 +13,13 @@ public class Mysql {
         return addsql;
     }
 
+    public String updateUserToMysql(String id,String name,String stu_id,String phoneNum,String email,String sex){
+        String updatesql="UPDATE user SET name='" +name+ "',stu_id='"+stu_id+
+                "',phoneNum='"+phoneNum+"',email='"+email+"',sex='"+sex+"'\n" +
+                "where fb_id='"+id+"';";
+        return updatesql;
+    }
+
     public String updateUserDetailToMysql(String id,String height,String weight,String ezcard,String college,String department){
         String updatesql="UPDATE user SET height='" +height+ "',weight='"+weight+
                 "',ezcard='"+ezcard+"',college='"+college+"',department='"+department+"'\n" +
@@ -29,7 +36,7 @@ public class Mysql {
         return getData;
     }
 
-    public String saveReservation(int id,int start_time,int end_time,String eName,String uid,String date ){
+    public String saveReservation(String id,int start_time,int end_time,String eName,String uid,String date ){
         String data="INSERT into reserve(number,start_time,end_time,eName,uid,date) VALUES('"
                 +id+"','"+start_time+"','"+end_time+"','"+eName+"','"+uid+"','"+date+"');";
         return data;
@@ -52,6 +59,37 @@ public class Mysql {
         return data;
     }
 
+    public String addFriend(String user1,String user2){
+        String data="INSERT INTO friends(user1,user2) VALUES('"+user1+"','"+user2+"');";
+        return data;
+    }
+
+    public String checkIsFriend(String user1,String user2){
+        String data="SELECT * FROM friends WHERE user1='"+user1+"' AND user2='"+user2+"'";
+        return data;
+    }
+
+    public String deleteFriend(String user1,String user2){
+        String data="DELETE FROM friends WHERE user1='"+user1+"' AND user2='"+user2+"';";
+        return data;
+    }
+
+    public String addUserToGroupSql(String uid, int gid){
+        String joingroup ="INSERT INTO joingroup (uid,gid) VALUES('"+uid+"','"+gid+"');" ;
+        return joingroup;
+    }
+
+    public String createNewGroup(String name, String Type, String place, String uid,
+                                 String date, int number, int remain){
+        String createNewGroup ="INSERT into findgroup(gid, name,type, place, uid, date, number,remain)" +
+                "VALUES "+ "(NULL,'"+name+"','"+Type+"','"+place+"','"+uid+"','"+date+"','"+number+"','"+remain+"');";
+        return createNewGroup;
+    }
+
+    public String getGroup(){
+        String selectGroup = "SELECT * FROM findgroup;";
+        return  selectGroup;
+    }
 
 
 }

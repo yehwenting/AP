@@ -89,6 +89,13 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                             overridePendingTransition(0, 0);
                             finish();
                             break;
+                        case R.id.navItemTwo:
+                            Intent intent2 = new Intent();
+                            intent2.setClass(Navigation_BaseActivity.this, PersonInfoActivity.class);
+                            startActivity(intent2);
+                            overridePendingTransition(0, 0);
+                            finish();
+                            break;
                         case R.id.navItemEight:
                             Intent intent1=new Intent(Navigation_BaseActivity.this,FriendsActivity.class);
                             startActivity(intent1);
@@ -158,18 +165,6 @@ public class Navigation_BaseActivity extends AppCompatActivity {
         // display the profile picture
         Uri profilePicUri = profile.getProfilePictureUri(100, 100);
 //        displayProfilePic(profilePicUri);
-    }
-    private void displayProfilePic(String uri) {
-        // helper method to load the profile pic in a circular imageview
-        Log.d("777","photo"+uri);
-        Transformation transformation = new RoundedTransformationBuilder()
-                .cornerRadiusDp(30)
-                .oval(false)
-                .build();
-        Picasso.with(Navigation_BaseActivity.this)
-                .load(uri)
-                .transform(transformation)
-                .into(userPhoto);
     }
 
     private void displayProfilePic(ImageView imageView, String url) {

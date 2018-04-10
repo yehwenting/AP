@@ -7,12 +7,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".model.GlobalVariables"
         android:allowBackup="true"
         android:icon="@drawable/xer"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".model.GlobalVariables">
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />
@@ -49,23 +49,30 @@
                 <data android:scheme="@string/ak_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Activity.LoginActivity"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
-            android:theme="@style/AppTheme">
+        <activity
+            android:name=".Activity.LoginActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activity.AccountActivity" />
-        <activity android:name=".Activity.MainpageActivity">
-        </activity>
+        <activity android:name=".Activity.MainpageActivity"></activity>
         <activity android:name=".Activity.AccountDetailActivity" />
         <activity android:name=".Activity.FriendsActivity" />
         <activity android:name=".Activity.ReserveActivity" />
-        <activity android:name=".Activity.ReserveCheckActivity"></activity>
+        <activity android:name=".Activity.ReserveCheckActivity" />
+        <activity android:name=".Activity.PersonInfoActivity"></activity>
+        <activity android:name=".Activity.EditPInfoActivity"></activity>
+        <activity android:name=".Activity.EditPInfoDetailActivity"></activity>
+        <activity android:name=".Activity.JFGroupActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

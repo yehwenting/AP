@@ -13,7 +13,7 @@
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="0dp"
-        android:layout_height="550dp"
+        android:layout_height="537dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,49 +21,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </FrameLayout>
-
-    <RelativeLayout
-        android:id="@+id/relLayoutParent"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- top toolbar -->
-
-        <!-- Middle section (body) -->
         <RelativeLayout
-            android:id="@+id/relLayout2"
+            android:id="@+id/relLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="476dp">
 
-            <include layout="@layout/layout_center_viewpager" />
-
-            <RelativeLayout
-                android:id="@+id/relLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true">
-
-                <include layout="@layout/layout_top_tabs" />
-
-
-            </RelativeLayout>
+            <include layout="@layout/layout_top_tabs" />
 
 
         </RelativeLayout>
 
-        <!-- bottom navigation -->
-        <!--<include layout="@layout/layout_bottom_navigation_view"/>-->
+        <RelativeLayout
+            android:id="@+id/relLayoutParent"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- top toolbar -->
+
+            <!-- Middle section (body) -->
+            <RelativeLayout
+                android:id="@+id/relLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="17dp">
+
+                <include layout="@layout/layout_center_viewpager" />
 
 
-    </RelativeLayout>
+            </RelativeLayout>
+
+            <!-- bottom navigation -->
+            <!--<include layout="@layout/layout_bottom_navigation_view"/>-->
+
+
+        </RelativeLayout>
+    </FrameLayout>
 
 
     <android.support.design.widget.BottomNavigationView

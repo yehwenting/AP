@@ -4,9 +4,7 @@ import android.animation.ObjectAnimator;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -48,7 +46,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
 
-import myandroidhello.com.ap_project.Activity.ReserveCheckActivity;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
@@ -96,8 +93,8 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     Context context;
     SparseBooleanArray expendState= new SparseBooleanArray();
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private String date,eName,selectWorkoutTime;
-    public int dateNum,id,start_time_hour,start_time_min,start_year,
+    private String date,eName,selectWorkoutTime,dateNum,id;
+    public int start_time_hour,start_time_min,start_year,
             start_month,start_day,end_time,start_time;
     public ArrayAdapter<Integer> adapter;
 
@@ -247,11 +244,12 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         try {
                             Log.d("success",response);
                             JSONObject jsonObject=new JSONObject(response);
-                            Intent intent = new Intent(context,ReserveCheckActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("number",String.valueOf(id));
-                            intent.putExtras(bundle);
-                            context.startActivity(intent);
+//                            Intent intent = new Intent(context,ReserveCheckActivity.class);
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("number",String.valueOf(id));
+//                            intent.putExtras(bundle);
+//                            context.startActivity(intent);
+                            Toast.makeText(context, "預約成功!", Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -267,8 +265,11 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
+                GlobalVariables User = (GlobalVariables)context.getApplicationContext();
                 Mysql mysql=new Mysql();
-                id=001*10000+dateNum;
+                String uid= User.getId();
+                id=uid+dateNum;
+                Log.d("tttttt",id);
                 start_time=componentTimeToTimestamp(start_year,start_month,start_day,start_time_hour,start_time_min);
 
 //                Log.d("time",String.valueOf(time));
@@ -283,8 +284,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     end_time=componentTimeToTimestamp(start_year,start_month,start_day,start_time_hour,start_time_min);
                     Log.d("test",String.valueOf(end_time));
                 }
-                GlobalVariables User = (GlobalVariables)context.getApplicationContext();
-                String uid=User.getId();
+
 
                 String query=mysql.saveReservation(id,start_time,end_time,eName,uid,date);
                 params.put("query",query);
@@ -346,6 +346,8 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
         mDay = c.get(Calendar.DAY_OF_MONTH);
+        Log.d("tttttttt",String.valueOf(mYear)+String.valueOf(mMonth+1)+String.valueOf(mDay));
+        dateNum=String.valueOf(mYear)+String.valueOf(mMonth+1)+String.valueOf(mDay);
         // 跳出日期選擇器
         DatePickerDialog dpd = new DatePickerDialog(context,
                 new DatePickerDialog.OnDateSetListener() {
@@ -354,7 +356,6 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                         viewHolderWithChild.buttonDate.setText(year + "-" + (monthOfYear + 1) + "-"
                                 + dayOfMonth);
                         date= year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                        dateNum=(monthOfYear + 1)*100+dayOfMonth;
                         start_year=year;
                         start_month=monthOfYear;
                         start_day=dayOfMonth;

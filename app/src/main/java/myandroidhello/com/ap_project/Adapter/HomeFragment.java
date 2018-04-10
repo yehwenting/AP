@@ -12,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,8 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.model.GlobalVariables;
 import myandroidhello.com.ap_project.model.Photo;
 
 /**
@@ -44,15 +48,17 @@ public class HomeFragment extends Fragment {
     private MainfeedListAdapter mAdapter;
     private String HTTP_URL = "http://140.119.19.36:80/home.php";
     private String FinalJSonObject;
+    public Context context;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        mListView = (ListView) view.findViewById(R.id.listView);
+        mListView = view.findViewById(R.id.listView);
         mFollowing = new ArrayList<>();
         mPhotos = new ArrayList<>();
+        context=container.getContext();
 
 //        getFollowing();
         getPhotos();
@@ -68,11 +74,11 @@ public class HomeFragment extends Fragment {
 
     private void getPhotos(){
         Log.d(TAG, "getPhotos: getting photos");
-        StringRequest stringRequest = new StringRequest(HTTP_URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,HTTP_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        Log.d("eeee",response);
                         // After done Loading store JSON response in FinalJSonObject string variable.
                         FinalJSonObject = response ;
 
@@ -89,7 +95,15 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getActivity(),error.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
-                });
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                GlobalVariables User=(GlobalVariables)context.getApplicationContext();
+                params.put("user",User.getId());
+                return params;
+            }
+        };
 
         // Creating String Request Object.
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());

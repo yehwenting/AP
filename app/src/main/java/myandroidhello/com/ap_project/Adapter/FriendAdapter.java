@@ -1,5 +1,6 @@
 package myandroidhello.com.ap_project.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,15 +9,31 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
-import java.util.List;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import myandroidhello.com.ap_project.Data.MySingleTon;
+import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.font.FontHelper;
+import myandroidhello.com.ap_project.model.GlobalVariables;
 
 /**
  * Created by Yehwenting on 2017/11/29.
@@ -37,6 +54,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
     }
 
     private final List<FriendItem> mValues;
+    private Context context;
 
     public FriendAdapter(List<FriendItem> items) {
         mValues = items;
@@ -45,22 +63,149 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
 
     @Override
     public FriendAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        this.context=parent.getContext();
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.adapter_friends, parent, false);
         return new FriendAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(FriendAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final FriendAdapter.ViewHolder holder, int position) {
         final FriendItem friendItem=mValues.get(position);
         FontHelper.setCustomTypeface(holder.mView);
 
         // set name and display profile pic
-        Log.d("friend",friendItem.name);
         holder.mFriendName.setText(friendItem.name);
         displayProfilePic(holder.mFriendImage, friendItem.image);
 
+        //display
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            Log.d("success",response);
+                            JSONObject jsonObject=new JSONObject(response);
+                            Log.d("success",jsonObject.getString("response"));
+                            if(jsonObject.getString("response").equals("null")){
+
+                            }else{
+//                                holder.mFollow.setVisibility(View.GONE);
+                                holder.mFollow.setText("取消追蹤");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("error","do not get equipment from mysql 2");
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params=new HashMap<>();
+                Mysql mysql=new Mysql();
+                GlobalVariables User=(GlobalVariables)context.getApplicationContext();
+                String query=mysql.checkIsFriend(User.getId(),friendItem.id);
+                params.put("query",query);
+                return params;
+            }
+        };
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        MySingleTon.getmInstance(context).addToRequestque(stringRequest);
+
+
+
+
+
         // check if user is following this friend and update follow button appearance
+        holder.mFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.mFollow.getText().equals("追蹤")){
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        Log.d("success",response);
+                                        JSONObject jsonObject=new JSONObject(response);
+                                        holder.mFollow.setText("取消追蹤");
+//                                    holder.mFollow.setVisibility(View.GONE);
+                                        Toast.makeText(context, "已成為好友", Toast.LENGTH_LONG).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Log.d("error","do not get equipment from mysql 2");
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String,String> params=new HashMap<>();
+                            Mysql mysql=new Mysql();
+                            GlobalVariables User=(GlobalVariables)context.getApplicationContext();
+                            String query=mysql.addFriend(User.getId(),friendItem.id);
+                            params.put("query",query);
+                            return params;
+                        }
+                    };
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            10000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    MySingleTon.getmInstance(context).addToRequestque(stringRequest);
+                }else{
+                    StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        Log.d("success",response);
+                                        JSONObject jsonObject=new JSONObject(response);
+                                        holder.mFollow.setText("追蹤");
+//                                    holder.mFollow.setVisibility(View.GONE);
+                                        Toast.makeText(context, "已取消追蹤好友", Toast.LENGTH_LONG).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Log.d("error","do not get equipment from mysql 2");
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String,String> params=new HashMap<>();
+                            Mysql mysql=new Mysql();
+                            GlobalVariables User=(GlobalVariables)context.getApplicationContext();
+                            String query=mysql.deleteFriend(User.getId(),friendItem.id);
+                            params.put("query",query);
+                            return params;
+                        }
+                    };
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            10000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    MySingleTon.getmInstance(context).addToRequestque(stringRequest);
+                }
+
+            }
+        });
 
 
 

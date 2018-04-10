@@ -37,6 +37,7 @@ public class FriendsActivity extends Navigation_BaseActivity {
     CallbackManager callbackManager;
     RecyclerView recyclerView;
     TextView emptyText;
+    String isFriend="uuuu";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +104,6 @@ public class FriendsActivity extends Navigation_BaseActivity {
     }
 
     private void fetchFriends() {
-
         // make the API call to fetch friends list
         Bundle parameters = new Bundle();
         parameters.putString("fields", "id,name,picture");
@@ -132,7 +132,6 @@ public class FriendsActivity extends Navigation_BaseActivity {
                                 String id = jsonUser.getString("id");
                                 String name = jsonUser.getString("name");
                                 String image = jsonUser.getJSONObject("picture").getJSONObject("data").getString("url");
-
                                 // insert new friend item in friendList
                                 FriendAdapter.FriendItem friend = new FriendAdapter.FriendItem(id, name, image);
                                 friendList.add(friend);

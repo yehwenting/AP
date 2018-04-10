@@ -37,15 +37,12 @@ import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.UniversalImageLoader;
 import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.model.GlobalVariables;
-import myandroidhello.com.ap_project.model.User;
 
 public class MainpageActivity extends Navigation_BaseActivity {
 
 
     private BottomNavigationView bottomNavigationView;
     private TextView toolBar_title;
-    private static final String TAG = "HomeActivity";
-    private static final int ACTIVITY_NUM = 0;
 
     private Context mContext = MainpageActivity.this;
 
@@ -67,7 +64,6 @@ public class MainpageActivity extends Navigation_BaseActivity {
         //toolbar
         toolbar.setTitle("");//設置ToolBar Title
         toolBar_title.setText(R.string.view_one);
-        User user=getIntent().getParcelableExtra("user");
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
         CurrentMenuItem = 0;
         NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
@@ -82,6 +78,8 @@ public class MainpageActivity extends Navigation_BaseActivity {
                         startActivity(intent);
                         break;
                     case R.id.group:
+                        Intent intent1=new Intent(MainpageActivity.this, JFGroupActivity.class);
+                        startActivity(intent1);
                         break;
                     case R.id.start:
                         break;
@@ -112,12 +110,27 @@ public class MainpageActivity extends Navigation_BaseActivity {
                             Log.d("t1",String.valueOf(jsonObject));
                             String name=subArray.getJSONObject(0).getString("name");
                             String picUrl=subArray.getJSONObject(0).getString("pic_url");
+                            String stuId=subArray.getJSONObject(0).getString("stu_id");
+                            String phoneNum=subArray.getJSONObject(0).getString("phoneNum");
+                            String email=subArray.getJSONObject(0).getString("email");
+                            String height=subArray.getJSONObject(0).getString("height");
+                            String weight=subArray.getJSONObject(0).getString("weight");
+                            String ezcard=subArray.getJSONObject(0).getString("ezcard");
+                            String sex=subArray.getJSONObject(0).getString("sex");
+                            String college=subArray.getJSONObject(0).getString("college");
+                            String department=subArray.getJSONObject(0).getString("department");
                             GlobalVariables User = (GlobalVariables)getApplicationContext();
                             User.setUrl(picUrl);
                             User.setName(name);
-                            Log.d("tt1",User.getId()+User.getName()+User.getUrl());
-
-
+                            User.setStuId(stuId);
+                            User.setPhoneNum(phoneNum);
+                            User.setEmail(email);
+                            User.setHeight(height);
+                            User.setWeight(weight);
+                            User.setEzcard(ezcard);
+                            User.setSex(sex);
+                            User.setCollege(college);
+                            User.setDepartment(department);
 
 
                         } catch (JSONException e) {
@@ -153,7 +166,6 @@ public class MainpageActivity extends Navigation_BaseActivity {
     private void initImageLoader(){
         UniversalImageLoader universalImageLoader = new UniversalImageLoader(mContext);
         ImageLoader.getInstance().init(universalImageLoader.getConfig());
-
     }
 
     /**

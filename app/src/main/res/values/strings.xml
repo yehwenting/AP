@@ -25,7 +25,6 @@
     <string name="account_ezcard">請輸入悠遊卡卡號</string>
 
 
-
     //friendsActivity
     <string name="permission_message">AP requires permission to access your Facebook friend list to use Find Friends</string>
     <string name="friend">friend</string>
@@ -45,12 +44,25 @@
     <string name="bottom_nav_start">開始運動</string>
 
 
-
-
     <string name="open_navigation">hi</string>
     <string name="close_navigation">bye</string>
     <string name="ok">確定</string>
     <string name="cancel">取消</string>
+
+    <!--group-->
+    <string name="picktime">請選擇時間</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add">+1</string>
+    <string name="gname">團名：</string>
+    <string name="type">運動種類：</string>
+    <string name="time">時間：</string>
+    <string name="place">地點：</string>
+    <string name="gnumber">本團人數：</string>
+    <string name="remain">剩餘人數：</string>
+    <string name="title_activity_add_group">AddGroupActivity</string>
+    <string name="findOne">找一個</string>
+    <string name="createOne">揪一個</string>
+    <string name="pleasechoose">尚未選擇時間</string>
 
 
 </resources>

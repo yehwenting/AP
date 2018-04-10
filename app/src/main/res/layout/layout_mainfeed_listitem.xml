@@ -6,63 +6,56 @@
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
         >
 
+        <myandroidhello.com.ap_project.Util.SqaureImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop" />
+
         <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="140dp"
-            android:id="@+id/relLayout1"
-            android:layout_centerInParent="true"
-            android:background="@drawable/story_box">
-
-            <!--<com.example.jenny.startexercise.Utils.SqaureImageView-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:id="@+id/profile_photo"-->
-                <!--android:layout_marginTop="20dp"-->
-                <!--android:layout_marginLeft="25dp"-->
-                <!--android:layout_centerVertical="true" />-->
-
-            <myandroidhello.com.ap_project.Util.SqaureImageView
-                android:layout_width="120dp"
+                android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:id="@+id/post_image"
-                android:layout_centerVertical="true"
-                android:scaleType="centerCrop"/>
+                android:layout_below="@id/post_image">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Jenny"
-                android:layout_toRightOf="@+id/post_image"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:id="@+id/username"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Jenny"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/username"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Xer is lit :) #exerciseWithXer #NCCU"
-                android:textSize="18sp"
-                android:id="@+id/image_caption"
-                android:layout_toRightOf="@+id/post_image"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xer is lit :) #exerciseWithXer #NCCU"
+                    android:textSize="18sp"
+                    android:id="@+id/image_caption"
+                    android:layout_below="@+id/username"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="3 mins ago"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="20dp"
-                android:paddingRight="16dp"
-                android:id="@+id/image_time_posted"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="3 mins ago"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="30dp"
+                    android:paddingRight="16dp"
+                    android:id="@+id/image_time_posted"/>
+
+            </RelativeLayout>
+
+
 
 
         </RelativeLayout>
@@ -75,6 +68,6 @@
 
 
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 </RelativeLayout>

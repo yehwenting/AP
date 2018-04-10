@@ -1,20 +1,26 @@
 package myandroidhello.com.ap_project.Activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.florent37.bubbletab.BubbleTab;
+
+import java.util.Calendar;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import myandroidhello.com.ap_project.Adapter.ReserveFakeAdapter;
 import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.model.GlobalVariables;
 
 public class ReserveActivity extends Navigation_BaseActivity {
     @Bind(R.id.bubbleTab)
@@ -23,6 +29,9 @@ public class ReserveActivity extends Navigation_BaseActivity {
     ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
     private TextView toolBar_title;
+    private ImageView cart;
+    private int mYear, mMonth, mDay;
+    private String dateNum,id;
 
 
     @Override
@@ -43,6 +52,28 @@ public class ReserveActivity extends Navigation_BaseActivity {
 
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
+        cart=findViewById(R.id.exerciseCart);
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+        dateNum=String.valueOf(mYear)+String.valueOf(mMonth+1)+String.valueOf(mDay);
+        GlobalVariables User = (GlobalVariables)getApplicationContext();
+        String uid= User.getId();
+        id=uid+dateNum;
+
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReserveActivity.this,ReserveCheckActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("number",String.valueOf(id));
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,6 +101,8 @@ public class ReserveActivity extends Navigation_BaseActivity {
 //                                startActivity(intent);
                                 break;
                             case R.id.group:
+                                Intent intent1=new Intent(ReserveActivity.this, JFGroupActivity.class);
+                                startActivity(intent1);
                                 break;
                             case R.id.start:
                                 break;
