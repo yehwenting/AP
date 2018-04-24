@@ -82,6 +82,8 @@ public class MainpageActivity extends Navigation_BaseActivity {
                         startActivity(intent1);
                         break;
                     case R.id.start:
+                        Intent intent2=new Intent(MainpageActivity.this, MenuActivity.class);
+                        startActivity(intent2);
                         break;
                 }
 

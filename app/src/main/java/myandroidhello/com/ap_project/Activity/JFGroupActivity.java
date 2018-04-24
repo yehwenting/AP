@@ -42,6 +42,7 @@ public class JFGroupActivity extends Navigation_BaseActivity {
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
 
         //bottomNavigation
+        bottomNavigationView.setSelectedItemId(R.id.group);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -55,7 +56,10 @@ public class JFGroupActivity extends Navigation_BaseActivity {
                                 recreate();
                                 break;
                             case R.id.start:
+                                Intent intent2=new Intent(JFGroupActivity.this, MenuActivity.class);
+                                startActivity(intent2);
                                 break;
+
                         }
 
                         return true;

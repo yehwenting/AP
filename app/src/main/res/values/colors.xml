@@ -19,4 +19,6 @@
     <color name="ak_statusBar">#ffd300</color>
     <color name="ak_icon">#ffd300</color>
     <color name="select">#F1E27B</color>
+    <color name="colorWhite">#ffffff</color>
+
 </resources>

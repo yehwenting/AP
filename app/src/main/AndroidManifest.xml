@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="myandroidhello.com.ap_project">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -22,6 +24,9 @@
         <meta-data
             android:name="com.facebook.accountkit.ClientToken"
             android:value="@string/ACCOUNT_KIT_CLIENT_TOKEN" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCFEC-iqYzJvjxpljvEC0ud-TvToIgP_Z0" />
 
         <activity
             android:name="com.facebook.CustomTabActivity"
@@ -55,24 +60,39 @@
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activity.AccountActivity" />
-        <activity android:name=".Activity.MainpageActivity"></activity>
+        <activity android:name=".Activity.MainpageActivity" />
         <activity android:name=".Activity.AccountDetailActivity" />
         <activity android:name=".Activity.FriendsActivity" />
         <activity android:name=".Activity.ReserveActivity" />
         <activity android:name=".Activity.ReserveCheckActivity" />
-        <activity android:name=".Activity.PersonInfoActivity"></activity>
-        <activity android:name=".Activity.EditPInfoActivity"></activity>
-        <activity android:name=".Activity.EditPInfoDetailActivity"></activity>
+        <activity android:name=".Activity.PersonInfoActivity" />
+        <activity android:name=".Activity.EditPInfoActivity" />
+        <activity android:name=".Activity.EditPInfoDetailActivity" />
         <activity android:name=".Activity.JFGroupActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
+        <activity android:name=".Activity.TestActivity" />
+        <activity
+            android:name=".Activity.MenuActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activity.IndoorStartActivity" />
+        <activity android:name=".Activity.StartExercise1Activity" />
+        <activity android:name=".Activity.StartExercise2Activity" />
+        <activity android:name=".barcode.BarcodeCaptureActivity" />
+        <activity android:name=".Share.NextActivity" />
+        <activity android:name=".Share.ShareActivity" />
+        <activity android:name=".Activity.ChooseActivity" />
+        <activity android:name=".Activity.MapsActivity" />
+        <activity android:name=".Activity.MedalActivity"></activity>
     </application>
 
 </manifest>

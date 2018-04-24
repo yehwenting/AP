@@ -72,6 +72,7 @@ public class AddgroupFakeFragment extends Fragment {
                 new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d("rrrrr",response);
                 try {
                     //converting the string to json array object
                     JSONObject jsonObject=new JSONObject(response);
@@ -90,9 +91,10 @@ public class AddgroupFakeFragment extends Fragment {
                                 group.getInt("uid"),
                                 group.getString("date"),
                                 group.getInt("number"),
-                                group.getInt("remain")
-
-                        ));
+                                group.getInt("remain"),
+                                group.getString("gname"),
+                                group.getString("pic_url")
+                                ));
 
 
                     }
@@ -123,6 +125,7 @@ public class AddgroupFakeFragment extends Fragment {
                 Mysql mysql=new Mysql();
                 String query=mysql.getGroup();
                 params.put("query",query);
+                Log.d("rrrrr",query);
                 return params;
             }
         };

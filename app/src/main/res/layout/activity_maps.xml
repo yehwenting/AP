@@ -1,0 +1,97 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="myandroidhello.com.ap_project.Activity.MapsActivity"
+    tools:layout="@layout/activity_maps">
+
+    <fragment
+        android:id="@+id/map"
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintHorizontal_bias="0.0"
+        map:layout_constraintLeft_toLeftOf="parent"
+        map:layout_constraintRight_toRightOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="161dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/register_btn"
+        android:text="@string/start"
+        android:textSize="14sp"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintLeft_toLeftOf="parent"
+        map:layout_constraintRight_toRightOf="@+id/map"
+        map:layout_constraintTop_toBottomOf="@+id/viewPager5" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager5"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="452dp"
+        android:alpha="0.7"
+        android:background="@color/colorPrimaryDark"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.496"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="460dp"
+        android:text="@string/chosseplace"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showsport"
+        android:layout_width="131dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="460dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp"
+        map:layout_constraintStart_toEndOf="@+id/textView2"
+        map:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/place"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/showplace"
+        android:layout_width="129dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorWhite"
+        android:textSize="14sp"
+        map:layout_constraintLeft_toRightOf="@+id/textView"
+        map:layout_constraintTop_toBottomOf="@+id/showsport" />
+
+</android.support.constraint.ConstraintLayout>

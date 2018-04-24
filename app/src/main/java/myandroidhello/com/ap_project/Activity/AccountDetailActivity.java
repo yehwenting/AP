@@ -191,8 +191,8 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
         for (int i=start; i<=end; i++){
             list.add(i);
         }
-        adapter=new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item,list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter=new ArrayAdapter<Integer>(this,R.layout.spinner_item,list);
+//        adapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapter);
     }
     public void addCollegesOnSpinner(Spinner spinner) {
@@ -202,8 +202,8 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
         ArrayList<String> list = new ArrayList<String>();
         list.addAll(newList);
 
-        adapterString=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,list);
-        adapterString.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterString=new ArrayAdapter<>(this,R.layout.spinner_item,list);
+        adapterString.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapterString);
     }
     public void addDepartmentsOnSpinner(Spinner spinner) {
@@ -220,8 +220,8 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
         ArrayList<String> list = new ArrayList<String>();
         list.addAll(newList);
 
-        adapterString=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
-        adapterString.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterString=new ArrayAdapter<String>(this,R.layout.spinner_item,list);
+        adapterString.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapterString);
     }
 

@@ -20,6 +20,17 @@ android {
     }
 }
 
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven {
+        url 'https://maven.google.com/'
+        name 'Google'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -48,4 +59,14 @@ dependencies {
     compile 'com.github.aakira:expandable-layout:1.6.0@aar'
     //Universal image loader
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    //barcode
+    compile 'com.google.android.gms:play-services-vision:11.8.0'
+    //BottomNavigationViewEx library
+    compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
+    //upload image library
+    compile 'net.gotev:uploadservice:2.1'
+    //google map
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+
+
 }

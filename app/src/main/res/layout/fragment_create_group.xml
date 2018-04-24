@@ -11,9 +11,8 @@
         android:layout_height="48dp"
 
         android:layout_below="@+id/sNum"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="35dp"
-        android:layout_toEndOf="@+id/sNum"
+        android:layout_marginTop="26dp"
+        android:layout_toEndOf="@+id/imageLogo"
         android:background="@drawable/yellow_button"
         android:text="發布揪團"
         android:textColor="@android:color/white"
@@ -27,8 +26,8 @@
         android:layout_below="@+id/imageLogo"
         android:layout_marginStart="31dp"
         android:layout_marginTop="22dp"
-        android:text="@string/name"
-        android:textSize="12dp" />
+        android:text="團名"
+        android:textSize="14dp" />
 
     <TextView
         android:id="@+id/cType"
@@ -36,9 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/cName"
         android:layout_below="@+id/cName"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:text="@string/type"
-        android:textSize="12dp" />
+        android:textSize="14dp" />
 
     <TextView
         android:id="@+id/cTime"
@@ -48,7 +47,7 @@
         android:layout_below="@+id/cType"
         android:layout_marginTop="25dp"
         android:text="@string/time"
-        android:textSize="12dp" />
+        android:textSize="14dp" />
 
     <TextView
         android:id="@+id/cPlace"
@@ -56,9 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/cTime"
         android:layout_below="@+id/cTime"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="29dp"
         android:text="@string/place"
-        android:textSize="12dp" />
+        android:textSize="14dp" />
 
     <TextView
         android:id="@+id/cNum"
@@ -66,40 +65,41 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/cPlace"
         android:layout_below="@+id/cPlace"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="30dp"
         android:text="@string/gnumber"
-        android:textSize="12dp" />
+        android:textSize="14dp" />
 
     <TextView
         android:id="@+id/sTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_above="@+id/cPlace"
-        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/spinnerType"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/pleasechoose"
         android:textAlignment="center"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/sName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_alignBottom="@+id/cName"
-        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/spinnerType"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="12dp" />
+        android:textSize="14dp" />
 
     <Spinner
         android:id="@+id/spinnerType"
         android:layout_width="200dp"
-        android:layout_height="27dp"
+        android:layout_height="30dp"
         android:layout_alignBottom="@+id/cType"
-        android:layout_centerHorizontal="true"
+        android:layout_marginStart="56dp"
+        android:layout_toEndOf="@+id/cType"
         android:background="@drawable/rounded_corner" />
 
     <ImageView
@@ -112,22 +112,22 @@
 
     <EditText
         android:id="@+id/sNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:layout_alignBaseline="@+id/cNum"
         android:layout_alignBottom="@+id/cNum"
         android:layout_alignStart="@+id/spinnerType"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="number"
-        android:textSize="12dp" />
+        android:textSize="14dp" />
 
     <Spinner
         android:id="@+id/spinnerPlace"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_alignStart="@+id/sNum"
-        android:layout_alignTop="@+id/cPlace"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_above="@+id/cNum"
+        android:layout_alignStart="@+id/sTime"
         android:background="@drawable/rounded_corner" />
 
     <ImageView
@@ -140,11 +140,11 @@
 
     <ImageView
         android:id="@+id/imageLogo"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
         app:srcCompat="@drawable/logo" />
 
 

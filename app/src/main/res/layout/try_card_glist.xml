@@ -12,17 +12,17 @@
         android:layout_alignParentTop="true"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        app:cardBackgroundColor="#FFB800"
+        app:cardBackgroundColor="@color/select"
         app:cardCornerRadius="5dp">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="69dp"
             android:background="#FFFFFF">
 
         </FrameLayout>
 
-        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -30,8 +30,9 @@
                 android:id="@+id/textUname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/mGDate"
-                android:layout_alignTop="@+id/join_button"
+                android:layout_alignBaseline="@+id/join_button"
+                android:layout_alignBottom="@+id/join_button"
+                android:layout_toEndOf="@+id/textView3"
                 android:text="TextView"
                 android:textSize="16sp" />
 
@@ -39,13 +40,16 @@
                 android:id="@+id/join_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="51dp"
-                android:layout_marginTop="24dp"
-                android:layout_toEndOf="@+id/mGType"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/groupImg"
+                android:layout_marginEnd="28dp"
                 android:background="@drawable/cardview_button"
                 android:text="@string/add"
-                android:textColor="#FFB800" />
+                android:textColor="#FFB800"
+                />
+
+            <!--android:textColor="#FFB800" -->
+
 
             <TextView
                 android:id="@+id/textView"
@@ -115,7 +119,7 @@
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView5"
                 android:layout_alignBottom="@+id/textView5"
-                android:layout_toEndOf="@+id/textView5"
+                android:layout_alignStart="@+id/mGPlace"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
@@ -124,8 +128,8 @@
                 android:id="@+id/mGPlace"
                 android:layout_width="75dp"
                 android:layout_height="25dp"
-                android:layout_below="@+id/textView3"
-                android:layout_toEndOf="@+id/textView3"
+                android:layout_above="@+id/textView5"
+                android:layout_alignStart="@+id/mGDate"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
@@ -134,8 +138,9 @@
                 android:id="@+id/mGRemain"
                 android:layout_width="75dp"
                 android:layout_height="25dp"
-                android:layout_below="@+id/textView5"
-                android:layout_toEndOf="@+id/textView6"
+                android:layout_alignBaseline="@+id/textView6"
+                android:layout_alignBottom="@+id/textView6"
+                android:layout_toEndOf="@+id/textView2"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
@@ -145,7 +150,7 @@
                 android:layout_width="230dp"
                 android:layout_height="25dp"
                 android:layout_below="@+id/mGType"
-                android:layout_toEndOf="@+id/textView3"
+                android:layout_toEndOf="@+id/textView2"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
@@ -154,8 +159,9 @@
                 android:id="@+id/mGType"
                 android:layout_width="100dp"
                 android:layout_height="25dp"
-                android:layout_below="@+id/mGName"
-                android:layout_toEndOf="@+id/textView2"
+                android:layout_alignBaseline="@+id/textView2"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_alignStart="@+id/mGName"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
@@ -165,14 +171,14 @@
                 android:layout_width="200dp"
                 android:layout_height="25dp"
                 android:layout_below="@+id/join_button"
-                android:layout_marginTop="18dp"
-                android:layout_toEndOf="@+id/textView"
+                android:layout_marginTop="17dp"
+                android:layout_toEndOf="@+id/textView2"
                 android:text="TextView"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/groupImg"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_alignParentTop="true"

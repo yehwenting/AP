@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="myandroidhello.com.ap_project.Activity.StartExercise1Activity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gymLayout">
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="189.71dp"
+            android:id="@+id/timerIv"
+            android:background="@mipmap/ic_timer"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"/>
+
+        <TextView
+            android:id="@+id/timerValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="215dp"
+            android:textAlignment="center"
+            android:textSize="40sp"
+            android:text="@string/timerVal"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/gymLayout">
+
+
+        <Button
+            android:id="@+id/pauseBtn"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:background="@drawable/ic_timer_pause"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/startBtn"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:background="@drawable/ic_timer_start"
+            android:layout_toLeftOf="@id/pauseBtn"
+            android:layout_marginRight="30dp"
+            android:layout_centerVertical="true"/>
+
+
+        <Button
+            android:id="@+id/stopBtn"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:background="@drawable/timer_circle_btn"
+            android:layout_toRightOf="@id/pauseBtn"
+            android:layout_marginLeft="30dp"
+            android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+
+
+
+</RelativeLayout>

@@ -96,6 +96,12 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                             overridePendingTransition(0, 0);
                             finish();
                             break;
+                        case R.id.navItemThree:
+                            Intent intent3 = new Intent();
+                            intent3.setClass(Navigation_BaseActivity.this, TestActivity.class);
+                            startActivity(intent3);
+                            overridePendingTransition(0, 0);
+                            break;
                         case R.id.navItemEight:
                             Intent intent1=new Intent(Navigation_BaseActivity.this,FriendsActivity.class);
                             startActivity(intent1);

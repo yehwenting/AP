@@ -208,8 +208,8 @@ public class EditPInfoDetailActivity extends AppCompatActivity implements View.O
         for (int i=start; i<=end; i++){
             list.add(i);
         }
-        adapter=new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item,list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter=new ArrayAdapter<Integer>(this,R.layout.spinner_item,list);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapter);
         if(k.equals("weight")) {
             int weight1 = Integer.parseInt(User.getWeight());
@@ -226,8 +226,8 @@ public class EditPInfoDetailActivity extends AppCompatActivity implements View.O
         ArrayList<String> list = new ArrayList<String>();
         list.addAll(newList);
 
-        adapterString=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,list);
-        adapterString.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterString=new ArrayAdapter<>(this,R.layout.spinner_item,list);
+        adapterString.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapterString);
         GlobalVariables User = (GlobalVariables)getApplicationContext();
         spinner.setSelection(adapterString.getPosition(User.getCollege()));
@@ -247,8 +247,8 @@ public class EditPInfoDetailActivity extends AppCompatActivity implements View.O
         ArrayList<String> list = new ArrayList<String>();
         list.addAll(newList);
 
-        adapterString=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
-        adapterString.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterString=new ArrayAdapter<String>(this,R.layout.spinner_item,list);
+        adapterString.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapterString);
         GlobalVariables User = (GlobalVariables)getApplicationContext();
         spinner.setSelection(adapterString.getPosition(User.getDepartment()));

@@ -132,6 +132,7 @@ public class CreateGroupFragment extends Fragment {
                             @Override
                             public void onResponse(String response) {
                                 try {
+                                    Log.d("rrrrr",response);
                                     JSONObject jsonObject = new JSONObject(response);
                                     android.support.v7.app.AlertDialog.Builder alert=new android.support.v7.app.AlertDialog.Builder(getContext());
                                     alert.setMessage("成功新增");

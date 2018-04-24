@@ -4,14 +4,15 @@
     <item
         android:id="@+id/reserve"
         android:enabled="true"
-        android:icon="@drawable/reserve"
+        android:icon="@drawable/buttom_nav_reserve"
         android:title="@string/bottom_nav_reserve"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/group"
         android:enabled="true"
         android:icon="@drawable/group"
-        android:title="@string/bottom_nav_group" />
+        android:title="@string/bottom_nav_group"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/start"
         android:enabled="true"

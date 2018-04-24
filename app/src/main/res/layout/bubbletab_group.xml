@@ -16,33 +16,33 @@
         android:id="@+id/bubbleTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFEB00"
+        android:background="#FFFFFF"
         android:clipToPadding="false"
-        android:elevation="10dp"
-        app:bubbleTab_circleColor="@color/colorPrimaryDark"
-        app:bubbleTab_circleRatio="1.25"
+        android:elevation="5dp"
+        app:bubbleTab_circleColor="@color/cardview_dark_background"
+        app:bubbleTab_circleRatio="1.15"
         android:layout_below="@id/toolbar">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:padding="16dp"
             android:text="@string/findOne"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textColor="@drawable/bubbletab_text"
+            android:textSize="12sp"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:padding="16dp"
             android:text="@string/createOne"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textColor="@drawable/bubbletab_text"
+            android:textSize="12sp"
             tools:ignore="ContentDescription" />
 
 
@@ -63,7 +63,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         app:itemBackground="@color/accountText"
-        app:itemIconTint="@color/colorPrimaryDark"
         app:itemTextColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

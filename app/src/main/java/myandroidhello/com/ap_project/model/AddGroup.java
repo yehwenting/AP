@@ -6,16 +6,19 @@ package myandroidhello.com.ap_project.model;
 
 public class AddGroup {
     private int gid;
+    private String gname;
     private String name;
     private String type;
     private String place;
     private int uid;
     private String date;
+    private String url;
     private int number;
     private int remain;
 
-    public AddGroup(int gid, String name, String type, String place, int uid, String date, int number, int remain) {
+    public AddGroup(int gid, String name, String type, String place, int uid, String date, int number, int remain,String gname,String url) {
         this.gid = gid;
+        this.gname = gname;
         this.name = name;
         this.type = type;
         this.place = place;
@@ -23,13 +26,14 @@ public class AddGroup {
         this.date = date;
         this.number = number;
         this.remain = remain;
+        this.url=url;
     }
 
     public int getGid() {
         return gid;
     }
 
-    public String getGName() {
+    public String getName() {
         return name;
     }
 
@@ -55,5 +59,21 @@ public class AddGroup {
 
     public int getRemain() {
         return remain;
+    }
+
+    public String getGname() {
+        return gname;
+    }
+
+    public void setGname(String gname) {
+        this.gname = gname;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

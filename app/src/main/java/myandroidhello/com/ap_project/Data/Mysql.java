@@ -81,14 +81,20 @@ public class Mysql {
 
     public String createNewGroup(String name, String Type, String place, String uid,
                                  String date, int number, int remain){
-        String createNewGroup ="INSERT into findgroup(gid, name,type, place, uid, date, number,remain)" +
-                "VALUES "+ "(NULL,'"+name+"','"+Type+"','"+place+"','"+uid+"','"+date+"','"+number+"','"+remain+"');";
+        String createNewGroup ="INSERT into findgroup(gname,type, place, uid, date, number,remain)" +
+                "VALUES "+ "('"+name+"','"+Type+"','"+place+"','"+uid+"','"+date+"','"+number+"','"+remain+"');";
         return createNewGroup;
     }
 
     public String getGroup(){
-        String selectGroup = "SELECT * FROM findgroup;";
+        String selectGroup = "SELECT findgroup.*,user.name,user.pic_url FROM findgroup,user " +
+                "WHERE findgroup.uid=user.fb_id" +
+                " ORDER BY findgroup.date DESC;";
         return  selectGroup;
+    }
+    public String checkIfJoined(String uid,String gid){
+        String data="SELECT * FROM joingroup WHERE uid='"+uid+"' AND gid='"+gid+"'";
+        return data;
     }
 
 

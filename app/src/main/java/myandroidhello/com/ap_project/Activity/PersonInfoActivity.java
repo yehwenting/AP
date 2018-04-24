@@ -55,8 +55,8 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
         toolbar.setTitle("");//設置ToolBar Title
         toolBar_title.setText(R.string.view_two);
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
-//        CurrentMenuItem = 0;
-//        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
+        CurrentMenuItem = 1;
+        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
         //bottomNavigation
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,6 +72,8 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
                                 startActivity(intent1);
                                 break;
                             case R.id.start:
+                                Intent intent2=new Intent(PersonInfoActivity.this, MenuActivity.class);
+                                startActivity(intent2);
                                 break;
                         }
 
@@ -89,6 +91,14 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             public void onClick(View view) {
                 Intent intent=new Intent();
                 intent.setClass(PersonInfoActivity.this, EditPInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+        pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setClass(PersonInfoActivity.this,MedalActivity.class);
                 startActivity(intent);
             }
         });
