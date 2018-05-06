@@ -92,7 +92,8 @@
         <activity android:name=".Share.ShareActivity" />
         <activity android:name=".Activity.ChooseActivity" />
         <activity android:name=".Activity.MapsActivity" />
-        <activity android:name=".Activity.MedalActivity"></activity>
+        <activity android:name=".Activity.MedalActivity" />
+        <activity android:name=".Activity.CreateCGroupActivity" />
     </application>
 
 </manifest>

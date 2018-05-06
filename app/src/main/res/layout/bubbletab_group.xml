@@ -44,6 +44,16 @@
             android:textColor="@drawable/bubbletab_text"
             android:textSize="12sp"
             tools:ignore="ContentDescription" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:padding="16dp"
+            android:text="比一個"
+            android:textAlignment="center"
+            android:textColor="@drawable/bubbletab_text"
+            android:textSize="12sp"
+            tools:ignore="ContentDescription" />
 
 
     </com.github.florent37.bubbletab.BubbleTab>

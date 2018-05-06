@@ -97,5 +97,22 @@ public class Mysql {
         return data;
     }
 
+    public String getCompetition(){
+        String data="SELECT * FROM competition";
+        return data;
+    }
+
+    public String createCompetition(String uid,String name,String time,String place,String num,String note,String compete){
+        String data="INSERT INTO  `competitiongroup` (uid,cp_name,cp_time,cp_place,cp_num,note,cp_id)" +
+                "VALUES('"+uid+"','"+name+"','"+time+"','"+place+"','"+num+"','"+note+"','"+compete+"');";
+        return data;
+    }
+
+    public String getCompetitionGroup(String id){
+        String data="SELECT competitiongroup.*,user.name,user.pic_url FROM `competitiongroup`,`user` " +
+                "WHERE cp_id='"+id+"' AND competitiongroup.uid=user.fb_id;";
+        return data;
+    }
+
 
 }

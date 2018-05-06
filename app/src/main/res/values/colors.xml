@@ -20,5 +20,6 @@
     <color name="ak_icon">#ffd300</color>
     <color name="select">#F1E27B</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="groupBackground">#F4F4DE</color>
 
 </resources>

@@ -11,5 +11,5 @@ public class Values {
     public static final String lOGIN_SERVER_URL="http://140.119.19.36/login.php";
     public static final String READ_DATA_URL="http://140.119.19.36/read.php";
     public static final String ADD_GROUP_URL="http://140.119.19.36/addGroup.php";
-
+    public static final String COMPETITION_URL="http://140.119.19.36/compete.php";
 }

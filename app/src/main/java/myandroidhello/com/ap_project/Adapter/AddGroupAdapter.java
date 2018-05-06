@@ -56,14 +56,14 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             super(itemView);
 
             textUname=itemView.findViewById(R.id.textUname);
-            mGName = itemView.findViewById(R.id.mGName);
-            mGType = itemView.findViewById(R.id.mGType);
-            mGDate = itemView.findViewById(R.id.mGDate);
+            mGName = itemView.findViewById(R.id.uName);
+            mGType = itemView.findViewById(R.id.c_number);
+            mGDate = itemView.findViewById(R.id.c_constraint);
             mGPlace = itemView.findViewById(R.id.mGPlace);
             mGRemain = itemView.findViewById(R.id.mGRemain);
             mGNumber = itemView.findViewById(R.id.mGNumber);
             groupImg=itemView.findViewById(R.id.groupImg);
-            mAdd = itemView.findViewById(R.id.join_button);
+            mAdd = itemView.findViewById(R.id.create_button);
 
 
         }

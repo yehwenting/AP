@@ -5,13 +5,16 @@
     <group android:checkableBehavior="single">
     <item android:id="@+id/navItemOne"
         android:title="@string/view_one"
+        android:icon="@drawable/xocial"
         />
     <item android:id="@+id/navItemTwo"
         android:title="@string/view_two"
+        android:icon="@drawable/p_info"
         />
 
     <item android:id="@+id/navItemEight"
           android:title="@string/view_eight"
+        android:icon="@drawable/friend"
           />
     <item android:id="@+id/navItemThree"
         android:title="@string/view_three"
@@ -21,12 +24,15 @@
         />
     <item android:id="@+id/navItemFive"
         android:title="@string/view_five"
+        android:icon="@drawable/record"
         />
     <item android:id="@+id/navItemSix"
         android:title="@string/view_six"
+        android:icon="@drawable/rank"
         />
     <item android:id="@+id/navItemSeven"
         android:title="@string/view_seven"
+        android:icon="@drawable/logout"
         />
     <item android:id="@+id/navItemNine"
             android:title=""

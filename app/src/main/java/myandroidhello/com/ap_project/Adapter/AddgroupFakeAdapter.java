@@ -22,7 +22,8 @@ public class AddgroupFakeAdapter extends FragmentStatePagerAdapter {
                 return AddgroupFakeFragment.newInstance();
             case 1:
                 return CreateGroupFragment.newInstance();
-
+            case 2:
+                return CompetitionFragment.newInstance();
             default:
                 return AddgroupFakeFragment.newInstance();
 

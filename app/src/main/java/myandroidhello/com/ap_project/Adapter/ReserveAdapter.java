@@ -142,7 +142,8 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     @Override
                     public void onPreOpen() {
-                        viewHolderWithChild.main.setBackgroundColor(Color.parseColor("#F1E27B"));
+                        viewHolderWithChild.main.setBackgroundColor(Color.parseColor("#FFFFAA"));
+
                         changeRotate(viewHolderWithChild.buttonChild,180f,0f).start();
                         expendState.put(position,false);
 
