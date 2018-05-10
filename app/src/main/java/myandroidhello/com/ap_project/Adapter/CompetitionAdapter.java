@@ -23,7 +23,7 @@ import java.util.List;
 
 import myandroidhello.com.ap_project.Activity.CreateCGroupActivity;
 import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.model.Competitions;
+import myandroidhello.com.ap_project.Model.Competitions;
 
 /**
  * Created by Yehwenting on 2018/4/25.

@@ -14,33 +14,34 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
 
         <RelativeLayout
-            android:layout_width="370dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_group">
+            >
+            <!--android:background="@drawable/background_group"-->
 
             <TextView
                 android:id="@+id/cga_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/cga_create_button"
-                android:layout_alignBottom="@+id/cga_create_button"
-                android:layout_toEndOf="@+id/textView3"
+                android:layout_alignStart="@+id/uName"
+                android:layout_alignTop="@+id/groupImg"
+                android:layout_marginTop="9dp"
                 android:text="TextView"
                 android:textSize="16sp" />
 
             <Button
                 android:id="@+id/cga_create_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/groupImg"
-                android:layout_marginEnd="40dp"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/cga_note"
+                android:layout_margin="30dp"
                 android:background="@drawable/cardview_button"
                 android:text="+1"
                 android:textColor="#FFB800" />
@@ -52,10 +53,9 @@
                 android:id="@+id/textView"
                 android:layout_width="80dp"
                 android:layout_height="25dp"
-                android:layout_alignBaseline="@+id/uName"
-                android:layout_alignBottom="@+id/uName"
-                android:layout_marginEnd="13dp"
-                android:layout_toStartOf="@+id/uName"
+                android:layout_alignStart="@+id/groupImg"
+                android:layout_below="@+id/groupImg"
+                android:layout_marginTop="20dp"
                 android:text="發起人"
                 android:textColor="#000000"
                 android:textSize="14sp" />
@@ -95,7 +95,7 @@
 
             <TextView
                 android:id="@+id/cga_num"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView4"
                 android:layout_alignBottom="@+id/textView4"
@@ -106,7 +106,7 @@
 
             <TextView
                 android:id="@+id/cga_place"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView3"
                 android:layout_alignBottom="@+id/textView3"
@@ -117,7 +117,7 @@
 
             <TextView
                 android:id="@+id/cga_time"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView2"
                 android:layout_alignBottom="@+id/textView2"
@@ -128,12 +128,12 @@
 
             <TextView
                 android:id="@+id/uName"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
-                android:layout_alignEnd="@+id/cga_create_button"
-                android:layout_below="@+id/cga_create_button"
-                android:layout_marginEnd="54dp"
-                android:layout_marginTop="20dp"
+                android:layout_alignBaseline="@+id/textView"
+                android:layout_alignBottom="@+id/textView"
+                android:layout_marginStart="45dp"
+                android:layout_toEndOf="@+id/groupImg"
                 android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="14sp" />
@@ -142,10 +142,10 @@
                 android:id="@+id/groupImg"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/textView"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
                 app:srcCompat="@drawable/user" />
 
             <TextView
@@ -160,7 +160,7 @@
 
             <TextView
                 android:id="@+id/cga_remain"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView9"
                 android:layout_alignBottom="@+id/textView9"
@@ -181,8 +181,8 @@
 
             <TextView
                 android:id="@+id/cga_note"
-                android:layout_width="150dp"
-                android:layout_height="25dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:layout_alignBaseline="@+id/textView13"
                 android:layout_alignBottom="@+id/textView13"
                 android:layout_alignStart="@+id/cga_remain"

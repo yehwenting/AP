@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.model;
+package myandroidhello.com.ap_project.Model;
 
 import java.util.ArrayList;
 import java.util.List;

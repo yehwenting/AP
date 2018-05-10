@@ -114,5 +114,26 @@ public class Mysql {
         return data;
     }
 
+    public String checkIfJoinedCompetition(String uid,String cid){
+        String data="SELECT * FROM joincompetition WHERE uid='"+uid+"' AND cid='"+cid+"'";
+        return data;
+    }
+
+    public String getFriends(String uid){
+        String data="SELECT user.* FROM `friends`,`user` WHERE friends.user1="+uid+
+                " AND friends.user2!="+uid+" AND friends.user2=user.fb_id;";
+        return data;
+    }
+
+    public String lookForPotentialFriend(String uid){
+        String data="SELECT user.* FROM `user` WHERE NOT EXISTS( SELECT user.* FROM `friends` WHERE friends.user1="
+        +uid+" AND friends.user2=user.fb_id);";
+        return data;
+    }
+
+    public String getFriendsPlace(String explace){
+        String place = "SELECT name, ex_place FROM user WHERE ex_place='" +explace+ "'";
+        return place;
+    }
 
 }

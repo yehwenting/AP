@@ -1,6 +1,7 @@
 package myandroidhello.com.ap_project.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,12 +29,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import myandroidhello.com.ap_project.Activity.FriendsActivity;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.font.FontHelper;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**
  * Created by Yehwenting on 2017/11/29.
@@ -91,7 +93,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
 
                             }else{
 //                                holder.mFollow.setVisibility(View.GONE);
-                                holder.mFollow.setText("取消追蹤");
+                                holder.mFollow.setText("好 友");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -128,7 +130,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
         holder.mFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.mFollow.getText().equals("追蹤")){
+                if(holder.mFollow.getText().equals("追 蹤")){
                     StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
                             new Response.Listener<String>() {
                                 @Override
@@ -136,9 +138,11 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
                                     try {
                                         Log.d("success",response);
                                         JSONObject jsonObject=new JSONObject(response);
-                                        holder.mFollow.setText("取消追蹤");
+                                        holder.mFollow.setText("好 友");
 //                                    holder.mFollow.setVisibility(View.GONE);
                                         Toast.makeText(context, "已成為好友", Toast.LENGTH_LONG).show();
+                                        Intent intent1 = new Intent(context,FriendsActivity.class);
+                                        context.startActivity(intent1);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
@@ -173,9 +177,11 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
                                     try {
                                         Log.d("success",response);
                                         JSONObject jsonObject=new JSONObject(response);
-                                        holder.mFollow.setText("追蹤");
+//                                        holder.mFollow.setText("追 蹤");
 //                                    holder.mFollow.setVisibility(View.GONE);
                                         Toast.makeText(context, "已取消追蹤好友", Toast.LENGTH_LONG).show();
+                                        Intent intent=new Intent(context, FriendsActivity.class);
+                                        context.startActivity(intent);
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }

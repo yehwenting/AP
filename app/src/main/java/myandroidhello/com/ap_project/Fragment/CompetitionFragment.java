@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.Adapter;
+package myandroidhello.com.ap_project.Fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -27,11 +27,12 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import myandroidhello.com.ap_project.Adapter.CompetitionAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.CompetitionGroup;
-import myandroidhello.com.ap_project.model.Competitions;
+import myandroidhello.com.ap_project.Model.CompetitionGroup;
+import myandroidhello.com.ap_project.Model.Competitions;
 
 /**
  * Created by Yehwenting on 2018/4/25.
@@ -102,8 +103,9 @@ public class CompetitionFragment extends Fragment{
                                                 competitiong.getString("cp_time"),
                                                 competitiong.getString("cp_place"),
                                                 competitiong.getString("cp_num"),
-                                                "1",
-                                                competitiong.getString("note")
+                                                competitiong.getString("cp_remain"),
+                                                competitiong.getString("note"),
+                                                competition.getString("id")
                                         ));
                                     }
 

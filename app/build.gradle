@@ -18,6 +18,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 repositories {
@@ -67,6 +71,8 @@ dependencies {
     compile 'net.gotev:uploadservice:2.1'
     //google map
     compile 'com.google.android.gms:play-services-maps:11.8.0'
+    //rank by exercise spinner
+    compile 'com.github.amlashi-sadra:AwesomeSpinner:1.0.7'
 
 
 }

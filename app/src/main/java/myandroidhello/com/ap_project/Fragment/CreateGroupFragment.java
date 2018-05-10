@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.Adapter;
+package myandroidhello.com.ap_project.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -44,7 +44,7 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 //import android.icu.util.Calendar;
 

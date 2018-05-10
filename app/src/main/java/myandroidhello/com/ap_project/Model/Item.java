@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.model;
+package myandroidhello.com.ap_project.Model;
 
 /**
  * Created by Yehwenting on 2018/2/4.

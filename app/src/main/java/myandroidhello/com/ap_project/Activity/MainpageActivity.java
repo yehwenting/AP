@@ -28,15 +28,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import myandroidhello.com.ap_project.Adapter.Home2Fragment;
-import myandroidhello.com.ap_project.Adapter.HomeFragment;
+import myandroidhello.com.ap_project.Fragment.Home2Fragment;
+import myandroidhello.com.ap_project.Fragment.HomeFragment;
 import myandroidhello.com.ap_project.Adapter.SectionsPagerAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.UniversalImageLoader;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class MainpageActivity extends Navigation_BaseActivity {
 

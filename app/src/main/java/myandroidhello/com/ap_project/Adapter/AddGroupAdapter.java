@@ -38,8 +38,8 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.AddGroup;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.AddGroup;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**
  * Created by Stanley on 2018/3/7.
@@ -147,6 +147,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         MySingleTon.getmInstance(context).addToRequestque(stringRequest);
+
         holder.mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +156,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                     saveJoinToDB(addGroup.getGid(),type);
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    alert.setMessage("補想參加了");
+                    alert.setMessage("不想參加了");
                     alert.setPositiveButton("退意已決", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

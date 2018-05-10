@@ -2,12 +2,10 @@ package myandroidhello.com.ap_project.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +16,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.facebook.AccessToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,82 +31,35 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.font.FontHelper;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
 
-public class FriendsActivity extends Navigation_BaseActivity {
-
+public class AddFriendActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView emptyText;
-    String isFriend="uuuu";
-    private BottomNavigationView bottomNavigationView;
-    ImageView addFriend;
     List<FriendAdapter.FriendItem> friendList = new ArrayList<>();
+    ImageView back;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friends);
-        FontHelper.setCustomTypeface(findViewById(R.id.view_root));
-
-
-        //toolbar
-        toolbar.setTitle(R.string.view_eight);//設置ToolBar Title
-        setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
-        CurrentMenuItem = 2;
-        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
-
-        //bottomNavigation
-        bottomNavigationView=findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.reserve:
-                                Intent intent=new Intent(FriendsActivity.this, ReserveActivity.class);
-                                startActivity(intent);
-                                break;
-                            case R.id.group:
-                                Intent intent1=new Intent(FriendsActivity.this, JFGroupActivity.class);
-                                startActivity(intent1);
-                                break;
-                            case R.id.start:
-                                Intent intent2=new Intent(FriendsActivity.this, MenuActivity.class);
-                                startActivity(intent2);
-                                break;
-                        }
-
-                        return true;
-                    }
-                });
-
-        if (AccessToken.getCurrentAccessToken() == null) {
-            // a Facebook Login access token is required
-            finish();
-            return;
-        }
-
-        emptyText = findViewById(R.id.emptytext);
-        addFriend = findViewById(R.id.addFriendBtn);
-        addFriend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                findFriend();
-                Intent intent=new Intent(FriendsActivity.this,AddFriendActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        recyclerView = (RecyclerView) findViewById(R.id.friends_list);
+        setContentView(R.layout.activity_add_friend);
+        recyclerView = (RecyclerView) findViewById(R.id.potentialFriends);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        getFriends();
+        back=findViewById(R.id.back);
+        findFriend();
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(AddFriendActivity.this,FriendsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
-
-    private void getFriends(){
+    private void findFriend(){
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -155,7 +105,7 @@ public class FriendsActivity extends Navigation_BaseActivity {
                 Map<String,String> params=new HashMap<>();
                 Mysql mysql=new Mysql();
                 GlobalVariables User=(GlobalVariables)getApplicationContext();
-                String query=mysql.getFriends(User.getId());
+                String query=mysql.lookForPotentialFriend(User.getId());
                 params.put("query",query);
                 return params;
             }
@@ -164,11 +114,8 @@ public class FriendsActivity extends Navigation_BaseActivity {
                 10000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        MySingleTon.getmInstance(FriendsActivity.this).addToRequestque(stringRequest);
-
-    }
+        MySingleTon.getmInstance(AddFriendActivity.this).addToRequestque(stringRequest);
 
 
     }
-
-
+}

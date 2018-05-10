@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.Adapter;
+package myandroidhello.com.ap_project.Fragment;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -30,9 +30,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
+import myandroidhello.com.ap_project.Adapter.MainfeedListAdapter;
 import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.model.GlobalVariables;
-import myandroidhello.com.ap_project.model.Photo;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.Photo;
 
 /**
  * Created by jenny on 2018/3/1.
@@ -118,7 +119,7 @@ public class HomeFragment extends Fragment {
             Collections.sort(mPhotos, new Comparator<Photo>() {
                 @Override
                 public int compare(Photo o1, Photo o2) {
-                    return o2.getDate_created().compareTo(o1.getDate_created());
+                    return o2.getLongdate().compareTo(o1.getLongdate());
                 }
             });
 
@@ -177,6 +178,7 @@ public class HomeFragment extends Fragment {
                             photo.setUser_name(jsonObject.getString("name"));
                             photo.setDate_created(jsonObject.getString("date"));
                             photo.setImage_path(jsonObject.getString("pic_url"));
+                            photo.setLongdate(Long.parseLong(jsonObject.getString("date")));
 
 
                             // Adding subject list object into CustomSubjectNamesList.

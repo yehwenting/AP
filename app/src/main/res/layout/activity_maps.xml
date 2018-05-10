@@ -94,4 +94,14 @@
         map:layout_constraintLeft_toRightOf="@+id/textView"
         map:layout_constraintTop_toBottomOf="@+id/showsport" />
 
+    <TextView
+        android:id="@+id/showfd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
+        android:text="TextView"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

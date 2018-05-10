@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.model;
+package myandroidhello.com.ap_project.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -15,6 +15,7 @@ public class Photo implements Parcelable {
     private String photo_id;
     private String user_name;
     private String tags;
+    private Long longdate;
 
 
     public Photo() {
@@ -22,13 +23,14 @@ public class Photo implements Parcelable {
     }
 
     public Photo(String caption, String date_created, String image_path, String photo_id,
-                 String user_name, String tags) {
+                 String user_name, String tags, Long longdate) {
         this.caption = caption;
         this.date_created = date_created;
         this.image_path = image_path;
         this.photo_id = photo_id;
         this.user_name = user_name;
         this.tags = tags;
+        this.longdate = longdate;
     }
 
     protected Photo(Parcel in) {
@@ -38,6 +40,7 @@ public class Photo implements Parcelable {
         photo_id = in.readString();
         user_name = in.readString();
         tags = in.readString();
+        longdate = in.readLong();
     }
 
     @Override
@@ -118,6 +121,14 @@ public class Photo implements Parcelable {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public Long getLongdate() {
+        return longdate;
+    }
+
+    public void setLongdate(Long longdate) {
+        this.longdate = longdate;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.Adapter;
+package myandroidhello.com.ap_project.Fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

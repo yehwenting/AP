@@ -17,6 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,13 +31,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import myandroidhello.com.ap_project.Data.MySingleTon;
+import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.model.Place;
+import myandroidhello.com.ap_project.Util.Values;
+import myandroidhello.com.ap_project.Model.FindFdPlace;
+import myandroidhello.com.ap_project.Model.Place;
 
-import static myandroidhello.com.ap_project.model.Place.mSwimmingpool;
+import static myandroidhello.com.ap_project.Model.Place.mSwimmingpool;
 
 
 
@@ -46,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     TextView showTextsport;
     String mplace = null;
     String sport =null;
+    TextView showfd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         showTextsport.setText(sport);
 
         buttonStart = (Button) findViewById(R.id.buttonStart);
+        showfd=findViewById(R.id.showfd);
 
     }
 
@@ -89,6 +106,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Place.mSixphase = mMap.addMarker(new MarkerOptions().position(Place.Sixphase)
                 .title("六期")
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        Place.mField = mMap.addMarker(new MarkerOptions().position(Place.Field)
+                .title("操場"));
+
+        Place.mFivephase = mMap.addMarker(new MarkerOptions().position(Place.Fivephase)
+                .title("五期"));
+
+        Place.mRiver = mMap.addMarker(new MarkerOptions().position(Place.River)
+                .title("河堤"));
         List<Marker> markerList = new ArrayList<>();
         markerList.add(mSwimmingpool);
         markerList.add(Place.mNewgym);
@@ -105,7 +130,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public boolean onMarkerClick(Marker marker) {
 
                 mplace = marker.getTitle();
-
+                getFriends(mplace);
 
                 textView.setText(mplace);
 
@@ -220,9 +245,70 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
+    }
+    public void getFriends(final String newplace) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("rrrrr",response);
+                        String name ="";
+                        try {
+                            //converting the string to json array object
+                            JSONObject jsonObject=new JSONObject(response);
+                            JSONArray array = jsonObject.getJSONArray("response");
+
+                            //traversing through all the object
+                            for (int i = 0; i < array.length(); i++) {
+
+                                //getting product object from json array
+                                List<FindFdPlace> findFdPlace = new ArrayList<>();
+                                JSONObject friends = array.getJSONObject(i);
+
+                                findFdPlace.add(new FindFdPlace(
+                                        friends.getString("name"),
+                                        friends.getString("ex_place")
+
+
+                                ));
+                                name += friends.getString("name")+ ", ";
+                                showfd.setText(name);
+                                Log.d("nnnn", name);
+                            }
+
+                        }
+
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.d("error","do not get ");
+
+            }
+
+
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params= new HashMap<>();
+                Mysql mysql=new Mysql();
+                String query=mysql.getFriendsPlace(newplace);
+                params.put("query",query);
+                Log.d("final",query);
+                return params;
+            }
+        };
+
+        MySingleTon.getmInstance(MapsActivity.this).addToRequestque(stringRequest);
+
     }
 }

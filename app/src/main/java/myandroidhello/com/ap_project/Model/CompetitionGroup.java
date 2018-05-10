@@ -1,13 +1,13 @@
-package myandroidhello.com.ap_project.model;
+package myandroidhello.com.ap_project.Model;
 
 /**
  * Created by Yehwenting on 2018/4/30.
  */
 
 public class CompetitionGroup {
-    private String uName,uPic,cpName,time,place,num,remain,note;
+    private String cid,uName,uPic,cpName,time,place,num,remain,note;
 
-    public CompetitionGroup(String uName, String uPic, String cpName, String time, String place, String num, String remain, String note) {
+    public CompetitionGroup(String uName, String uPic, String cpName, String time, String place, String num, String remain, String note,String cid) {
         this.uName = uName;
         this.uPic = uPic;
         this.cpName = cpName;
@@ -16,6 +16,7 @@ public class CompetitionGroup {
         this.num = num;
         this.remain = remain;
         this.note = note;
+        this.cid=cid;
     }
 
     public String getPlace() {
@@ -80,5 +81,13 @@ public class CompetitionGroup {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 }

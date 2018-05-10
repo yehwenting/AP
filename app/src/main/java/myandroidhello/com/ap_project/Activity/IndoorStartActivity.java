@@ -31,7 +31,7 @@ import java.util.Date;
 
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.barcode.BarcodeCaptureActivity;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class IndoorStartActivity extends Navigation_BaseActivity {
     private static final String LOG_TAG = IndoorStartActivity.class.getSimpleName();

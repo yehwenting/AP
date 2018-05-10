@@ -35,7 +35,7 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**
  * Created by Yehwenting on 2018/3/25.
@@ -153,7 +153,7 @@ public class EditPInfoDetailActivity extends AppCompatActivity implements View.O
                                     Log.d("success","ya");
                                     //start new activity
                                     Intent intent=new Intent(EditPInfoDetailActivity.this,PersonInfoActivity.class);
-                                    intent.putExtra("user",getIntent().getParcelableExtra("user"));
+                                    intent.putExtra("user", (Bundle) getIntent().getParcelableExtra("user"));
                                     startActivity(intent);
                                     finish();
                                 }else{

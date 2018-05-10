@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="myandroidhello.com.ap_project.Activity.StartExercise1Activity">
+    tools:context="myandroidhello.com.ap_project.Activity.StartExercise1Activity"
+   >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gymLayout">
+        android:id="@+id/gymLayout"
+        android:background="@drawable/background_gradient">
 
         <ImageView
             android:layout_width="280dp"

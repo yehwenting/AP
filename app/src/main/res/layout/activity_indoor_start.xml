@@ -25,14 +25,14 @@
     <Button
         android:id="@+id/scan_barcode_button"
         android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:text="@string/scan_barcode_button"
-        android:textSize="20sp"
+        android:layout_height="50dp"
         android:layout_below="@id/result_textview"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
         android:background="@drawable/radius40_orange_button"
+        android:text="@string/scan_barcode_button"
         android:textColor="@android:color/white"
-        android:layout_marginTop="220dp" />
+        android:textSize="14sp" />
 
 
     <android.support.design.widget.BottomNavigationView

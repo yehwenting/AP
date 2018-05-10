@@ -35,7 +35,7 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.User;
+import myandroidhello.com.ap_project.Model.User;
 
 public class AccountDetailActivity extends AppCompatActivity implements View.OnClickListener {
     //TODO back button,add to db(finish),try to make setOnItemSelectedListener efficiently
@@ -134,7 +134,7 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
                                     Log.d("success","ya");
                                             //start new activity
                                             Intent intent=new Intent(AccountDetailActivity.this,MainpageActivity.class);
-                                            intent.putExtra("user",getIntent().getParcelableExtra("user"));
+                                            intent.putExtra("user", (Bundle) getIntent().getParcelableExtra("user"));
                                             startActivity(intent);
                                             finish();
                                 }else{

@@ -5,6 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 
+import myandroidhello.com.ap_project.Fragment.AddgroupFakeFragment;
+import myandroidhello.com.ap_project.Fragment.CompetitionFragment;
+import myandroidhello.com.ap_project.Fragment.CreateGroupFragment;
+
 /**
  * Created by Stanley on 2018/3/13.
  */

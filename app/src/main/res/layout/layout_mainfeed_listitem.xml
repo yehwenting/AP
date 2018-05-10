@@ -22,38 +22,49 @@
                 android:layout_height="120dp"
                 android:layout_below="@id/post_image">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Jenny"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/username"
-                    />
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/image_time_posted"
+                android:layout_alignBottom="@+id/image_time_posted"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@+id/imageView4"
+                android:text="Jenny"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Xer is lit :) #exerciseWithXer #NCCU"
-                    android:textSize="18sp"
-                    android:id="@+id/image_caption"
-                    android:layout_below="@+id/username"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/image_caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView4"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="14dp"
+                android:text="Xer is lit :) #exerciseWithXer #NCCU"
+                android:textSize="14sp" />
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="3 mins ago"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="30dp"
-                    android:paddingRight="16dp"
-                    android:id="@+id/image_time_posted"/>
+            <TextView
+                android:id="@+id/image_time_posted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:paddingRight="16dp"
+                android:text="3 mins ago"
+                android:textSize="14sp" />
 
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/image_caption"
+                android:layout_marginTop="21dp"
+                app:srcCompat="@drawable/user" />
+
+        </RelativeLayout>
 
 
 

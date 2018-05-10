@@ -44,7 +44,7 @@ import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.font.FontHelper;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class LoginActivity extends AppCompatActivity {
 

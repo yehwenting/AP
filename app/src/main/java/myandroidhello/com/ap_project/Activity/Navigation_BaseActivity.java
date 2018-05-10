@@ -27,7 +27,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
 import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**
  * Created by Yehwenting on 2017/12/12.
@@ -128,6 +128,12 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                                     })
                                     .setNegativeButton("No", null)
                                     .show();
+                            break;
+                        case R.id.navItemSix:
+                            Intent intent4=new Intent(Navigation_BaseActivity.this,RankActivity.class);
+                            startActivity(intent4);
+                            overridePendingTransition(0, 0);
+
                             break;
                     }
                 }

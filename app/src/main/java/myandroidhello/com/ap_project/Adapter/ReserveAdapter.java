@@ -51,8 +51,8 @@ import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.CustomTimePickerDialog;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.model.GlobalVariables;
-import myandroidhello.com.ap_project.model.Item;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.Item;
 
 
 /**

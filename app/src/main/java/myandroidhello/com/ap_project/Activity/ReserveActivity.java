@@ -20,7 +20,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import myandroidhello.com.ap_project.Adapter.ReserveFakeAdapter;
 import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class ReserveActivity extends Navigation_BaseActivity {
     @Bind(R.id.bubbleTab)

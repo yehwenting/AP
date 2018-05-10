@@ -22,7 +22,7 @@ import java.util.UUID;
 import myandroidhello.com.ap_project.Activity.IndoorStartActivity;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.UniversalImageLoader;
-import myandroidhello.com.ap_project.model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**
  * Created by jenny on 2018/2/10.

@@ -13,12 +13,13 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.Calendar;
 import java.util.List;
 
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.SqaureImageView;
-import myandroidhello.com.ap_project.model.Photo;
-import myandroidhello.com.ap_project.model.User;
+import myandroidhello.com.ap_project.Model.Photo;
+import myandroidhello.com.ap_project.Model.User;
 
 /**
  * Created by jenny on 2018/3/1.
@@ -88,9 +89,17 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         holder.caption.setText(getItem(position).getCaption());
 
         //set the time it was posted
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(getItem(position).getLongdate());
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int day = c.get(Calendar.DAY_OF_MONTH);
+//        holder.timeDetla.setText(year + "-" + month + "-" + day);
         String timestampDifference = getTimestampDifference(getItem(position));
         if(!timestampDifference.equals("0")){
-            holder.timeDetla.setText(timestampDifference + " DAYS AGO");
+//            holder.timeDetla.setText(timestampDifference + " DAYS AGO");
+            holder.timeDetla.setText(year + "-" + month + "-" + day);
+
         }else{
             holder.timeDetla.setText("TODAY");
         }
