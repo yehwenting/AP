@@ -135,6 +135,11 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                             overridePendingTransition(0, 0);
 
                             break;
+                        case R.id.navItemFive:
+                            Intent intent5=new Intent(Navigation_BaseActivity.this,XfileActivity.class);
+                            startActivity(intent5);
+                            overridePendingTransition(0, 0);
+
                     }
                 }
                 else {//點擊當前項目時，收起Navigation

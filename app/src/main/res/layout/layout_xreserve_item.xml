@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/relLayout1">
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:id="@+id/relLayout2x"
+            android:layout_centerInParent="true"
+            android:background="@drawable/story_box">
+
+            <TextView
+                android:id="@+id/dateTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日期："
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/reserve_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reserve_date"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/dateTv"  />
+
+            <TextView
+                android:id="@+id/durationTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="時數："
+                android:layout_below="@+id/dateTv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/x_duration"
+                android:layout_below="@+id/reserve_date"
+                android:layout_toRightOf="@+id/durationTv"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/equipTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="器材："
+                android:layout_below="@+id/duration"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/equip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/x_equip"
+                android:layout_below="@+id/duration"
+                android:layout_toRightOf="@+id/equipTv"
+                android:layout_marginTop="10dp"
+                />
+
+            <myandroidhello.com.ap_project.Util.SqaureImageView
+                android:id="@+id/equip_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

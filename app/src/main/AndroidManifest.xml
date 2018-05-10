@@ -96,6 +96,7 @@
         <activity android:name=".Activity.CreateCGroupActivity" />
         <activity android:name=".Activity.AddFriendActivity"></activity>
         <activity android:name=".Activity.RankActivity"></activity>
+        <activity android:name=".Activity.XfileActivity"></activity>
 
     </application>
 

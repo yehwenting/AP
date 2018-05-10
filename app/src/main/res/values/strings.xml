@@ -183,6 +183,9 @@
         <item>桌球</item>
     </string-array>
     <string name="choose_a_sport">選擇一項運動</string>
+    <string name="reserve_date">4月27日</string>
+    <string name="x_duration">30分鐘</string>
+    <string name="x_equip">跑步機</string>
 
 
 </resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/relLayout1">
+
+        <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="160dp"
+            android:id="@+id/relLayout2x"
+            android:layout_centerInParent="true"
+            android:background="@drawable/story_box">
+
+            <TextView
+                android:id="@+id/group_nameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="團名："
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/group_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超人特攻隊"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@+id/dateTv"  />
+
+            <TextView
+                android:id="@+id/dateTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="日期："
+                android:layout_below="@+id/group_nameTv"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2018-05-04"
+                android:layout_below="@+id/group_name"
+                android:layout_toRightOf="@+id/dateTv"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/place_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地點："
+                android:layout_below="@+id/date"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="環山網球場"
+                android:layout_below="@+id/date"
+                android:layout_toRightOf="@+id/place_tv"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="運動："
+                android:layout_below="@+id/place"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="網球"
+                android:layout_below="@+id/place"
+                android:layout_toRightOf="@+id/type_tv"
+                android:layout_marginTop="10dp"
+                />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
