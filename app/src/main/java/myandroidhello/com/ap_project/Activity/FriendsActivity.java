@@ -34,7 +34,7 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.font.FontHelper;
+import myandroidhello.com.ap_project.Font.FontHelper;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class FriendsActivity extends Navigation_BaseActivity {
@@ -43,6 +43,7 @@ public class FriendsActivity extends Navigation_BaseActivity {
     TextView emptyText;
     String isFriend="uuuu";
     private BottomNavigationView bottomNavigationView;
+    private TextView toolBar_title;
     ImageView addFriend;
     List<FriendAdapter.FriendItem> friendList = new ArrayList<>();
 
@@ -53,9 +54,12 @@ public class FriendsActivity extends Navigation_BaseActivity {
         setContentView(R.layout.activity_friends);
         FontHelper.setCustomTypeface(findViewById(R.id.view_root));
 
+        toolBar_title=findViewById(R.id.toolbar_title);
+
 
         //toolbar
-        toolbar.setTitle(R.string.view_eight);//設置ToolBar Title
+        toolbar.setTitle("");//設置ToolBar Title
+        toolBar_title.setText(R.string.view_eight);
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
         CurrentMenuItem = 2;
         NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態

@@ -60,6 +60,15 @@
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent" />
 
+    <android.support.v4.view.ViewPager
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="28dp"
+        android:background="@color/colorPrimaryDark"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/showsport"
         android:layout_width="131dp"
@@ -101,6 +110,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="36dp"
         android:text="TextView"
+        android:textColor="@color/colorWhite"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent" />
 

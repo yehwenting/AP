@@ -9,20 +9,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.Calendar;
 import java.util.List;
 
-import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.Util.SqaureImageView;
 import myandroidhello.com.ap_project.Model.Photo;
 import myandroidhello.com.ap_project.Model.User;
+import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.SqaureImageView;
 
 /**
- * Created by jenny on 2018/3/1.
+ * Created by yehwenting on 2018/3/1.
  */
 
 public class MainfeedListAdapter extends ArrayAdapter<Photo> {
@@ -50,6 +54,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
         SqaureImageView mprofileImage;
         TextView username, timeDetla, caption;
         SqaureImageView image;
+        ImageView userPic;
 
 
 //        UserAccountSettings settings = new UserAccountSettings();
@@ -72,6 +77,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             holder.image = (SqaureImageView) convertView.findViewById(R.id.post_image);
             holder.caption = (TextView) convertView.findViewById(R.id.image_caption);
             holder.timeDetla = (TextView) convertView.findViewById(R.id.image_time_posted);
+            holder.userPic=convertView.findViewById(R.id.user);
 //            holder.mprofileImage = (SqaureImageView) convertView.findViewById(R.id.profile_photo);
             holder.photo = getItem(position);
             holder.users = new StringBuilder();
@@ -82,6 +88,7 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        displayProfilePic(holder.userPic,getItem(position).getPhoto_id());
         //TO-DO: get the current user name
         holder.username.setText(getItem(position).getUser_name());
 
@@ -165,6 +172,19 @@ public class MainfeedListAdapter extends ArrayAdapter<Photo> {
             difference = "0";
         }
         return difference;
+    }
+
+    private void displayProfilePic(ImageView imageView, String url) {
+        // helper method to load the profile pic in a circular imageview
+        Transformation transformation = new RoundedTransformationBuilder()
+                .cornerRadiusDp(30)
+                .oval(false)
+                .build();
+        Picasso.with(imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.user)
+                .transform(transformation)
+                .into(imageView);
     }
 }
 

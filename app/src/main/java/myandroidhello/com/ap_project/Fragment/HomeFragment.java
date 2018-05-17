@@ -179,7 +179,7 @@ public class HomeFragment extends Fragment {
                             photo.setDate_created(jsonObject.getString("date"));
                             photo.setImage_path(jsonObject.getString("pic_url"));
                             photo.setLongdate(Long.parseLong(jsonObject.getString("date")));
-
+                            photo.setPhoto_id(jsonObject.getString("upic"));
 
                             // Adding subject list object into CustomSubjectNamesList.
                             mPhotos.add(photo);

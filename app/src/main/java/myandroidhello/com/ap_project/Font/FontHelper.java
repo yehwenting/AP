@@ -1,4 +1,4 @@
-package myandroidhello.com.ap_project.font;
+package myandroidhello.com.ap_project.Font;
 
 import android.graphics.Typeface;
 import android.view.View;

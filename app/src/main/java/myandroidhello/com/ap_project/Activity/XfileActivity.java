@@ -95,8 +95,8 @@ public class XfileActivity extends Navigation_BaseActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.getTabAt(0).setText("預約");
-        tabLayout.getTabAt(1).setText("揪團");
+        tabLayout.getTabAt(0).setText("預 約");
+        tabLayout.getTabAt(1).setText("揪 團");
 
     }
 

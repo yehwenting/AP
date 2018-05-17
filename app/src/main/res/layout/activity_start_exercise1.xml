@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="myandroidhello.com.ap_project.Activity.StartExercise1Activity"
-   >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="myandroidhello.com.ap_project.Activity.StartExercise1Activity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gymLayout"
-        android:background="@drawable/background_gradient">
+        android:id="@+id/relLayout1">
 
         <ImageView
             android:layout_width="280dp"
@@ -25,16 +23,28 @@
             android:id="@+id/timerValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="215dp"
-            android:textAlignment="center"
+            android:text="@string/timerVal"
             android:textSize="40sp"
-            android:text="@string/timerVal"/>
+            android:textAlignment="center"
+            android:layout_marginTop="215dp"
+            android:layout_centerHorizontal="true"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:layout_centerInParent="true"
+            app:lottie_rawRes="@raw/twitterheart"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="false"
+            android:visibility="invisible"/>
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/gymLayout">
+        android:layout_below="@id/relLayout1">
 
 
         <Button
@@ -63,7 +73,7 @@
             android:layout_toRightOf="@id/pauseBtn"
             android:layout_marginLeft="30dp"
             android:layout_centerVertical="true"/>
-        </RelativeLayout>
+    </RelativeLayout>
 
 
 

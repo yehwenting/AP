@@ -43,7 +43,7 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.font.FontHelper;
+import myandroidhello.com.ap_project.Font.FontHelper;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class LoginActivity extends AppCompatActivity {
@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         if (accessToken != null || loginToken !=null) {
             // if previously logged in, proceed to the account activity
             Log.d("test","exist!!");
-            Log.d("test",String.valueOf(loginToken.getUserId()));
+//            Log.d("test",String.valueOf(loginToken.getUserId()));
 //            Log.d("test",String.valueOf(accessToken.getToken()));
             GlobalVariables User = (GlobalVariables)getApplicationContext();
             User.setId(loginToken.getUserId());

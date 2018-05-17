@@ -34,7 +34,7 @@ import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.font.FontHelper;
+import myandroidhello.com.ap_project.Font.FontHelper;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**

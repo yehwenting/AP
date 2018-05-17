@@ -29,7 +29,7 @@
     <string name="permission_message">AP requires permission to access your Facebook friend list to use Find Friends</string>
     <string name="friend">friend</string>
     //navigation
-    <string name="view_one">首 頁</string>
+    <string name="view_one">Xocial Media</string>
     <string name="view_two">Xer 護 照</string>
     <string name="view_three">即 時 查 詢(無用)</string>
     <string name="view_fore">推 薦 菜 單(無用)</string>
@@ -186,6 +186,10 @@
     <string name="reserve_date">4月27日</string>
     <string name="x_duration">30分鐘</string>
     <string name="x_equip">跑步機</string>
+    <string name="home2content">Stanley開始在體育館運動</string>
+    <string name="home2Date">11.05 14:07</string>
+
+
 
 
 </resources>

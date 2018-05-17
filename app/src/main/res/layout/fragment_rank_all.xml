@@ -7,7 +7,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:id="@+id/relLayout1">
+        android:id="@+id/relLayout1"
+        android:background="@drawable/background_gradient">
 
         <TextView
             android:id="@+id/rank_tv"

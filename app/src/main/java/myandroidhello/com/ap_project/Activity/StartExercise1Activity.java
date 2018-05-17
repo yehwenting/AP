@@ -1,6 +1,7 @@
 package myandroidhello.com.ap_project.Activity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -9,13 +10,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONObject;
 
@@ -29,14 +37,15 @@ public class StartExercise1Activity extends AppCompatActivity {
     private String pname = null;
     private String ename = null;
     private boolean firstStartClick = true;
-//    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase;
+    MediaPlayer xray;
 
     private Button startBtn;
     private Button pauseBtn;
     private Button stopBtn;
     private TextView timerValue;
     private long startTime = 0L;
-    private long sTime = 0L;
+    private String sTime ;
     private Handler customHandler = new Handler();
 
     long timeInMilliseconds = 0L;
@@ -53,7 +62,8 @@ public class StartExercise1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_exercise1);
 
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         final Intent intent = this.getIntent();
         uid = intent.getStringExtra("uid");
@@ -63,7 +73,7 @@ public class StartExercise1Activity extends AppCompatActivity {
 
         timerValue = (TextView)findViewById(R.id.timerValue);
         startBtn = (Button)findViewById(R.id.startBtn);
-//        LottieAnimationView animationView = findViewById(R.id.animation_view);
+        LottieAnimationView animationView = findViewById(R.id.animation_view);
 
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +83,19 @@ public class StartExercise1Activity extends AppCompatActivity {
                 customHandler.postDelayed(updateTimerThread, 0);
                 startTime = SystemClock.uptimeMillis();
 
-                String content = uname + " 現在正在" + pname + "使用" + ename;
+                String content = uname + "現在正在" + pname + "使用" + ename;
                 if (firstStartClick) {
                     firstStartClick = false;
-                    sTime = System.currentTimeMillis();
-                    Log.d(TAG, "onClick: sTime = "+sTime);
+                    sTime = String.valueOf(System.currentTimeMillis());
+                    Log.d(TAG, "onClick: sTime = "+content);
+                    Log.d("onClick", Url + "?uid=" + uid + "&place=" + pname + "&content=" + content + "&date=" + sTime);
+
                     requestQueue = Volley.newRequestQueue(getApplicationContext());
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                            (Request.Method.GET, Url + "?uid=" + uid + "&place=" + pname + "&content=" + content + "&date=" + sTime, new Response.Listener<JSONObject>() {
+                            (Request.Method.GET, Url + "?uid=" + uid + "&place=" + pname +  "&date=" + sTime+"&content=" + content , new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    Log.d("1111111", "onResponse");
+                                    Log.d("onClick", Url + "?uid=" + uid + "&place=" + pname + "&content=" + content + "&date=" + sTime);
 
 
                                 }
@@ -135,23 +147,18 @@ public class StartExercise1Activity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 Log.d("1111111", "onResponse");
 
-
                             }
 
 
                         }, new Response.ErrorListener() {
 
-
                             @Override
-
 
                             public void onErrorResponse(VolleyError error) {
 //                                if (error.getMessage() != null)
 //                                    Log.d("11111111",error.getMessage());
                                 VolleyLog.e("error", error.getMessage());
 //
-
-
                             }
 
                         });
@@ -165,48 +172,97 @@ public class StartExercise1Activity extends AppCompatActivity {
             }
         });
 
-//        //receive firebase encouragement
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("message");
-//
-//        myRef.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                String value = dataSnapshot.getValue(String.class);
-//                String key = dataSnapshot.getKey();
-//                if (value.equals(uid)){
-//                    Toast.makeText(StartExercise1.this, key + "為你加油！", Toast.LENGTH_LONG).show();
-//                    animationView.setVisibility(View.VISIBLE);
-//                    animationView.playAnimation();
-//                }
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                String value = dataSnapshot.getValue(String.class);
-//                String key = dataSnapshot.getKey();
-//                if (value.equals(uid)){
-//                    Toast.makeText(StartExercise1.this, key + "為你加油！", Toast.LENGTH_LONG).show();
-//                    animationView.setVisibility(View.VISIBLE);
-//                    animationView.playAnimation();
-//                }
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                Log.d(TAG, "onCancelled: failed to read value: " + databaseError);
-//            }
-//        });
+        //receive firebase encouragement
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
+
+        //before adding Listener, delete the data in the database first
+        myRef.removeValue();
+
+        //add childeventListener to check if anyone sent encouragement to the user
+        myRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String value = dataSnapshot.getValue(String.class);
+                String key = dataSnapshot.getKey();
+                if (value.equals(uid)){
+                    Toast.makeText(StartExercise1Activity.this, key + "向你發送X光波！", Toast.LENGTH_LONG).show();
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
+                    xray = MediaPlayer.create(StartExercise1Activity.this, R.raw.magic_wand);
+                    xray.start();
+                    Log.d(TAG, "onChildAdded: media play");
+                    xray.setLooping(true);
+                    xray.setVolume(100, 100);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(4000);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        animationView.setVisibility(View.INVISIBLE);
+                                        xray.stop();
+                                    }
+                                });
+                            }catch (Exception e){
+
+                            }
+
+                        }
+                    }).start();
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String value = dataSnapshot.getValue(String.class);
+                String key = dataSnapshot.getKey();
+                if (value.equals(uid)){
+                    Toast.makeText(StartExercise1Activity.this, key + "向你發送X光波！", Toast.LENGTH_LONG).show();
+                    animationView.setVisibility(View.VISIBLE);
+                    animationView.playAnimation();
+                    xray = MediaPlayer.create(StartExercise1Activity.this, R.raw.magic_wand);
+                    xray.start();
+                    xray.setLooping(true);
+                    xray.setVolume(100, 100);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(4000);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        animationView.setVisibility(View.INVISIBLE);
+                                        xray.stop();
+                                    }
+                                });
+                            }catch (Exception e){
+
+                            }
+
+                        }
+                    }).start();
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: failed to read value: " + databaseError);
+            }
+        });
     }
 
 
@@ -229,6 +285,4 @@ public class StartExercise1Activity extends AppCompatActivity {
 
         }
     };
-
-
 }

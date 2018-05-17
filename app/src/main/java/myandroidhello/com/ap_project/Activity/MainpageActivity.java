@@ -186,8 +186,8 @@ public class MainpageActivity extends Navigation_BaseActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        tabLayout.getTabAt(0).setText("動態");
-        tabLayout.getTabAt(1).setText("推播");
+        tabLayout.getTabAt(0).setText("動 態");
+        tabLayout.getTabAt(1).setText("推 播");
 
     }
 

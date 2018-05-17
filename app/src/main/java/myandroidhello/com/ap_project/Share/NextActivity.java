@@ -19,10 +19,10 @@ import net.gotev.uploadservice.UploadNotificationConfig;
 
 import java.util.UUID;
 
-import myandroidhello.com.ap_project.Activity.IndoorStartActivity;
+import myandroidhello.com.ap_project.Activity.MenuActivity;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.UniversalImageLoader;
-import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 /**
  * Created by jenny on 2018/2/10.
@@ -133,7 +133,7 @@ public class NextActivity extends AppCompatActivity {
                     .setPositiveButton("回主畫面", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(NextActivity.this, IndoorStartActivity.class);
+                            Intent intent = new Intent(NextActivity.this, MenuActivity.class);
                             startActivity(intent);
                             finish();
                         }

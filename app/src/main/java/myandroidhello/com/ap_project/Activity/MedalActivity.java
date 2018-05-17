@@ -4,15 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.ImageView;
 
 import myandroidhello.com.ap_project.R;
 
-public class MedalActivity extends Navigation_BaseActivity {
+public class MedalActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    private TextView toolBar_title;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +22,9 @@ public class MedalActivity extends Navigation_BaseActivity {
         setContentView(R.layout.activity_medal);
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
-        toolBar_title=findViewById(R.id.toolbar_title);
+        back=findViewById(R.id.back);
 
-        //toolbar
-        toolbar.setTitle("");//設置ToolBar Title
-        toolBar_title.setText(R.string.view_two);
-        setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
-        CurrentMenuItem = 1;
-        NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
+
         //bottomNavigation
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,5 +48,13 @@ public class MedalActivity extends Navigation_BaseActivity {
                         return true;
                     }
                 });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MedalActivity.this,PersonInfoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

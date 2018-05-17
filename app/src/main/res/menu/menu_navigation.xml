@@ -16,12 +16,6 @@
           android:title="@string/view_eight"
         android:icon="@drawable/friend"
           />
-    <item android:id="@+id/navItemThree"
-        android:title="@string/view_three"
-        />
-    <item android:id="@+id/navItemFore"
-        android:title="@string/view_fore"
-        />
     <item android:id="@+id/navItemFive"
         android:title="@string/view_five"
         android:icon="@drawable/record"
@@ -34,8 +28,8 @@
         android:title="@string/view_seven"
         android:icon="@drawable/logout"
         />
-    <item android:id="@+id/navItemNine"
-            android:title=""
+    <item android:id="@+id/navItemThree"
+            android:title="@string/view_three"
         />
     </group>
 </menu>
