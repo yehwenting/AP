@@ -1,6 +1,9 @@
 package myandroidhello.com.ap_project.Adapter;
 
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,7 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,11 +31,16 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.Model.Home2item;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.SqaureImageView;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 /**
  * Created by jenny on 2018/3/30.
@@ -45,6 +61,13 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
     private DatabaseReference mDatabase;
     private String uid = "1";
     private String name = "Jenny";
+    private String currentId;
+    private String Url = "http://140.119.19.36:80/saveXray.php";
+    private boolean firstClick = true;
+    MediaPlayer xray;
+    GlobalVariables User = (GlobalVariables)getApplicationContext();
+
+    com.android.volley.RequestQueue requestQueue;
 
     public Home2ListAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Home2item> objects) {
         super(context, resource, objects);
@@ -58,6 +81,7 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
         TextView content;
         TextView date;
         ImageButton heart;
+        LottieAnimationView animationView;
     }
 
 
@@ -78,6 +102,7 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
             holder.sportIcon = (SqaureImageView) convertView.findViewById(R.id.sportIcon);
             holder.date = (TextView) convertView.findViewById(R.id.dateTv);
             holder.heart = (ImageButton) convertView.findViewById(R.id.send_heart_btn);
+            holder.animationView = (LottieAnimationView) convertView.findViewById(R.id.animationView);
 
             convertView.setTag(holder);
 
@@ -101,9 +126,9 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
                 Log.d(TAG, "onClick: the heart button is clicked");
                 holder.heart.setImageResource(R.drawable.ic_fullheart);
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                Log.d(TAG, "onClick: database" + database);
+                Log.d(TAG, "onClick: enter firebase" + database);
                 DatabaseReference myRef = database.getReference("message");
-                DatabaseReference sayhi = myRef.child(name);
+                DatabaseReference sayhi = myRef.child(User.getName());
 
                 sayhi.runTransaction(new Transaction.Handler() {
                     @Override
@@ -121,6 +146,74 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
                         }
                     }
                 });
+                //show heart animation
+                holder.animationView.setVisibility(View.VISIBLE);
+                holder.animationView.playAnimation();
+                Toast.makeText(getContext(), "你已向好友發送X光波", Toast.LENGTH_LONG).show();
+                xray = MediaPlayer.create(getContext(), R.raw.magic_wand);
+                xray.start();
+                Log.d(TAG, "media play");
+                xray.setLooping(true);
+                xray.setVolume(200, 200);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(4000);
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    holder.animationView.setVisibility(View.INVISIBLE);
+                                    xray.stop();
+                                }
+                            });
+//                            runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    holder.animationView.setVisibility(View.INVISIBLE);
+//                                    xray.stop();
+//                                }
+//                            });
+                        }catch (Exception e){
+
+                        }
+
+                    }
+                }).start();
+
+                //insert encouragement data to db
+                if (firstClick) {
+                    firstClick = false;
+
+                    currentId = User.getId();
+                    requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                            (Request.Method.GET, Url + "?uid=" + currentId + "&sid=" + getItem(position).getSid(), new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    Log.d(TAG, "onResponse: insert into db..uid = " + currentId + "sid = " + getItem(position).getSid());
+
+
+                                }
+
+
+                            }, new Response.ErrorListener() {
+
+                                @Override
+
+                                public void onErrorResponse(VolleyError error) {
+//                                if (error.getMessage() != null)
+//                                    Log.d("11111111",error.getMessage());
+                                    VolleyLog.e("error", error.getMessage());
+//
+                                }
+
+                            });
+
+
+                    requestQueue.add(jsonObjectRequest);
+                }
+
             }
         });
 
