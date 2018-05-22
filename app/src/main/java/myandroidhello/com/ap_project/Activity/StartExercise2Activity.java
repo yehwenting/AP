@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.facebook.FacebookSdk;
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
@@ -27,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import myandroidhello.com.ap_project.Model.GlobalVariables;
@@ -42,13 +44,14 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
     private Button postBtn;
     private String HTTP_URL = "http://140.119.19.36:80/getXray.php";
     private String FinalJSonObject;
-    private List<ImageView> friends;
+    private List<ImageView> friends = new ArrayList<>();
+    private List<String> pic_url = new ArrayList<>();
     private ImageView f1;
     private ImageView f2;
     private ImageView f3;
     private ImageView f4;
     private ImageView f5;
-    GlobalVariables User = (GlobalVariables)getApplicationContext();
+    GlobalVariables User = (GlobalVariables) FacebookSdk.getApplicationContext();
 
     private BottomNavigationView bottomNavigationView;
     private TextView toolBar_title;
@@ -112,16 +115,19 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
             }
         });
 
+
         f1 = (ImageView)findViewById(R.id.friend1);
         f2 = (ImageView)findViewById(R.id.friend2);
         f3 = (ImageView)findViewById(R.id.friend3);
         f4 = (ImageView)findViewById(R.id.friend4);
         f5 = (ImageView)findViewById(R.id.friend5);
+
         friends.add(f1);
         friends.add(f2);
         friends.add(f3);
         friends.add(f4);
         friends.add(f5);
+
 
         getXray();
     }
@@ -140,10 +146,11 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
 
     private void getXray(){
         Log.d(TAG, "getXray: getting xray friend list");
-        StringRequest stringRequest = new StringRequest(HTTP_URL + "?uid = " + User.getId(),
+        StringRequest stringRequest = new StringRequest(HTTP_URL + "?uid=" + User.getId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d(TAG, "onResponse: uid = " + User.getId());
 
                         // After done Loading store JSON response in FinalJSonObject string variable.
                         FinalJSonObject = response ;
@@ -156,7 +163,7 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Log.d(TAG, "onErrorResponse: uid = " + User.getId());
                         // Showing error message if something goes wrong.
                         Toast.makeText(StartExercise2Activity.this,error.getMessage(),Toast.LENGTH_LONG).show();
 
@@ -208,11 +215,12 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
 
                         for (int i = 0; i < jsonArray.length(); i++) {
 
-//                    
-                            for (int j = 0; j < friends.size(); j++){
+//
                                 jsonObject = jsonArray.getJSONObject(i);
-                                if (jsonObject != null) displayProfilePic(friends.get(j), jsonObject.getString("pic_url"));
-                            }
+                                Log.d(TAG, "doInBackground: pic_url:" + jsonObject.getString("pic_url"));
+
+                                if (jsonObject != null) pic_url.add(jsonObject.getString("pic_url"));
+
 
 //                            home2item.setContent(jsonObject.getString("content"));
 //                            home2item.setDate(convertTime(jsonObject.getString("date")));
@@ -240,6 +248,10 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
 
         {
             //display();
+            for (int i = 0; i < pic_url.size(); i++){
+                if (pic_url.get(i) != null)
+                    displayProfilePic(friends.get(i), pic_url.get(i));
+            }
 
         }
     }
