@@ -14,7 +14,7 @@
         android:layout_width="350dp"
         android:layout_height="320dp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="100dp"
         android:id="@+id/gymLayout"
         android:background="@drawable/story_box">
 
@@ -94,6 +94,63 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/encouragement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gymLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/encouragement"/>
+
+    <ImageView
+        android:id="@+id/friend1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/encouragement"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"/>
+
+    <ImageView
+        android:id="@+id/friend2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/encouragement"
+        android:layout_toRightOf="@+id/friend1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
+
+
+    <ImageView
+        android:id="@+id/friend3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/encouragement"
+        android:layout_toRightOf="@+id/friend2"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
+
+    <ImageView
+        android:id="@+id/friend4"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/encouragement"
+        android:layout_toRightOf="@+id/friend3"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
+
+    <ImageView
+        android:id="@+id/friend5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/encouragement"
+        android:layout_toRightOf="@+id/friend4"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
+
+
+
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"

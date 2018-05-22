@@ -49,7 +49,6 @@ public class Home2Fragment extends Fragment {
     private Home2ListAdapter mAdapter;
     private String HTTP_URL = "http://140.119.19.36:80/home2.php";
     private String FinalJSonObject;
-    //    private FirebaseAuth mAuth;
     private Boolean isUser = Boolean.FALSE;
 
 
@@ -173,6 +172,7 @@ public class Home2Fragment extends Fragment {
                             home2item.setPic_path(jsonObject.getString("icon_url"));
                             home2item.setUid(jsonObject.getString("uid"));
                             home2item.setLongdate(Long.parseLong(jsonObject.getString("date")));
+                            home2item.setSid(jsonObject.getString("sid"));
 
 
                             // Adding subject list object into CustomSubjectNamesList.
