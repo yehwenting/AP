@@ -43,7 +43,7 @@ public class XfileActivity extends Navigation_BaseActivity {
         toolbar.setTitle("");//設置ToolBar Title
         toolBar_title.setText(R.string.view_five);
         setUpToolBar();//使用父類別的setUpToolBar()，設置ToolBar
-        CurrentMenuItem = 5;
+        CurrentMenuItem = 3;
         NV.getMenu().getItem(CurrentMenuItem).setChecked(true);//設置Navigation目前項目被選取狀態
         //bottomNavigation
         bottomNavigationView.setOnNavigationItemSelectedListener(

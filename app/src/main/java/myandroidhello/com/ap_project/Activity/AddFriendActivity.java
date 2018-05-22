@@ -2,10 +2,13 @@ package myandroidhello.com.ap_project.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,21 +32,49 @@ import java.util.Map;
 import myandroidhello.com.ap_project.Adapter.FriendAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class AddFriendActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     TextView emptyText;
     List<FriendAdapter.FriendItem> friendList = new ArrayList<>();
     ImageView back;
+    private BottomNavigationView bottomNavigationView;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_friend);
+
+        //bottomNavigation
+        bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()){
+                            case R.id.reserve:
+                                Intent intent=new Intent(AddFriendActivity.this, ReserveActivity.class);
+                                startActivity(intent);
+                                break;
+                            case R.id.group:
+                                Intent intent1=new Intent(AddFriendActivity.this, JFGroupActivity.class);
+                                startActivity(intent1);
+                                break;
+                            case R.id.start:
+                                Intent intent2=new Intent(AddFriendActivity.this, MenuActivity.class);
+                                startActivity(intent2);
+                                break;
+                        }
+
+                        return true;
+                    }
+                });
+
         recyclerView = (RecyclerView) findViewById(R.id.potentialFriends);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);

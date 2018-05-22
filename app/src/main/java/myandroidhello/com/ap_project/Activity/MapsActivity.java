@@ -42,6 +42,7 @@ import java.util.Map;
 
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.Model.FindFdPlace;
@@ -143,8 +144,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setClass(MapsActivity.this, StartExercise1Activity.class);
-
+                GlobalVariables user=(GlobalVariables)getApplicationContext();
                 Bundle bundle = new Bundle();
+                intent.putExtra("uid",user.getId() );
+                intent.putExtra("uname", user.getName());
                 bundle.putString("ename", sport);
                 bundle.putString("pname",mplace);
 
@@ -260,24 +263,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         try {
                             //converting the string to json array object
                             JSONObject jsonObject=new JSONObject(response);
-                            JSONArray array = jsonObject.getJSONArray("response");
 
-                            //traversing through all the object
-                            for (int i = 0; i < array.length(); i++) {
+                            if(jsonObject.getString("response").equals("null")){
+                                showfd.setText("沒有戰友在附近運動");
+                                Log.d("rrrrr","null");
+                            }else{
+                                JSONArray array = jsonObject.getJSONArray("response");
+                                //traversing through all the object
+                                for (int i = 0; i < array.length(); i++) {
 
-                                //getting product object from json array
-                                List<FindFdPlace> findFdPlace = new ArrayList<>();
-                                JSONObject friends = array.getJSONObject(i);
+                                    //getting product object from json array
+                                    List<FindFdPlace> findFdPlace = new ArrayList<>();
+                                    JSONObject friends = array.getJSONObject(i);
 
-                                findFdPlace.add(new FindFdPlace(
-                                        friends.getString("name"),
-                                        friends.getString("ex_place")
+                                    findFdPlace.add(new FindFdPlace(
+                                            friends.getString("name"),
+                                            friends.getString("ex_place")
 
 
-                                ));
-                                name += friends.getString("name")+ ", ";
-                                showfd.setText(name);
-                                Log.d("nnnn", name);
+                                    ));
+                                    name += friends.getString("name")+ " , ";
+                                    showfd.setText(name);
+                                    Log.d("nnnn", name);
+                            }
+
+
                             }
 
                         }

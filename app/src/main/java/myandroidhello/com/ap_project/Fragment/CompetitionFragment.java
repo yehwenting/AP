@@ -105,7 +105,7 @@ public class CompetitionFragment extends Fragment{
                                                 competitiong.getString("cp_num"),
                                                 competitiong.getString("cp_remain"),
                                                 competitiong.getString("note"),
-                                                competition.getString("id")
+                                                competitiong.getString("id")
                                         ));
                                     }
 

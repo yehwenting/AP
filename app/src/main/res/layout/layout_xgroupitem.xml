@@ -13,7 +13,7 @@
         <RelativeLayout
             android:id="@+id/relLayout2x"
             android:layout_width="350dp"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@drawable/story_box">
 
@@ -30,8 +30,8 @@
                 android:id="@+id/group_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/group_nameTv"
                 android:layout_alignBottom="@+id/group_nameTv"
+                android:layout_marginStart="20dp"
                 android:layout_toEndOf="@+id/group_nameTv"
                 android:text="超人特攻隊" />
 
@@ -48,7 +48,6 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/dateTv"
                 android:layout_alignBottom="@+id/dateTv"
                 android:layout_alignStart="@+id/group_name"
                 android:text="2018-05-04" />
@@ -67,8 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/place_tv"
-                android:layout_alignBottom="@+id/place_tv"
-                android:layout_alignEnd="@+id/date"
+                android:layout_alignBottom="@+id/date"
+                android:layout_alignStart="@+id/date"
                 android:text="環山網球場" />
 
             <TextView
@@ -78,7 +77,7 @@
                 android:layout_below="@+id/place"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="運動：" />
+                android:text="活動：" />
 
             <TextView
                 android:id="@+id/type"

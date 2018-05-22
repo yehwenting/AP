@@ -54,6 +54,7 @@ public class MedalActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(MedalActivity.this,PersonInfoActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

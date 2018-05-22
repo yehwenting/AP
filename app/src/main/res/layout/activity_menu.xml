@@ -32,13 +32,13 @@
 
         <ImageView
             android:id="@+id/ic_white_dumbbell"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginStart="65dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/ic_white_dumbbell" />
 
     </RelativeLayout>
@@ -64,15 +64,15 @@
 
         <ImageView
             android:id="@+id/ic_white_run"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:layout_marginBottom="30dp"
             android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
             android:adjustViewBounds="false"
-            android:background="@drawable/ic_white_run"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
+            android:background="@drawable/ic_white_run" />
 
     </RelativeLayout>
 
@@ -97,7 +97,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        app:srcCompat="@drawable/exercise" />
+        android:layout_marginTop="25dp"
+        app:srcCompat="@drawable/start_y" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView13"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:text="想從哪裡開始記錄你的運動里程?" />
 
 </RelativeLayout>

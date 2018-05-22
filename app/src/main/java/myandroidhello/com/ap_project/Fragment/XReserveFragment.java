@@ -33,6 +33,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import myandroidhello.com.ap_project.Adapter.XReserveAdapter;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.Model.XReserveitem;
 import myandroidhello.com.ap_project.R;
 
@@ -46,7 +47,7 @@ public class XReserveFragment extends Fragment {
     private XReserveAdapter mAdapter;
     private String HTTP_URL = "http://140.119.19.36:80/xreserve.php";
     private String FinalJSonObject;
-    private String uid = "1584429851580176";
+    private String uid;
 
 
     @Nullable
@@ -55,6 +56,8 @@ public class XReserveFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_xreserve, container, false);
 //        mListView = (ListView) view.findViewById(R.id.listView);
         mListView = (SwipeMenuListView) view.findViewById(R.id.listView);
+        GlobalVariables user=(GlobalVariables)getContext().getApplicationContext();
+        uid = user.getId();
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override

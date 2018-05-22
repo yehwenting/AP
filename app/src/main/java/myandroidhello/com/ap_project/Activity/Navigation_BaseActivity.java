@@ -40,7 +40,7 @@ public class Navigation_BaseActivity extends AppCompatActivity {
     private TextView userName;
     protected NavigationView NV;
     protected Toolbar toolbar;
-    protected int CurrentMenuItem = 8;//紀錄目前User位於哪一個項目
+    protected int CurrentMenuItem = 6;//紀錄目前User位於哪一個項目
     private LinearLayout LL;
     private View view;
 

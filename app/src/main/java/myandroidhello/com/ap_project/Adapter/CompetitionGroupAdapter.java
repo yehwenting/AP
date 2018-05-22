@@ -94,17 +94,18 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
             holder.note.setText(competitionGroup.getNote());
             holder.remain.setText(competitionGroup.getRemain());
             displayProfilePic(holder.pic,competitionGroup.getuPic());
+            Log.d("ttttt",competitionGroup.getCid());
         //check if the user has joined the group
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            Log.d("success",response);
+                            Log.d("ttttt",response);
                             JSONObject jsonObject=new JSONObject(response);
                             Log.d("success",jsonObject.getString("response"));
                             if(jsonObject.getString("response").equals("null")){
-
+                                Log.d("ttttt","null"+jsonObject.getString("response"));
                             }else{
                                 holder.join.setText("-1");
                                 Resources resource = context.getResources();

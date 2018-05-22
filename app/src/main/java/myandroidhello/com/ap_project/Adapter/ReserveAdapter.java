@@ -64,7 +64,7 @@ class MyViewHolderWithChild extends RecyclerView.ViewHolder{
     public TextView textView;
     public ImageView expic;
     public RelativeLayout buttonChild;
-    public Button buttonDate,buttonTime,buttonEquipment,commit;
+    public Button buttonDate,buttonTime,commit;
     public ExpandableLinearLayout expandableLayout;
     public Spinner workout_time;
     public LinearLayout main;
@@ -76,7 +76,6 @@ class MyViewHolderWithChild extends RecyclerView.ViewHolder{
         buttonChild=itemView.findViewById(R.id.childButton);
         buttonDate=itemView.findViewById(R.id.reserve_date_button);
         buttonTime=itemView.findViewById(R.id.reserve_time_button);
-        buttonEquipment=itemView.findViewById(R.id.reserve_equip_button);
         expandableLayout=itemView.findViewById(R.id.expendableLayout);
         commit=itemView.findViewById(R.id.reserve_button);
         workout_time=itemView.findViewById(R.id.workout_time_spinner);

@@ -10,16 +10,17 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
+
     <TextView
         android:id="@+id/result_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/no_barcode_captured"
-        android:textSize="20sp"
+        android:layout_marginTop="150dp"
         android:freezesText="true"
         android:gravity="center"
-        android:layout_marginTop="150dp"
-        android:textColor="#ADADAD"/>
+        android:text="@string/no_barcode_captured"
+        android:textColor="#ADADAD"
+        android:textSize="16sp" />
 
 
     <Button
@@ -29,11 +30,11 @@
         android:layout_below="@id/result_textview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="220dp"
-        android:background="@drawable/radius40_orange_button"
+        android:background="@drawable/background_group"
         android:text="@string/scan_barcode_button"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="14sp" />
-
+    <!--android:background="@drawable/radius40_orange_button"-->
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"

@@ -46,6 +46,7 @@ public class RankByExerciseFragment extends Fragment {
     private List<Rankitem> rankList;
     private TextView rankTv;
     private String sportFilter = null;
+
     private String uname ="李如紅";
 
 

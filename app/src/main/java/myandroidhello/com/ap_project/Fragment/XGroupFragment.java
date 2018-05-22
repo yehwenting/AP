@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import myandroidhello.com.ap_project.Adapter.XGroupAdapter;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.Model.XGroupitem;
 import myandroidhello.com.ap_project.R;
 
@@ -37,7 +38,7 @@ public class XGroupFragment extends Fragment {
     private XGroupAdapter mAdapter;
     private String HTTP_URL = "http://140.119.19.36:80/xgroup.php";
     private String FinalJSonObject;
-    private String uid = "1584429851580176";
+    private String uid ;
 
 
     @Nullable
@@ -46,6 +47,8 @@ public class XGroupFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_xreserve, container, false);
         mListView = (ListView) view.findViewById(R.id.listView);
         xGroupitems = new ArrayList<>();
+        GlobalVariables user=(GlobalVariables)getContext().getApplicationContext();
+        uid = user.getId();
 
         getData();
 

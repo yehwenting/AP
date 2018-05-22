@@ -42,7 +42,7 @@ public class IndoorStartActivity extends Navigation_BaseActivity {
     private TextView mResultTextView;
     private String uid ;
     private String uname;
-    private String pname="gym";
+    private String pname="健身房";
     private String ename=null;
 
     private BottomNavigationView bottomNavigationView;

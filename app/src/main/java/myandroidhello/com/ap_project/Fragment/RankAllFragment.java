@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import myandroidhello.com.ap_project.Adapter.RankListAdapter;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Model.Rankitem;
 
@@ -45,7 +46,7 @@ public class RankAllFragment extends Fragment {
     private HashMap<String,Long> rankAllMap;
     private List<Rankitem> rankList;
     private TextView rankTv;
-    private String uname ="李如紅";
+    private String uname ;
 
 
 
@@ -56,7 +57,8 @@ public class RankAllFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_rank_all, container, false);
         mListView = (ListView) view.findViewById(R.id.listView);
         rankTv = (TextView) view.findViewById(R.id.rank_tv);
-
+        GlobalVariables user =(GlobalVariables)getContext().getApplicationContext();
+        uname =user.getName();
         getRankData();
 
         return view;
