@@ -23,21 +23,20 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="32dp"
-        android:text="悠遊卡"
+        android:text="自我介紹"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
         android:id="@+id/ezcard"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="@string/account_ezcard"
-        android:inputType="textPersonName"
+        android:hint="簡單介紹你自己"
         android:textSize="14dp"
+        android:inputType="textMultiLine"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/departmentSpinner" />
 
@@ -90,7 +89,7 @@
         android:id="@+id/viewPager4"
         android:layout_width="0dp"
         android:layout_height="119dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/background_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -166,5 +165,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewPager4"
         app:srcCompat="@drawable/r_bg" />
+
+
 
 </android.support.constraint.ConstraintLayout>

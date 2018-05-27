@@ -18,7 +18,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.facebook.AccessToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,10 +31,10 @@ import java.util.Map;
 import myandroidhello.com.ap_project.Adapter.FriendAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
-import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.Font.FontHelper;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
+import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.Values;
 
 public class FriendsActivity extends Navigation_BaseActivity {
 
@@ -89,11 +88,11 @@ public class FriendsActivity extends Navigation_BaseActivity {
                     }
                 });
 
-        if (AccessToken.getCurrentAccessToken() == null) {
-            // a Facebook Login access token is required
-            finish();
-            return;
-        }
+//        if (AccessToken.getCurrentAccessToken() == null) {
+//            // a Facebook Login access token is required
+//            finish();
+//            return;
+//        }
 
         emptyText = findViewById(R.id.emptytext);
         addFriend = findViewById(R.id.addFriendBtn);

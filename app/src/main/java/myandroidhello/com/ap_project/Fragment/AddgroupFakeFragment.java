@@ -28,14 +28,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import myandroidhello.com.ap_project.Adapter.AddGroupAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
+import myandroidhello.com.ap_project.Model.AddGroup;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.Model.AddGroup;
 
 
 
@@ -45,19 +44,22 @@ public class AddgroupFakeFragment extends Fragment {
 
     List<AddGroup> groupList = new ArrayList<>();
     Context context;
-    @Bind(R.id.addgroup_rv) RecyclerView recyclerView;
+//    @Bind(R.id.addgroup_rv) \
+    RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.adapter_addgroup, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
+        recyclerView=view.findViewById(R.id.addgroup_rv);
+        recyclerView.setNestedScrollingEnabled(false);
         //抓出成立團
         getGroup();
     }

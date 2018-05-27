@@ -25,14 +25,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import myandroidhello.com.ap_project.Adapter.CompetitionAdapter;
 import myandroidhello.com.ap_project.Data.MySingleTon;
-import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.Model.CompetitionGroup;
 import myandroidhello.com.ap_project.Model.Competitions;
+import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.Values;
 
 /**
  * Created by Yehwenting on 2018/4/25.
@@ -41,7 +40,7 @@ import myandroidhello.com.ap_project.Model.Competitions;
 public class CompetitionFragment extends Fragment{
 
     Context context;
-    @Bind(R.id.addgroup_rv)
+//    @Bind(R.id.addgroup_rv)
     RecyclerView recyclerView;
 
     List<Competitions> competitionList = new ArrayList<>();
@@ -57,6 +56,8 @@ public class CompetitionFragment extends Fragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        recyclerView=view.findViewById(R.id.addgroup_rv);
+        recyclerView.setNestedScrollingEnabled(false);
 
         //抓出成立團
         getCompetition();

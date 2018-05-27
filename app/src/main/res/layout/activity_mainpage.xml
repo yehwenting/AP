@@ -8,65 +8,9 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
-
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="0dp"
-        android:layout_height="537dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        layout="@layout/toolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:id="@+id/gymLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="476dp">
-
-            <include layout="@layout/layout_top_tabs" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/relLayoutParent"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <!-- top toolbar -->
-
-            <!-- Middle section (body) -->
-            <RelativeLayout
-                android:id="@+id/relLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="17dp">
-
-                <include layout="@layout/layout_center_viewpager" />
-
-
-            </RelativeLayout>
-
-            <!-- bottom navigation -->
-            <!--<include layout="@layout/layout_bottom_navigation_view"/>-->
-
-
-        </RelativeLayout>
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <android.support.design.widget.BottomNavigationView
@@ -81,8 +25,61 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation_main" />
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <RelativeLayout
+            android:id="@+id/gymLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <include layout="@layout/layout_top_tabs" />
+
+
+        </RelativeLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:id="@+id/relLayoutParent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:layout_marginTop="32dp"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintStart_toStartOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent">-->
+
+            <!-- top toolbar -->
+
+            <!-- Middle section (body) -->
+        <RelativeLayout
+            android:id="@+id/relLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/gymLayout">
+
+            <include layout="@layout/layout_center_viewpager" />
+
+
+        </RelativeLayout>
+
+        <!-- bottom navigation -->
+            <!--<include layout="@layout/layout_bottom_navigation_view"/>-->
+
+
+        <!--</RelativeLayout>-->
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

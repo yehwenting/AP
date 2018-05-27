@@ -103,6 +103,7 @@ public class Navigation_BaseActivity extends AppCompatActivity {
                             overridePendingTransition(0, 0);
                             break;
                         case R.id.navItemEight:
+                            Log.d("rrrrr","rrrrrr");
                             Intent intent1=new Intent(Navigation_BaseActivity.this,FriendsActivity.class);
                             startActivity(intent1);
                             overridePendingTransition(0, 0);

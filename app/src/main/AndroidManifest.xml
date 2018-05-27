@@ -94,10 +94,11 @@
         <activity android:name=".Activity.MapsActivity" />
         <activity android:name=".Activity.MedalActivity" />
         <activity android:name=".Activity.CreateCGroupActivity" />
-        <activity android:name=".Activity.AddFriendActivity"></activity>
-        <activity android:name=".Activity.RankActivity"></activity>
-        <activity android:name=".Activity.XfileActivity"></activity>
-
+        <activity android:name=".Activity.AddFriendActivity" />
+        <activity android:name=".Activity.RankActivity" />
+        <activity android:name=".Activity.XfileActivity" />
+        <activity android:name=".Activity.FriendInfoActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>

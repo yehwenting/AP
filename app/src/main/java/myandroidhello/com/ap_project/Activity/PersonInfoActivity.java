@@ -29,18 +29,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import myandroidhello.com.ap_project.Data.MySingleTon;
-import myandroidhello.com.ap_project.Data.Mysql;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class PersonInfoActivity extends Navigation_BaseActivity {
 
     private BottomNavigationView bottomNavigationView;
     private TextView toolBar_title;
     private ImageView pic;
-    private TextView info;
+    private TextView info,p_name;
     private Button edit;
+    private TextView fnum,gnum,exernum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,10 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         toolBar_title=findViewById(R.id.toolbar_title);
         edit=findViewById(R.id.edit);
+        p_name=findViewById(R.id.p_name);
+        fnum=findViewById(R.id.fnum);
+        gnum=findViewById(R.id.joinnum);
+        exernum=findViewById(R.id.exernum);
 
         //toolbar
         toolbar.setTitle("");//設置ToolBar Title
@@ -118,7 +122,7 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
                 .into(imageView);
     }
     private void getPersonalData(final String id){
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.GET_PINFO_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -137,12 +141,19 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
                             String sex=subArray.getJSONObject(0).getString("sex");
                             String college=subArray.getJSONObject(0).getString("college");
                             String department=subArray.getJSONObject(0).getString("department");
-                            info.setText("姓名 : "+name+"\n電話 : "+phoneNum+
+                            p_name.setText(name);
+                            info.setText("電話 : "+phoneNum+
                                         "\n性別 : "+sex+"\n信箱 : "+email+
                                         "\n學號 : "+stuId+"\n身高 : "+height+
                                         "\n體重 : "+weight+"\n悠遊卡卡號 : "+ezcard+
                                         "\n學院 : "+college+"\n學系 : "+department);
-
+                            JSONArray friendAry = jsonObject.getJSONArray("friend");
+                            int f=Integer.parseInt(friendAry.getJSONObject(0).getString("friendnum"))-1;
+                            fnum.setText(String.valueOf(f));
+                            JSONArray exerAry = jsonObject.getJSONArray("exer");
+                            exernum.setText(exerAry.getJSONObject(0).getString("exernum"));
+                            JSONArray groupAry = jsonObject.getJSONArray("group");
+                            gnum.setText(groupAry.getJSONObject(0).getString("groupnum"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -157,9 +168,9 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
-                Mysql mysql=new Mysql();
-                String query=mysql.checkExistId(id);
-                params.put("query",query);
+//                Mysql mysql=new Mysql();
+//                String query=mysql.checkExistId(id);
+                params.put("id",id);
                 return params;
             }
         };

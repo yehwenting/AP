@@ -35,22 +35,26 @@ import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Share.ShareActivity;
 
-public class StartExercise2Activity extends Navigation_BaseActivity {
+public class StartExercise2Activity extends Navigation_BaseActivity implements View.OnClickListener{
 
     private static final String TAG = "StartExercise2Activity";
 
     private TextView exerciseSummary;
-    private TextView equipName_tv;
+    private TextView equipName_tv,place_tv;
     private Button postBtn;
     private String HTTP_URL = "http://140.119.19.36:80/getXray.php";
     private String FinalJSonObject;
     private List<ImageView> friends = new ArrayList<>();
     private List<String> pic_url = new ArrayList<>();
+    private List<String> friends_name = new ArrayList<>();
+    private List<String> friends_id = new ArrayList<>();
+    private List<TextView> fsname = new ArrayList<>();
     private ImageView f1;
     private ImageView f2;
     private ImageView f3;
     private ImageView f4;
     private ImageView f5;
+    private TextView fname1,fname2,fname3,fname4,fname5;
     GlobalVariables User = (GlobalVariables) FacebookSdk.getApplicationContext();
 
     private BottomNavigationView bottomNavigationView;
@@ -64,6 +68,7 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
         final Intent intent = this.getIntent();
         String exerciseDuration = intent.getStringExtra("exerciseDuration");
         String equipName = intent.getStringExtra("equipName");
+        String placeName = intent.getStringExtra("placeName");
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         toolBar_title=findViewById(R.id.toolbar_title);
@@ -104,6 +109,9 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
 
         equipName_tv = (TextView)findViewById(R.id.equip_name);
         equipName_tv.setText(equipName);
+        place_tv=findViewById(R.id.place_tv);
+        place_tv.setText(placeName);
+
 
 
         postBtn = (Button)findViewById(R.id.postBtn);
@@ -121,12 +129,28 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
         f3 = (ImageView)findViewById(R.id.friend3);
         f4 = (ImageView)findViewById(R.id.friend4);
         f5 = (ImageView)findViewById(R.id.friend5);
+        f1.setOnClickListener(this);
+        f2.setOnClickListener(this);
+        f3.setOnClickListener(this);
+        f4.setOnClickListener(this);
+        f5.setOnClickListener(this);
 
+        fname1=findViewById(R.id.fname1);
+        fname2=findViewById(R.id.fname2);
+        fname3=findViewById(R.id.fname3);
+        fname4=findViewById(R.id.fname4);
+        fname5=findViewById(R.id.fname5);
+        Log.d("hhh",f1.getContentDescription().toString());
         friends.add(f1);
         friends.add(f2);
         friends.add(f3);
         friends.add(f4);
         friends.add(f5);
+        fsname.add(fname1);
+        fsname.add(fname2);
+        fsname.add(fname3);
+        fsname.add(fname4);
+        fsname.add(fname5);
 
 
         getXray();
@@ -178,6 +202,13 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
 
     }
 
+    @Override
+    public void onClick(View view) {
+        Intent intent=new Intent(StartExercise2Activity.this,FriendInfoActivity.class);
+        intent.putExtra("id", view.getContentDescription());
+        startActivity(intent);
+    }
+
     private class ParseJSonDataClass extends AsyncTask<Void, Void, Void> {
 
         public Context context;
@@ -219,7 +250,11 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
                                 jsonObject = jsonArray.getJSONObject(i);
                                 Log.d(TAG, "doInBackground: pic_url:" + jsonObject.getString("pic_url"));
 
-                                if (jsonObject != null) pic_url.add(jsonObject.getString("pic_url"));
+                                if (jsonObject != null){
+                                    pic_url.add(jsonObject.getString("pic_url"));
+                                    friends_name.add(jsonObject.getString("name"));
+                                    friends_id.add(jsonObject.getString("fb_id"));
+                                }
 
 
 //                            home2item.setContent(jsonObject.getString("content"));
@@ -251,6 +286,11 @@ public class StartExercise2Activity extends Navigation_BaseActivity {
             for (int i = 0; i < pic_url.size(); i++){
                 if (pic_url.get(i) != null)
                     displayProfilePic(friends.get(i), pic_url.get(i));
+                    friends.get(i).setContentDescription(friends_id.get(i));
+
+                if(friends_name.get(i) !=null){
+                    fsname.get(i).setText(friends_name.get(i));
+                }
             }
 
         }
