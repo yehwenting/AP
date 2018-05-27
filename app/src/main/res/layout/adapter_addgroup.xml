@@ -1,22 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    >
+    android:background="@color/colorWhite">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/addgroup_rv"
-        android:layout_width="0dp"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager6"
+                android:layout_width="match_parent"
+                android:layout_height="249dp"
+                android:background="@color/ak_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageLogo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                app:srcCompat="@drawable/group_y" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageLogo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="22dp"
+                android:text="加入X特攻隊，同伴正在等著你"
+                android:textColor="@color/colorWhite" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/addgroup_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/viewPager6"
+                android:layout_marginTop="200dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

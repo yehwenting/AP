@@ -11,21 +11,6 @@
         layout="@layout/toolbar"
         app:layout_constraintBottom_toTopOf="@+id/viewPager3" />
 
-    <TextView
-        android:id="@+id/personalInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="240dp"
-        android:lineSpacingExtra="10dp"
-        android:text="@string/com_accountkit_confirmation_code_text"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -42,20 +27,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/bottom_navigation_main" />
 
-    <Button
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/register_btn"
-        android:text="修改資料"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.852" />
+
 
     <ImageView
         android:id="@+id/imageView5"
@@ -71,7 +43,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager3"
         android:layout_width="0dp"
-        android:layout_height="99dp"
+        android:layout_height="200dp"
         android:background="@drawable/background_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,15 +52,309 @@
 
     <ImageView
         android:id="@+id/personalPic"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="72dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/user" />
+
+    <TextView
+        android:id="@+id/p_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/app_name"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personalPic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/ak_text"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/p_name">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X戰友"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/exernum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp"
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="運動量"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="35dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/joinnum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:text="0"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="特攻隊"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="45dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewPager3"
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/medal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="我 的 成 就"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/l1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/medal"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:orientation="horizontal"
+                    tools:layout_editor_absoluteY="333dp">
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                        app:srcCompat="@raw/gold_medal" />
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView16"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                        app:srcCompat="@raw/bronze_medal" />
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toEndOf="@+id/imageView14"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                        app:srcCompat="@raw/silver_medal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/l1"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="3"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:text="1"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/textView18"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView15" />
+                </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="戰 友 鼓 勵"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/personalInfo"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_alignStart="@+id/textme"-->
+                    <!--android:layout_below="@+id/textme"-->
+                    <!--android:lineSpacingExtra="10dp"-->
+                    <!--android:text="@string/com_accountkit_confirmation_code_text"-->
+                    <!--android:textSize="15sp" />-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/edit"-->
+                    <!--android:layout_width="100dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_alignTop="@+id/textme"-->
+                    <!--android:layout_marginEnd="8dp"-->
+                    <!--android:background="@drawable/background_group"-->
+                    <!--android:text="修改個人資料"-->
+                    <!--android:textColor="@color/colorPrimaryDark" />-->
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/textme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:text="關 於 我"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/personalInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textme"
+                    android:layout_below="@+id/textme"
+                    android:lineSpacingExtra="10dp"
+                    android:text="@string/com_accountkit_confirmation_code_text"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/edit"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@+id/textme"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/background_group"
+                    android:text="修改個人資料"
+                    android:textColor="@color/colorPrimaryDark" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

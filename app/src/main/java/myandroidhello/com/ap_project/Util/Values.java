@@ -13,4 +13,10 @@ public class Values {
     public static final String ADD_GROUP_URL="http://140.119.19.36/addGroup.php";
     public static final String COMPETITION_URL="http://140.119.19.36/compete.php";
     public static final String ADD_COMPETITION_URL="http://140.119.19.36/addCompetition.php";
+    public static final String GET_PINFO_URL="http://140.119.19.36/getpinfo.php";
+    public static final String REGISTER_URL="http://140.119.19.36/register.php";
+    public static final String GET_FRIENDINFO_URL="http://140.119.19.36/getfriendinfo.php";
+
+
+
 }

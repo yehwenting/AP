@@ -122,7 +122,7 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
 
     private void saveInfoToMysql(){
         if(checkNetworkConnection()){
-            StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
+            StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.REGISTER_URL,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -134,7 +134,7 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
                                     Log.d("success","ya");
                                             //start new activity
                                             Intent intent=new Intent(AccountDetailActivity.this,MainpageActivity.class);
-                                            intent.putExtra("user", (Bundle) getIntent().getParcelableExtra("user"));
+//                                            intent.putExtra("user", (Bundle) getIntent().getParcelableExtra("user"));
                                             startActivity(intent);
                                             finish();
                                 }else{
@@ -164,6 +164,7 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
                     Mysql mysql=new Mysql();
                     String query=mysql.updateUserDetailToMysql(id,selectHeight,selectWeight,ezcard.getText().toString(),selectCollege,selectDepartment);
                     params.put("query",query);
+                    params.put("id",id);
                     return params;
                 }
             };

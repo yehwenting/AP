@@ -24,6 +24,7 @@ public class Mysql {
         String updatesql="UPDATE user SET height='" +height+ "',weight='"+weight+
                 "',ezcard='"+ezcard+"',college='"+college+"',department='"+department+"'\n" +
                 "where fb_id='"+id+"';";
+//        updatesql+="INSERT INTO friends(user1,user2) VALUES('"+id+"','"+id+"');";
         return updatesql;
     }
 
@@ -135,5 +136,11 @@ public class Mysql {
         String place = "SELECT name, ex_place FROM user WHERE ex_place='" +explace+ "'";
         return place;
     }
+
+    public String addMessage(String uid,String fid,String message){
+        String data="INSERT INTO `message` (uid,fid,content) VALUES('"+uid+"','"+fid+"','"+message+"');";
+        return data;
+    }
+
 
 }

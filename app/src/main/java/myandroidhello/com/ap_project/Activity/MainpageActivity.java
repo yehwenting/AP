@@ -9,7 +9,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -48,7 +47,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
 
     //widgets
     private ViewPager mViewPager;
-    private FrameLayout mFrameLayout;
+    private RelativeLayout mFrameLayout;
     private RelativeLayout mRelativeLayout;
 
     @Override
@@ -93,7 +92,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
 
         //center content
         mViewPager = (ViewPager) findViewById(R.id.viewpager_container);
-        mFrameLayout = (FrameLayout) findViewById(R.id.container);
+        mFrameLayout = findViewById(R.id.container);
         mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayoutParent);
 
         setupViewPager();
@@ -110,6 +109,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
                             JSONObject jsonObject=new JSONObject(response);
                             JSONArray subArray = jsonObject.getJSONArray("response");
                             Log.d("t1",String.valueOf(jsonObject));
+                            String id=subArray.getJSONObject(0).getString("fb_id");
                             String name=subArray.getJSONObject(0).getString("name");
                             String picUrl=subArray.getJSONObject(0).getString("pic_url");
                             String stuId=subArray.getJSONObject(0).getString("stu_id");
@@ -122,6 +122,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
                             String college=subArray.getJSONObject(0).getString("college");
                             String department=subArray.getJSONObject(0).getString("department");
                             GlobalVariables User = (GlobalVariables)getApplicationContext();
+                            User.setId(id);
                             User.setUrl(picUrl);
                             User.setName(name);
                             User.setStuId(stuId);

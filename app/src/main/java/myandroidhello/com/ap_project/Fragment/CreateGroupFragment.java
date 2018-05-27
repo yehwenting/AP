@@ -105,14 +105,14 @@ public class CreateGroupFragment extends Fragment {
         });
 
         final Spinner spinner = (Spinner)creategroup.findViewById(R.id.cgNum);
-        final String[] typec = {"慢跑", "籃球", "排球", "重訓", "足球"};
+        final String[] typec = {"慢跑", "籃球", "網球","排球", "重訓", "足球","羽球","桌球"};
         ArrayAdapter typeList = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 typec);
         spinner.setAdapter(typeList);
 
         final Spinner spinner2 = (Spinner)creategroup.findViewById(R.id.spinnerPlace);
-        final String[] placec = {"五期", "六期", "體育館", "游泳館2F", "操場"};
+        final String[] placec = {"五期", "六期", "體育館", "游泳館2F", "操場","網球場"};
         ArrayAdapter<String> placeList = new ArrayAdapter<>(getContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 placec);

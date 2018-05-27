@@ -96,7 +96,7 @@
     <string name="title_activity_maps">NewXer</string>
     <string name="start">開始運動</string>
     <string name="outdoor_place">您選擇的位置：</string>
-    <string name="chosseplace">您選擇的運動：</string>
+    <string name="chosseplace">您選擇的運動</string>
     <string name="question">請問您今日要做什麽運動？</string>
     <string name="title_activity_settings">Settings</string>
 
