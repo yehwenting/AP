@@ -44,6 +44,7 @@ public class StartExercise1Activity extends AppCompatActivity {
     private Button pauseBtn;
     private Button stopBtn;
     private TextView timerValue;
+    private TextView exerciseStatus;
     private long startTime = 0L;
     private String sTime ;
     private Handler customHandler = new Handler();
@@ -72,6 +73,7 @@ public class StartExercise1Activity extends AppCompatActivity {
         ename = intent.getStringExtra("ename");
 
         timerValue = (TextView)findViewById(R.id.timerValue);
+        exerciseStatus = (TextView)findViewById(R.id.statusTv);
         startBtn = (Button)findViewById(R.id.startBtn);
         LottieAnimationView animationView = findViewById(R.id.animation_view);
 
@@ -79,6 +81,7 @@ public class StartExercise1Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                exerciseStatus.setText("努力運動中...");
 
                 customHandler.postDelayed(updateTimerThread, 0);
                 startTime = SystemClock.uptimeMillis();
@@ -128,6 +131,9 @@ public class StartExercise1Activity extends AppCompatActivity {
         pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                exerciseStatus.setText("休息是為了走更長遠的路！");
+
                 timeSwapBuff += timeInMilliseconds;
                 customHandler.removeCallbacks(updateTimerThread);
             }
