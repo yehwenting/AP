@@ -30,15 +30,51 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@raw/gym_n" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:text="健身"
+                        android:textSize="12sp" />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="還差10小時，你就是銅牌小達人"
+                    android:layout_weight="1.5"
+                    android:layout_marginTop="50dp"
+                    android:textSize="14sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -54,11 +90,25 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="你的跑步之路已達顛峰，快向戰友們展示"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -73,42 +123,24 @@
                         android:text="網球"
                         android:textSize="12sp" />
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@raw/gym_n" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
-                        android:text="健身"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="還差1小時，你就是銀牌小達人"
+                    android:textSize="14sp" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -123,12 +155,24 @@
                         android:text="羽球"
                         android:textSize="12sp" />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="還差3小時，羽球金牌就是你的"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -143,12 +187,26 @@
                         android:text="棒球"
                         android:textSize="12sp" />
                 </LinearLayout>
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="還差4小時，你就是銅牌小達人"
+                    android:textSize="14sp" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -163,22 +221,25 @@
                         android:text="籃球"
                         android:textSize="12sp" />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="經過20小時，你已是籃球金牌"
+                    android:textSize="14sp" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                android:orientation="horizontal">
-
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -193,12 +254,25 @@
                         android:text="桌球"
                         android:textSize="12sp" />
                 </LinearLayout>
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="桌球扛棒子!!!"
+                    android:textSize="14sp" />
 
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -213,12 +287,24 @@
                         android:text="排球"
                         android:textSize="12sp" />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="還差10小時，你就是銅牌小達人"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0.5"
                     android:orientation="vertical">
 
                     <ImageView
@@ -233,7 +319,13 @@
                         android:text="其他"
                         android:textSize="12sp" />
                 </LinearLayout>
-
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1.5"
+                    android:text="還差10小時，你就是銅牌小達人"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 

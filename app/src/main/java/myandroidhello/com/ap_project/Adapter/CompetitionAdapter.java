@@ -96,6 +96,7 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setAdapter(competitionGroupAdapter);
+        holder.recyclerView.getParent().requestDisallowInterceptTouchEvent(true);
 
         holder.name.setText(competition.getName());
         holder.content.setText(competition.getContent());
@@ -120,10 +121,12 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
 //                changeRotate(viewHolderWithChild.buttonChild,180f,0f).start();
                 Log.d("hhhhh","preopen");
                 expendState.put(position,false);
+                holder.expandableLayout.getParent().requestDisallowInterceptTouchEvent(true);
             }
 
             @Override
             public void onPreClose() {
+                holder.expandableLayout.getParent().requestDisallowInterceptTouchEvent(true);
 //                viewHolderWithChild.main.setBackgroundColor(Color.parseColor("#ffffff"));
             }
         });

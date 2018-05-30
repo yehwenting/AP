@@ -93,11 +93,12 @@
                     android:id="@+id/pintro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@+id/info"
+                    android:layout_alignStart="@+id/info"
+                    android:layout_below="@+id/info"
+                    android:layout_marginStart="43dp"
                     android:text="huhuh"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 

@@ -174,7 +174,7 @@
 
     <!--strings for rank spinner-->
     <string-array name="sports">
-        <item>跑步</item>
+        <item>慢跑</item>
         <item>籃球</item>
         <item>排球</item>
         <item>羽球</item>

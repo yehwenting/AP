@@ -142,5 +142,10 @@ public class Mysql {
         return data;
     }
 
+    public String getMessage(String id){
+        String data="SELECT m.uid,m.content,u.name,u.pic_url FROM `message` as m,`user` as u where fid='"+id+"' and m.uid=u.fb_id";
+        return data;
+    }
+
 
 }

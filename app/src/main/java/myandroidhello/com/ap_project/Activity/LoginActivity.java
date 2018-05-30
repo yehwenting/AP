@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             // if previously logged in, proceed to the account activity
             Log.d("test","exist!!");
 //            Log.d("test",String.valueOf(loginToken.getUserId()));
-            Log.d("test",String.valueOf(accessToken.getAccountId()));
+//            Log.d("test",String.valueOf(accessToken.getAccountId()));
             GlobalVariables User = (GlobalVariables)getApplicationContext();
             if(accessToken != null){
                 User.setId(accessToken.getAccountId());

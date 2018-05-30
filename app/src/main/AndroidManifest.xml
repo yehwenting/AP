@@ -7,8 +7,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".Model.GlobalVariables"
@@ -24,8 +26,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
+
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />
@@ -108,8 +111,11 @@
         <activity android:name=".Activity.AddFriendActivity" />
         <activity android:name=".Activity.RankActivity" />
         <activity android:name=".Activity.XfileActivity" />
-        <activity android:name=".Activity.FriendInfoActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".Activity.FriendInfoActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Activity.MessageActivity" />
+        <activity android:name=".Adapter.MessageAdapter"></activity>
     </application>
 
 </manifest>
