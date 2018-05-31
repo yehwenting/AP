@@ -86,7 +86,7 @@ public class XReserveAdapter extends ArrayAdapter<XReserveitem> {
         //set the date, equip name, exercise time,
         Log.d(TAG, "getView: getItem(position): " + getItem(position));
         Long updatedTime = getItem(position).getEnd_time()-getItem(position).getStart_time();
-        int secs = (int)(updatedTime/1000);
+        int secs = updatedTime.intValue();
         int mins = secs / 60;
         int hours = mins / 60;
         mins = mins % 60;

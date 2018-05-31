@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -41,6 +42,7 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
     private TextView info,p_name;
     private Button edit;
     private TextView fnum,gnum,exernum;
+    private LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,16 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             public void onClick(View view) {
                 Intent intent=new Intent();
                 intent.setClass(PersonInfoActivity.this,MedalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ll = (LinearLayout)findViewById(R.id.exernum_ll);
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(PersonInfoActivity.this, UserHistoryActivity.class);
                 startActivity(intent);
             }
         });

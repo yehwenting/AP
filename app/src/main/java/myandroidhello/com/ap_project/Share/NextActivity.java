@@ -37,11 +37,12 @@ public class NextActivity extends AppCompatActivity {
     private String phoneImagePath = null;
     private String uploadURL = "http://140.119.19.36:80/uploadPhoto.php";
     private String uid = "1";
-//    private String uname = "winnie";
+    //    private String uname = "winnie";
 //    private String pname = "gym";
 //    private String ename = null;
     private EditText content;
     private String imgUrl;
+    private String bitmapUrl;
     private Bitmap bitmap;
     private Intent intent;
 
@@ -92,10 +93,11 @@ public class NextActivity extends AppCompatActivity {
             phoneImagePath = intent.getStringExtra(getString(R.string.selected_image));
         }
         else if(intent.hasExtra(getString(R.string.selected_bitmap))){
-            bitmap = (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
+//            bitmap = (Bitmap) intent.getParcelableExtra(getString(R.string.selected_bitmap));
             Log.d(TAG, "setImage: got new bitmap");
-            image.setImageBitmap(bitmap);
+//            image.setImageBitmap(bitmap);
             phoneImagePath = intent.getStringExtra("phoneImagePath");
+            UniversalImageLoader.setImage(phoneImagePath, image, null, mAppend);
             Log.d(TAG, "setImage: uploading photo from" + phoneImagePath);
 //            phoneImagePath = intent.getParcelableExtra(getString(R.string.selected_bitmap));
         }
@@ -118,7 +120,7 @@ public class NextActivity extends AppCompatActivity {
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, uploadURL)
                     .addFileToUpload( path, "image") //Adding file
-                    .addParameter("name", user.getName()) //Adding text parameter to the request
+                    .addParameter("name", name) //Adding text parameter to the request
                     .addParameter("uid", user.getId())
                     .addParameter("content", content.getText().toString())
                     .addParameter("date", String.valueOf(System.currentTimeMillis()))

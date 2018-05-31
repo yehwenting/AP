@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.List;
 
 import myandroidhello.com.ap_project.Model.XGroupitem;
@@ -20,20 +21,20 @@ import myandroidhello.com.ap_project.R;
  * Created by jenny on 2018/4/27.
  */
 
-public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
+public class HistoryAdapter extends ArrayAdapter<XGroupitem> {
     public interface OnLoadMoreItemsListener{
         void onLoadMoreItems();
     }
     XGroupAdapter.OnLoadMoreItemsListener mOnLoadMoreItemsListener;
 
-    private static final String TAG = "XGroupAdapter";
+    private static final String TAG = "HistoryAdapter";
 
     private LayoutInflater mInflater;
     private int mLayoutResource;
     private Context mContext;
     private String currentUsername = "";
 
-    public XGroupAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<XGroupitem> objects) {
+    public HistoryAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<XGroupitem> objects) {
         super(context, resource, objects);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mLayoutResource = resource;
@@ -41,7 +42,7 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
     }
 
     static class ViewHolder{
-        TextView name, date, place, type;
+        TextView type, start_time, end_time;
 
     }
 
@@ -49,16 +50,15 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        final XGroupAdapter.ViewHolder holder;
+        final HistoryAdapter.ViewHolder holder;
 
         if(convertView == null){
             convertView = mInflater.inflate(mLayoutResource, parent, false);
-            holder = new XGroupAdapter.ViewHolder();
+            holder = new HistoryAdapter.ViewHolder();
 
-            holder.date = (TextView) convertView.findViewById(R.id.date);
-            holder.name = (TextView) convertView.findViewById(R.id.group_name);
-            holder.place = (TextView) convertView.findViewById(R.id.place);
-            holder.type = (TextView) convertView.findViewById(R.id.type);
+            holder.start_time = (TextView) convertView.findViewById(R.id.start_time);
+            holder.end_time = (TextView) convertView.findViewById(R.id.end_time);
+            holder.type = (TextView) convertView.findViewById(R.id.type1);
 
 
             convertView.setTag(holder);
@@ -72,9 +72,8 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
         //set the date, name, place, type,
         Log.d(TAG, "getView: getItem(position): " + getItem(position));
 
-        holder.date.setText(getItem(position).getDate());
-        holder.name.setText(getItem(position).getGname());
-        holder.place.setText(getItem(position).getPlace());
+        holder.start_time.setText(convertTime(getItem(position).getDate()));
+        holder.end_time.setText(convertTime(getItem(position).getGname()));
         holder.type.setText(getItem(position).getType());
 
         if(reachedEndOfList(position)){
@@ -82,6 +81,24 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
         }
 
         return convertView;
+    }
+
+    private String convertTime(String TimeMillis){
+        Long timeStamp = Long.parseLong(TimeMillis);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeStamp);
+
+        int mYear = calendar.get(Calendar.YEAR);
+        int mMonth = calendar.get(Calendar.MONTH);
+        int mDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        int seconds = (int) (timeStamp / 1000) % 60 ;
+        int minutes = (int) ((timeStamp / (1000*60)) % 60);
+        int hours   = (int) ((timeStamp / (1000*60*60)) % 24);
+
+        String date = mYear + "-" + mMonth + "-" + mDay + " ";
+        String time = String.valueOf(hours) + ":" + String.valueOf(minutes);
+        return date + time;
     }
 
 
