@@ -126,6 +126,7 @@ public class NextActivity extends AppCompatActivity {
                     .addParameter("date", String.valueOf(System.currentTimeMillis()))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
+                    .setUtf8Charset()
                     .startUpload();
             Log.d(TAG, "uploadMultipart: starting the upload...");
 
