@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -42,6 +43,7 @@ public class CompetitionFragment extends Fragment{
     Context context;
 //    @Bind(R.id.addgroup_rv)
     RecyclerView recyclerView;
+    TextView slogan;
 
     List<Competitions> competitionList = new ArrayList<>();
 
@@ -58,6 +60,8 @@ public class CompetitionFragment extends Fragment{
         ButterKnife.bind(this, view);
         recyclerView=view.findViewById(R.id.addgroup_rv);
         recyclerView.setNestedScrollingEnabled(false);
+        slogan=view.findViewById(R.id.slogan);
+        slogan.setText("參加運動X競賽，你將突破從前的自己");
 
         //抓出成立團
         getCompetition();
@@ -82,6 +86,7 @@ public class CompetitionFragment extends Fragment{
                             //traversing through all the object
                             for (int i = 0; i < array.length(); i++) {
                                 List<CompetitionGroup> competitionGroups=new ArrayList<>();
+                                List<CompetitionGroup> competitionRecordGroups=new ArrayList<>();
                                 JSONObject competition = array.getJSONObject(i);
 
                                 competitionList.add(new Competitions(
@@ -91,23 +96,43 @@ public class CompetitionFragment extends Fragment{
                                         competition.getString("c_deadline"),
                                         competition.getString("goal"),
                                         true,
-                                        competitionGroups
+                                        competitionGroups,
+                                        competitionRecordGroups
                                 ));
 
                                 JSONArray group = competition.getJSONArray("group");
                                     for(int j=0;j<group.length();j++){
                                         JSONObject competitiong = group.getJSONObject(j);
-                                        competitionGroups.add(new CompetitionGroup(
-                                                competitiong.getString("name"),
-                                                competitiong.getString("pic_url"),
-                                                competitiong.getString("cp_name"),
-                                                competitiong.getString("cp_time"),
-                                                competitiong.getString("cp_place"),
-                                                competitiong.getString("cp_num"),
-                                                competitiong.getString("cp_remain"),
-                                                competitiong.getString("note"),
-                                                competitiong.getString("id")
-                                        ));
+                                        if(competitiong.getString("status").equals("true")) {
+                                            competitionGroups.add(new CompetitionGroup(
+                                                    competitiong.getString("name"),
+                                                    competitiong.getString("pic_url"),
+                                                    competitiong.getString("cp_name"),
+                                                    competitiong.getString("cp_time"),
+                                                    competitiong.getString("cp_place"),
+                                                    competitiong.getString("cp_num"),
+                                                    competitiong.getString("cp_remain"),
+                                                    competitiong.getString("note"),
+                                                    competitiong.getString("id"),
+                                                    competitiong.getString("status"),
+                                                    competitiong.getString("remaingoal")
+                                            ));
+                                        }else{
+                                            competitionRecordGroups.add(new CompetitionGroup(
+                                                    competitiong.getString("name"),
+                                                    competitiong.getString("pic_url"),
+                                                    competitiong.getString("cp_name"),
+                                                    competitiong.getString("cp_time"),
+                                                    competitiong.getString("cp_place"),
+                                                    competitiong.getString("cp_num"),
+                                                    competitiong.getString("cp_remain"),
+                                                    competitiong.getString("note"),
+                                                    competitiong.getString("id"),
+                                                    competitiong.getString("status"),
+                                                    competitiong.getString("remaingoal")
+                                            ));
+
+                                        }
                                     }
 
                                 //getting product object from json array

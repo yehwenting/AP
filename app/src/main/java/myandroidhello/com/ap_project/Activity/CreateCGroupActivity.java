@@ -51,16 +51,29 @@ public class CreateCGroupActivity extends AppCompatActivity {
         num=findViewById(R.id.cgNum);
         note=findViewById(R.id.cgContent);
         create=findViewById(R.id.cg_button);
+        int max=Integer.parseInt(intent.getStringExtra("maxnum"));
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveGroup();
+                if(name.getText().toString().equals("")||
+                        time.getText().toString().equals("")||
+                        place.getText().toString().equals("")||
+                        num.getText().toString().equals("")||
+                        note.getText().toString().equals("")||compete.getText().toString().equals("")){
+                    Toast.makeText(CreateCGroupActivity.this, "所有資料都須填寫才能發布揪團唷!", Toast.LENGTH_LONG).show();
+                }else if(Integer.parseInt(num.getText().toString())>max){
+                    String text="揪團人數大於上限"+max+"人";
+                    Toast.makeText(CreateCGroupActivity.this, text, Toast.LENGTH_LONG).show();
+
+                }else{
+                    saveGroup();
+                }
             }
         });
     }
 
     private void saveGroup(){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Values.CREATE_COMPETITION_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -98,9 +111,13 @@ public class CreateCGroupActivity extends AppCompatActivity {
                 Map<String,String> params=new HashMap<>();
                 GlobalVariables user=(GlobalVariables)context.getApplicationContext();
                 String uid=user.getId();
+                int remain=Integer.parseInt(num.getText().toString())-1;
                 Mysql mysql=new Mysql();
-                String query = mysql.createCompetition(uid,name.getText().toString(),time.getText().toString(),place.getText().toString(),num.getText().toString(),note.getText().toString(),compete.getText().toString());
+                String query = mysql.createCompetition(uid,name.getText().toString(),time.getText().toString(),place.getText().toString(),num.getText().toString(),
+                        note.getText().toString(),compete.getText().toString(),String.valueOf(remain));
                 params.put("query", query);
+                params.put("uid",uid);
+                params.put("name",compete.getText().toString());
                 return params;
             }
         };

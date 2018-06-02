@@ -87,12 +87,14 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
     public void onBindViewHolder(@NonNull final CompetitionGroupAdapter.CompetitionViewHolder holder, int position) {
             final CompetitionGroup competitionGroup=competitionGroups.get(position);
             Log.d("hhhhh","hello");
+//            if(competitionGroup.getStatus().equals("true")){
             holder.gname.setText(competitionGroup.getCpName());
             holder.uname.setText(competitionGroup.getuName());
             holder.time.setText(competitionGroup.getTime());
             holder.place.setText(competitionGroup.getPlace());
             holder.note.setText(competitionGroup.getNote());
             holder.remain.setText(competitionGroup.getRemain());
+            holder.num.setText(competitionGroup.getNum());
             displayProfilePic(holder.pic,competitionGroup.getuPic());
             Log.d("ttttt",competitionGroup.getCid());
         //check if the user has joined the group
@@ -107,7 +109,7 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
                             if(jsonObject.getString("response").equals("null")){
                                 Log.d("ttttt","null"+jsonObject.getString("response"));
                             }else{
-                                holder.join.setText("-1");
+                                holder.join.setText("退出X戰隊");
                                 Resources resource = context.getResources();
                                 ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.accountLabel);
                                 holder.join.setTextColor(csl);
@@ -143,7 +145,7 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
         holder.join.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(holder.join.getText().equals("+1")){
+                    if(holder.join.getText().equals("加入X戰隊")){
                         String type="add";
                         joinGroup(competitionGroup.getCid(),type);
                     }else {

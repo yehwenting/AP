@@ -115,7 +115,7 @@
             android:name=".Activity.FriendInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.MessageActivity" />
-        <activity android:name=".Adapter.MessageAdapter"></activity>
+
     </application>
 
 </manifest>

@@ -5,9 +5,9 @@ package myandroidhello.com.ap_project.Model;
  */
 
 public class CompetitionGroup {
-    private String cid,uName,uPic,cpName,time,place,num,remain,note;
+    private String cid,uName,uPic,cpName,time,place,num,remain,note,status,remainGoal;
 
-    public CompetitionGroup(String uName, String uPic, String cpName, String time, String place, String num, String remain, String note,String cid) {
+    public CompetitionGroup(String uName, String uPic, String cpName, String time, String place, String num, String remain, String note,String cid,String status,String remainGoal) {
         this.uName = uName;
         this.uPic = uPic;
         this.cpName = cpName;
@@ -17,6 +17,8 @@ public class CompetitionGroup {
         this.remain = remain;
         this.note = note;
         this.cid=cid;
+        this.remainGoal=remainGoal;
+        this.status=status;
     }
 
     public String getPlace() {
@@ -89,5 +91,21 @@ public class CompetitionGroup {
 
     public void setCid(String cid) {
         this.cid = cid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRemainGoal() {
+        return remainGoal;
+    }
+
+    public void setRemainGoal(String remainGoal) {
+        this.remainGoal = remainGoal;
     }
 }
