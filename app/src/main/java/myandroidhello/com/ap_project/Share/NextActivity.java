@@ -133,7 +133,7 @@ public class NextActivity extends AppCompatActivity {
             AlertDialog.Builder adb = new AlertDialog.Builder(this)
                     .setTitle("上傳成功")
                     .setMessage("貼文已上傳成功！！")
-                    .setPositiveButton("回主畫面", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("回主畫麵", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(NextActivity.this, MenuActivity.class);
