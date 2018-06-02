@@ -48,6 +48,7 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
     private List<ImageView> fs=new ArrayList<>();
     private LinearLayout l1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +128,16 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             public void onClick(View view) {
                 Intent intent=new Intent();
                 intent.setClass(PersonInfoActivity.this,MedalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        l1 = (LinearLayout)findViewById(R.id.exernum_ll);
+        l1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(PersonInfoActivity.this, UserHistoryActivity.class);
                 startActivity(intent);
             }
         });

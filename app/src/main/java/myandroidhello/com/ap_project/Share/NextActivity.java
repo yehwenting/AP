@@ -37,7 +37,7 @@ public class NextActivity extends AppCompatActivity {
     private String phoneImagePath = null;
     private String uploadURL = "http://140.119.19.36:80/uploadPhoto.php";
     private String uid = "1";
-//    private String uname = "winnie";
+    //    private String uname = "winnie";
 //    private String pname = "gym";
 //    private String ename = null;
     private EditText content;
@@ -126,13 +126,14 @@ public class NextActivity extends AppCompatActivity {
                     .addParameter("date", String.valueOf(System.currentTimeMillis()))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
+                    .setUtf8Charset()
                     .startUpload();
             Log.d(TAG, "uploadMultipart: starting the upload...");
 
             AlertDialog.Builder adb = new AlertDialog.Builder(this)
                     .setTitle("上傳成功")
                     .setMessage("貼文已上傳成功！！")
-                    .setPositiveButton("回主畫面", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("回主畫麵", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(NextActivity.this, MenuActivity.class);

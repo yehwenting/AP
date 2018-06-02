@@ -33,13 +33,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import myandroidhello.com.ap_project.Activity.GroupMemberActivity;
 import myandroidhello.com.ap_project.Activity.JFGroupActivity;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
-import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.Model.AddGroup;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
+import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.Values;
 
 /**
  * Created by Stanley on 2018/3/7.
@@ -103,6 +104,11 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         holder.mGDate.setText(addGroup.getDate());
         holder.mGNumber.setText(String.valueOf(addGroup.getNumber()));
         holder.mGRemain.setText(String.valueOf(addGroup.getRemain()));
+
+        String info = "記得準時參加Ｘ特攻隊喔！\n團名：" + addGroup.getGname() + "\n揪團人：" + addGroup.getName() + "\n運動種類：" + addGroup.getType()
+                + "\n地點：" + addGroup.getPlace() + "\n時間：" + addGroup.getDate() + "\n本團人數：" + addGroup.getNumber()
+                + "\n剩餘人數" + addGroup.getRemain();
+
         //check if the user has joined the group
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
                 new Response.Listener<String>() {
@@ -153,6 +159,18 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             public void onClick(View view) {
                 if(holder.mAdd.getText().equals("+1")){
                     String type="add";
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setMessage(info)
+                            .setTitle("你已是X特攻隊一員哩！！");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(context, JFGroupActivity.class);
+                            context.startActivity(intent);
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
                     saveJoinToDB(addGroup.getGid(),type);
                 }else{
                     AlertDialog.Builder alert = new AlertDialog.Builder(context);
@@ -176,6 +194,14 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                 }
             }
         });
+        holder.mGNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, GroupMemberActivity.class);
+                intent.putExtra("group_number", String.valueOf(addGroup.getGid()));
+                context.startActivity(intent);
+            }
+        });
         displayProfilePic(holder.groupImg,addGroup.getUrl());
 
 
@@ -197,22 +223,23 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                             Log.d("qqqq",response);
                             String title;
                             if(type.equals("add")){
-                                title="你已是X特攻隊一員哩!!";
+//                                title="你已是X特攻隊一員哩!!";
                             }else{
                                 title="殘念!你就這樣脫離X特攻隊";
+                                JSONObject jsonObject = new JSONObject(response);
+                                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                                alert.setTitle(title);
+                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(context, JFGroupActivity.class);
+                                        context.startActivity(intent);
+                                    }
+                                });
+                                AlertDialog dialog = alert.create();
+                                dialog.show();
                             }
-                            JSONObject jsonObject = new JSONObject(response);
-                            AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                            alert.setTitle(title);
-                            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(context, JFGroupActivity.class);
-                                    context.startActivity(intent);
-                                }
-                            });
-                            AlertDialog dialog = alert.create();
-                            dialog.show();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

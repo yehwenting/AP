@@ -10,12 +10,12 @@ import android.os.Parcelable;
 public class User implements Parcelable {
 
     private String user_id;
-    private String phone_number;
+    private String pic_url;
     private String username;
 
-    public User(String user_id, String phone_number, String username) {
+    public User(String user_id, String pic_url, String username) {
         this.user_id = user_id;
-        this.phone_number = phone_number;
+        this.pic_url = pic_url;
         this.username = username;
     }
 
@@ -26,7 +26,7 @@ public class User implements Parcelable {
 
     protected User(Parcel in) {
         user_id = in.readString();
-        phone_number = in.readString();
+        pic_url = in.readString();
         username = in.readString();
     }
 
@@ -50,12 +50,12 @@ public class User implements Parcelable {
         this.user_id = user_id;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPic_url() {
+        return pic_url;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPic_url(String pic_url) {
+        this.pic_url = pic_url;
     }
 
     public String getUsername() {
@@ -71,7 +71,7 @@ public class User implements Parcelable {
     public String toString() {
         return "User{" +
                 "user_id='" + user_id + '\'' +
-                ", phone_number='" + phone_number + '\'' +
+                ", pic_url='" + pic_url + '\'' +
                 ", username='" + username + '\'' +
                 '}';
     }
@@ -84,7 +84,7 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(user_id);
-        dest.writeString(phone_number);
+        dest.writeString(pic_url);
         dest.writeString(username);
     }
 }

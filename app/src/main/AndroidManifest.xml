@@ -115,7 +115,9 @@
             android:name=".Activity.FriendInfoActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.MessageActivity" />
-
+        <activity android:name=".Activity.UserHistoryActivity" />
+        <activity android:name=".Activity.GroupMemberActivity"></activity>
+>>>>>>> origin/xer
     </application>
 
 </manifest>

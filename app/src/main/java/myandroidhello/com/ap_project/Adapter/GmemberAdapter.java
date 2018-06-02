@@ -9,31 +9,37 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
-import myandroidhello.com.ap_project.Model.XGroupitem;
+import myandroidhello.com.ap_project.Model.User;
 import myandroidhello.com.ap_project.R;
 
+
 /**
- * Created by jenny on 2018/4/27.
+ * Created by jenny on 2018/3/23.
  */
 
-public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
+public class GmemberAdapter extends ArrayAdapter<User> {
     public interface OnLoadMoreItemsListener{
         void onLoadMoreItems();
     }
-    XGroupAdapter.OnLoadMoreItemsListener mOnLoadMoreItemsListener;
+    GmemberAdapter.OnLoadMoreItemsListener mOnLoadMoreItemsListener;
 
-    private static final String TAG = "XGroupAdapter";
+    private static final String TAG = "GmemberAdapter";
 
     private LayoutInflater mInflater;
     private int mLayoutResource;
     private Context mContext;
     private String currentUsername = "";
 
-    public XGroupAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<XGroupitem> objects) {
+    public GmemberAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<User> objects) {
         super(context, resource, objects);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mLayoutResource = resource;
@@ -41,7 +47,10 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
     }
 
     static class ViewHolder{
-        TextView name, date, place, type;
+        ImageView mprofileImage;
+        TextView  username;
+
+
 
     }
 
@@ -49,17 +58,14 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        final XGroupAdapter.ViewHolder holder;
+        final GmemberAdapter.ViewHolder holder;
 
         if(convertView == null){
             convertView = mInflater.inflate(mLayoutResource, parent, false);
-            holder = new XGroupAdapter.ViewHolder();
+            holder = new GmemberAdapter.ViewHolder();
 
-            holder.date = (TextView) convertView.findViewById(R.id.date);
-            holder.name = (TextView) convertView.findViewById(R.id.group_name);
-            holder.place = (TextView) convertView.findViewById(R.id.place);
-            holder.type = (TextView) convertView.findViewById(R.id.type);
-
+            holder.username = (TextView) convertView.findViewById(R.id.mName);
+            holder.mprofileImage = (ImageView) convertView.findViewById(R.id.mImage);
 
             convertView.setTag(holder);
 
@@ -69,13 +75,13 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
 
 
 
-        //set the date, name, place, type,
+        //set the profile image
+        displayProfilePic(holder.mprofileImage, getItem(position).getPic_url());
+
+        //set the user name, exercise time,
         Log.d(TAG, "getView: getItem(position): " + getItem(position));
 
-        holder.date.setText(getItem(position).getDate());
-        holder.name.setText(getItem(position).getGname());
-        holder.place.setText(getItem(position).getPlace());
-        holder.type.setText(getItem(position).getType());
+        holder.username.setText(getItem(position).getUsername());
 
         if(reachedEndOfList(position)){
             loadMoreData();
@@ -84,7 +90,6 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
         return convertView;
     }
 
-
     private boolean reachedEndOfList(int position){
         return position == getCount() - 1;
     }
@@ -92,7 +97,7 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
     private void loadMoreData(){
 
         try{
-            mOnLoadMoreItemsListener = (XGroupAdapter.OnLoadMoreItemsListener) getContext();
+            mOnLoadMoreItemsListener = (GmemberAdapter.OnLoadMoreItemsListener) getContext();
         }catch (ClassCastException e){
             Log.e(TAG, "loadMoreData: ClassCastException: " +e.getMessage() );
         }
@@ -103,5 +108,17 @@ public class XGroupAdapter extends ArrayAdapter<XGroupitem> {
             Log.e(TAG, "loadMoreData: ClassCastException: " +e.getMessage() );
         }
     }
-}
 
+    private void displayProfilePic(ImageView imageView, String url) {
+        // helper method to load the profile pic in a circular imageview
+        Transformation transformation = new RoundedTransformationBuilder()
+                .cornerRadiusDp(30)
+                .oval(false)
+                .build();
+        Picasso.with(imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.user)
+                .transform(transformation)
+                .into(imageView);
+    }
+}

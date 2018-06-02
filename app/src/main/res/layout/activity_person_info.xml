@@ -120,13 +120,15 @@
             app:srcCompat="@drawable/vertical_line"
             android:layout_weight="1"/>
         <LinearLayout
+            android:id="@+id/exernum_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/exernum"
