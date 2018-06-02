@@ -37,7 +37,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:layout_weight="0.5"
                     android:orientation="vertical">
 
@@ -63,6 +62,17 @@
 
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/horizontal_line" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -99,6 +109,13 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
+            <ImageView
+                android:layout_width="370dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/horizontal_line" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,6 +148,15 @@
                     android:text="還差1小時，你就是銀牌小達人"
                     android:textSize="14sp" />
             </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="370dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/horizontal_line" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -163,6 +189,15 @@
                     android:text="還差3小時，羽球金牌就是你的"
                     android:textSize="14sp" />
             </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="370dp"
+                android:layout_height="2dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/horizontal_line" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
