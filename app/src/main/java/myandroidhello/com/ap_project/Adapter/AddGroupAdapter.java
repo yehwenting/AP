@@ -208,13 +208,9 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         displayProfilePic(holder.groupImg,addGroup.getUrl());
         if(String.valueOf(addGroup.getRemain()).equals("0")){
             Log.d("ttttt",holder.mAdd.getText().toString());
-            if(holder.mAdd.getText().toString().equals("退出")){
-
-            }else{
                 holder.mAdd.setTextColor(Color.RED);
                 holder.mAdd.setText("本團已滿");
                 holder.mAdd.setClickable(false);
-            }
 
         }
 
