@@ -43,10 +43,10 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
     private ImageView pic;
     private TextView info,p_name;
     private Button edit;
-    private TextView fnum,gnum,exernum,more;
+    private TextView fnum,gnum,exernum,more,medalmore;
     private ImageView f1,f2,f3,f4,f5;
     private List<ImageView> fs=new ArrayList<>();
-    private LinearLayout l1;
+    private LinearLayout l1,exer,friendLL,groupLL;
 
 
     @Override
@@ -74,6 +74,21 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
         more=findViewById(R.id.more);
         more.setOnClickListener(view -> {
             Intent intent=new Intent(PersonInfoActivity.this,MessageActivity.class);
+            startActivity(intent);
+        });
+        medalmore=findViewById(R.id.more1);
+        medalmore.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,MedalActivity.class);
+            startActivity(intent);
+        });
+        friendLL=findViewById(R.id.friend_ll);
+        friendLL.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,FriendsActivity.class);
+            startActivity(intent);
+        });
+        groupLL=findViewById(R.id.group_ll);
+        groupLL.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,XfileActivity.class);
             startActivity(intent);
         });
 
@@ -132,8 +147,8 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             }
         });
 
-        l1 = (LinearLayout)findViewById(R.id.exernum_ll);
-        l1.setOnClickListener(new View.OnClickListener() {
+        exer = (LinearLayout)findViewById(R.id.exernum_ll);
+        exer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();

@@ -1,6 +1,7 @@
 package myandroidhello.com.ap_project.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
+import myandroidhello.com.ap_project.Activity.CompeteGroupMemberActivity;
 import myandroidhello.com.ap_project.Model.CompetitionGroup;
 import myandroidhello.com.ap_project.R;
 
@@ -23,7 +25,7 @@ public class CompetitionGroupAdapter1 extends  RecyclerView.Adapter<CompetitionG
     public class CompetitionViewHolder extends RecyclerView.ViewHolder {
 
         TextView rank,cga_name,goal,num;
-        ImageView pic;
+        ImageView pic,more;
 
         public CompetitionViewHolder(View itemView) {
             super(itemView);
@@ -33,6 +35,7 @@ public class CompetitionGroupAdapter1 extends  RecyclerView.Adapter<CompetitionG
             rank=itemView.findViewById(R.id.rank);
             pic=itemView.findViewById(R.id.groupImg);
             goal=itemView.findViewById(R.id.goal);
+            more=itemView.findViewById(R.id.more);
 
         }
     }
@@ -65,6 +68,11 @@ public class CompetitionGroupAdapter1 extends  RecyclerView.Adapter<CompetitionG
         holder.cga_name.setText(competitionGroup.getCpName());
         holder.goal.setText(competitionGroup.getRemainGoal());
         holder.num.setText(competitionGroup.getRemain());
+        holder.more.setOnClickListener(view -> {
+            Intent intent=new Intent(context, CompeteGroupMemberActivity.class);
+            intent.putExtra("group_number",competitionGroup.getCid());
+            context.startActivity(intent);
+        });
         int num=position+1;
         String t="No."+num;
         holder.rank.setText(t);

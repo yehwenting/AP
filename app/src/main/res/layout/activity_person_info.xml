@@ -88,6 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/p_name">
 
         <LinearLayout
+            android:id="@+id/friend_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -156,6 +157,7 @@
             app:srcCompat="@drawable/vertical_line" />
 
         <LinearLayout
+            android:id="@+id/group_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -177,9 +179,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:text="特攻隊"
-                android:textColor="@color/colorWhite"
-                android:layout_marginStart="3dp"/>
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
 
     </LinearLayout>
@@ -213,6 +215,17 @@
                     android:text="我 的 成 就"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/more1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="15dp"
+                    android:text="詳細資料 >"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
 
                 <LinearLayout
                     android:id="@+id/l1"
@@ -303,6 +316,14 @@
                 </LinearLayout>
 
             </RelativeLayout>
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/horizontal_line" />
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -380,6 +401,13 @@
                           />
                 </LinearLayout>
             </RelativeLayout>
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/horizontal_line" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -409,7 +437,7 @@
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignTop="@+id/textme"
+                    android:layout_below="@+id/personalInfo"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/background_group"
                     android:text="修改個人資料"

@@ -32,13 +32,13 @@
                 android:id="@+id/cga_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/uName"
-                android:layout_alignTop="@+id/groupImg"
-                android:layout_marginTop="9dp"
-                android:text="TextView"
-                android:textSize="16sp"
+                android:layout_above="@+id/textView"
+                android:layout_marginBottom="9dp"
+                android:layout_marginStart="19dp"
+                android:layout_toEndOf="@+id/groupImg"
                 android:letterSpacing="0.1"
-                />
+                android:text="TextView"
+                android:textSize="16sp" />
 
 
             <!--android:textColor="#FFB800" -->
@@ -192,16 +192,24 @@
 
             <TextView
                 android:id="@+id/cga_note"
-                android:layout_width="160dp"
+                android:layout_width="140dp"
                 android:layout_height="50dp"
                 android:layout_alignBaseline="@+id/textView13"
                 android:layout_alignBottom="@+id/textView13"
                 android:layout_alignStart="@+id/cga_remain"
+                android:letterSpacing="0.1"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="12sp"
-                android:letterSpacing="0.1"
-                />
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignEnd="@+id/cga_num"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/information" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

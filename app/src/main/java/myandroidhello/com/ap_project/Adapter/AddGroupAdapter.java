@@ -51,7 +51,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
 
     public class GroupViewHolder extends RecyclerView.ViewHolder{
         TextView mGName,mGType,mGDate,mGPlace,mGRemain,mGNumber,textUname;
-        Button mAdd;
+        Button mAdd,member;
         ImageView groupImg;
         public GroupViewHolder(View itemView){
             super(itemView);
@@ -65,6 +65,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             mGNumber = itemView.findViewById(R.id.mGNumber);
             groupImg=itemView.findViewById(R.id.groupImg);
             mAdd = itemView.findViewById(R.id.create_button);
+            member = itemView.findViewById(R.id.member);
 
 
         }
@@ -121,7 +122,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                             if(jsonObject.getString("response").equals("null")){
 
                             }else{
-                                holder.mAdd.setText("-1");
+                                holder.mAdd.setText("退出");
                                 Resources resource = context.getResources();
                                 ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.accountLabel);
                                 holder.mAdd.setTextColor(csl);
@@ -157,7 +158,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         holder.mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.mAdd.getText().equals("+1")){
+                if(holder.mAdd.getText().equals("加入")){
                     String type="add";
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage(info)
@@ -194,7 +195,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                 }
             }
         });
-        holder.mGNumber.setOnClickListener(new View.OnClickListener() {
+        holder.member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, GroupMemberActivity.class);

@@ -32,15 +32,15 @@
 
                 <TextView
                     android:id="@+id/cga_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/groupImg"
-                    android:layout_marginTop="9dp"
-                    android:layout_toEndOf="@+id/rank"
-                    android:text="TextView"
-                    android:textSize="16sp"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@+id/groupImg"
                     android:letterSpacing="0.1"
-                    />
+                    android:text="TextView"
+                    android:textSize="16sp" />
 
 
                 <!--android:textColor="#FFB800" -->
@@ -111,13 +111,23 @@
                     android:id="@+id/goal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/cga_name"
-                    android:layout_alignTop="@+id/textView4"
+                    android:layout_alignBaseline="@+id/textView4"
+                    android:layout_alignBottom="@+id/textView4"
+                    android:layout_toEndOf="@+id/textView4"
+                    android:letterSpacing="0.1"
                     android:text="TextView"
                     android:textColor="#000000"
-                    android:textSize="12sp"
-                    android:letterSpacing="0.1"
-                    />
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/more"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/information" />
 
 
             </RelativeLayout>

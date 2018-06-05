@@ -24,7 +24,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="27dp"
-                android:layout_marginTop="9dp"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/user" />
 
@@ -38,6 +37,18 @@
                 android:layout_weight="1"
                 android:text="TextView"
                 android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/find"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_group"
+                android:text="查看更多"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimaryDark"/>
 
             <!--android:background="@drawable/register_btn"-->
 

@@ -27,14 +27,18 @@ import myandroidhello.com.ap_project.Adapter.GmemberAdapter;
 import myandroidhello.com.ap_project.Model.User;
 import myandroidhello.com.ap_project.R;
 
-public class GroupMemberActivity extends AppCompatActivity {
+/**
+ * Created by Yehwenting on 2018/6/5.
+ */
+
+public class CompeteGroupMemberActivity extends AppCompatActivity {
     private static final String TAG = "GroupMemberActivity";
 
     //vars
     private ListView mListView;
     private GmemberAdapter mAdapter;
     private ArrayList<User> mUser;
-    private String HTTP_URL = "http://140.119.19.36:80/getmember.php";
+    private String HTTP_URL = "http://140.119.19.36:80/getcompetemember.php";
     private String FinalJSonObject;
     private String gid;
     ImageView back;
@@ -67,7 +71,7 @@ public class GroupMemberActivity extends AppCompatActivity {
                         FinalJSonObject = response ;
 
                         // Calling method to parse JSON object.
-                        new ParseJSonDataClass(GroupMemberActivity.this).execute();
+                        new CompeteGroupMemberActivity.ParseJSonDataClass(CompeteGroupMemberActivity.this).execute();
 
                     }
                 },
@@ -76,19 +80,19 @@ public class GroupMemberActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
 
                         // Showing error message if something goes wrong.
-                        Toast.makeText(GroupMemberActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(CompeteGroupMemberActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
 
                     }
                 });
 
         // Creating String Request Object.
-        RequestQueue requestQueue = Volley.newRequestQueue(GroupMemberActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(CompeteGroupMemberActivity.this);
 
         // Passing String request into RequestQueue.
         requestQueue.add(stringRequest);
     }
 
-    class ParseJSonDataClass extends AsyncTask<Void, Void, Void> {
+    private class ParseJSonDataClass extends AsyncTask<Void, Void, Void> {
 
         public Context context;
 
@@ -159,7 +163,7 @@ public class GroupMemberActivity extends AppCompatActivity {
         protected void onPostExecute(Void result)
 
         {
-            mAdapter = new GmemberAdapter(GroupMemberActivity.this,  R.layout.layout_gmember_item, mUser);
+            mAdapter = new GmemberAdapter(CompeteGroupMemberActivity.this,  R.layout.layout_gmember_item, mUser);
             mListView.setAdapter(mAdapter);
 
         }

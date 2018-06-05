@@ -18,6 +18,8 @@ public class Values {
     public static final String GET_FRIENDINFO_URL="http://140.119.19.36/getfriendinfo.php";
     public static final String CREATE_COMPETITION_URL="http://140.119.19.36/createCompetition.php";
     public static final String CHECK_RESERVE_TIME_URL="http://140.119.19.36/checkReserveTimeAvailable.php";
+    public static final String CREATE_GROUP_URL="http://140.119.19.36/createGroup.php";
+
 
 
 

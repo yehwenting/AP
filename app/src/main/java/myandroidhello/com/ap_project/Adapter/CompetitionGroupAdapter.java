@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,20 +34,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import myandroidhello.com.ap_project.Activity.CompeteGroupMemberActivity;
 import myandroidhello.com.ap_project.Activity.JFGroupActivity;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
-import myandroidhello.com.ap_project.R;
-import myandroidhello.com.ap_project.Util.Values;
 import myandroidhello.com.ap_project.Model.CompetitionGroup;
 import myandroidhello.com.ap_project.Model.GlobalVariables;
+import myandroidhello.com.ap_project.R;
+import myandroidhello.com.ap_project.Util.Values;
 
 public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGroupAdapter.CompetitionViewHolder> {
     public class CompetitionViewHolder extends RecyclerView.ViewHolder {
 
         TextView gname,uname,num,time,place,remain,note;
         Button join;
-        ImageView pic;
+        ImageView pic,more;
 
         public CompetitionViewHolder(View itemView) {
             super(itemView);
@@ -60,6 +62,7 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
             note=itemView.findViewById(R.id.cga_note);
             join=itemView.findViewById(R.id.cga_create_button);
             pic=itemView.findViewById(R.id.groupImg);
+            more=itemView.findViewById(R.id.more);
 
         }
     }
@@ -88,6 +91,11 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
             final CompetitionGroup competitionGroup=competitionGroups.get(position);
             Log.d("hhhhh","hello");
 //            if(competitionGroup.getStatus().equals("true")){
+            if(holder.remain.getText().toString().equals("0")){
+                holder.join.setTextColor(Color.RED);
+                holder.join.setText("本團已滿");
+                holder.join.setClickable(false);
+            }
             holder.gname.setText(competitionGroup.getCpName());
             holder.uname.setText(competitionGroup.getuName());
             holder.time.setText(competitionGroup.getTime());
@@ -95,6 +103,11 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
             holder.note.setText(competitionGroup.getNote());
             holder.remain.setText(competitionGroup.getRemain());
             holder.num.setText(competitionGroup.getNum());
+            holder.more.setOnClickListener(view -> {
+                Intent intent=new Intent(context, CompeteGroupMemberActivity.class);
+                intent.putExtra("group_number",competitionGroup.getCid());
+                context.startActivity(intent);
+            });
             displayProfilePic(holder.pic,competitionGroup.getuPic());
             Log.d("ttttt",competitionGroup.getCid());
         //check if the user has joined the group
@@ -143,6 +156,7 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
         MySingleTon.getmInstance(context).addToRequestque(stringRequest);
 
         holder.join.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
                     if(holder.join.getText().equals("加入X戰隊")){

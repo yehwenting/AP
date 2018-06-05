@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class UserHistoryActivity extends AppCompatActivity {
     private String HTTP_URL = "http://140.119.19.36:80/history.php";
     private String FinalJSonObject;
     private String uid ;
+    private ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,10 @@ public class UserHistoryActivity extends AppCompatActivity {
         xGroupitems = new ArrayList<>();
         GlobalVariables user=(GlobalVariables)this.getApplicationContext();
         uid = user.getId();
+        back=findViewById(R.id.back);
+        back.setOnClickListener(view -> {
+            finish();
+        });
 
         getData();
 

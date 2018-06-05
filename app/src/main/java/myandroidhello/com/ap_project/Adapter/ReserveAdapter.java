@@ -218,35 +218,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         for (int i=start; i<=end; i++){
             list.add(i*10);
         }
-        adapter=new ArrayAdapter<Integer>(context,android.R.layout.simple_spinner_item,list){
-//            @Override
-//            public boolean isEnabled(int position){
-//                if(position == 1)
-//                {
-//                    // Disable the second item from Spinner
-//                    return false;
-//                }
-//                else
-//                {
-//                    return true;
-//                }
-//            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position==1) {
-                    // Set the disable item text color
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };;
+        adapter=new ArrayAdapter<Integer>(context,android.R.layout.simple_spinner_item,list);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapter);
     }
@@ -409,9 +381,9 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        viewHolderWithChild.buttonDate.setText(year + "-" + (monthOfYear + 1) + "-"
+                        viewHolderWithChild.buttonDate.setText(year + " - " + (monthOfYear + 1) + " - "
                                 + dayOfMonth);
-                        date= year + " - " + (monthOfYear + 1) + " - " + dayOfMonth;
+                        date= year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
                         start_year=year;
                         start_month=monthOfYear;
                         start_day=dayOfMonth;
@@ -431,7 +403,12 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
         boolean is24Hour = true;
-
+        Log.d("ttttt",String.valueOf(mHour));
+        if(mHour>22){
+            mHour=22;
+        }else if(mHour<7){
+            mHour=8;
+        }
         CustomTimePickerDialog customTimePickerDialog=new CustomTimePickerDialog(context,
                 new TimePickerDialog.OnTimeSetListener() {
                     public void onTimeSet(TimePicker view, int hourOfDay,

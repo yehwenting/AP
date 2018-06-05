@@ -33,7 +33,13 @@ public class CustomTimePickerDialog extends TimePickerDialog {
         super(context, TimePickerDialog.THEME_HOLO_LIGHT, null, hourOfDay,
                 minute / TIME_PICKER_INTERVAL, is24HourView);
         mTimeSetListener = listener;
-        currentHour=hourOfDay;
+//        if(hourOfDay>maxHour){
+//            currentHour=maxHour;
+//        }else if(hourOfDay<minHour){
+//            currentHour=minHour;
+//        }else{
+            currentHour=hourOfDay;
+//        }
         currentMinute=minute;
     }
 
@@ -89,10 +95,12 @@ public class CustomTimePickerDialog extends TimePickerDialog {
 
         boolean validTime = true;
         if (hourOfDay < minHour || (hourOfDay == minHour )){
+            currentHour=minHour;
             validTime = false;
         }
 
         if (hourOfDay  > maxHour || (hourOfDay == maxHour )){
+            currentMinute=maxHour;
             validTime = false;
         }
 

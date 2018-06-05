@@ -127,7 +127,7 @@
         android:layout_marginStart="25dp"
         android:layout_toEndOf="@+id/TextView2"
         android:background="@drawable/rounded_corner"
-        android:inputType="number"
+        android:inputType="phone"
         android:textSize="14sp"
         android:textAlignment="center"
         android:letterSpacing="0.1"
