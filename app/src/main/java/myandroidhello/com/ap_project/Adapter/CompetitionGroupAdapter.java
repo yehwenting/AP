@@ -91,11 +91,7 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
             final CompetitionGroup competitionGroup=competitionGroups.get(position);
             Log.d("hhhhh","hello");
 //            if(competitionGroup.getStatus().equals("true")){
-            if(holder.remain.getText().toString().equals("0")){
-                holder.join.setTextColor(Color.RED);
-                holder.join.setText("本團已滿");
-                holder.join.setClickable(false);
-            }
+
             holder.gname.setText(competitionGroup.getCpName());
             holder.uname.setText(competitionGroup.getuName());
             holder.time.setText(competitionGroup.getTime());
@@ -123,6 +119,7 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
                                 Log.d("ttttt","null"+jsonObject.getString("response"));
                             }else{
                                 holder.join.setText("退出X戰隊");
+                                holder.join.setClickable(true);
                                 Resources resource = context.getResources();
                                 ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.accountLabel);
                                 holder.join.setTextColor(csl);
@@ -183,6 +180,11 @@ public class CompetitionGroupAdapter extends  RecyclerView.Adapter<CompetitionGr
                     }
                 }
             });
+        if(competitionGroup.getRemain().equals("0")){
+            holder.join.setTextColor(Color.RED);
+            holder.join.setText("本團已滿");
+            holder.join.setClickable(false);
+        }
     }
 
     @Override

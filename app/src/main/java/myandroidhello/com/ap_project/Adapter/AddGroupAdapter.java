@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -123,6 +124,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
 
                             }else{
                                 holder.mAdd.setText("退出");
+                                holder.mAdd.setClickable(true);
                                 Resources resource = context.getResources();
                                 ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.accountLabel);
                                 holder.mAdd.setTextColor(csl);
@@ -204,7 +206,17 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             }
         });
         displayProfilePic(holder.groupImg,addGroup.getUrl());
+        if(String.valueOf(addGroup.getRemain()).equals("0")){
+            Log.d("ttttt",holder.mAdd.getText().toString());
+            if(holder.mAdd.getText().toString().equals("退出")){
 
+            }else{
+                holder.mAdd.setTextColor(Color.RED);
+                holder.mAdd.setText("本團已滿");
+                holder.mAdd.setClickable(false);
+            }
+
+        }
 
     }
 
