@@ -28,7 +28,6 @@
         app:menu="@menu/bottom_navigation_main" />
 
 
-
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="0dp"
@@ -37,8 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewPager3"
-        app:srcCompat="@drawable/r_bg" />
+        app:layout_constraintTop_toTopOf="@+id/viewPager3"/>
+        <!--app:srcCompat="@drawable/r_bg" />-->
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager3"
@@ -89,11 +88,12 @@
         app:layout_constraintTop_toBottomOf="@+id/p_name">
 
         <LinearLayout
+            android:id="@+id/friend_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginStart="25dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -113,14 +113,20 @@
                 android:text="X戰友"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
-
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="2dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@drawable/vertical_line"
+            android:layout_weight="1"/>
         <LinearLayout
             android:id="@+id/exernum_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="15dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:orientation="vertical"
             android:clickable="true">
@@ -143,13 +149,20 @@
                 android:text="運動量"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="2dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@drawable/vertical_line" />
 
         <LinearLayout
+            android:id="@+id/group_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -166,6 +179,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:text="特攻隊"
                 android:textColor="@color/colorWhite" />
         </LinearLayout>
@@ -202,6 +216,17 @@
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
 
+                <TextView
+                    android:id="@+id/more1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="15dp"
+                    android:text="詳細資料 >"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
+
+
                 <LinearLayout
                     android:id="@+id/l1"
                     android:layout_width="match_parent"
@@ -211,6 +236,7 @@
                     android:layout_marginStart="24dp"
                     android:orientation="horizontal"
                     tools:layout_editor_absoluteY="333dp">
+
 
                     <ImageView
                         android:id="@+id/imageView14"
@@ -290,9 +316,19 @@
                 </LinearLayout>
 
             </RelativeLayout>
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/horizontal_line" />
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/textm"
                     android:layout_width="wrap_content"
@@ -301,31 +337,82 @@
                     android:text="戰 友 鼓 勵"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="15dp"
+                    android:text="更多 >"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="14sp" />
 
-                <!--<TextView-->
-                    <!--android:id="@+id/personalInfo"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_alignStart="@+id/textme"-->
-                    <!--android:layout_below="@+id/textme"-->
-                    <!--android:lineSpacingExtra="10dp"-->
-                    <!--android:text="@string/com_accountkit_confirmation_code_text"-->
-                    <!--android:textSize="15sp" />-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textm"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginEnd="40dp">
 
-                <!--<Button-->
-                    <!--android:id="@+id/edit"-->
-                    <!--android:layout_width="100dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_alignParentEnd="true"-->
-                    <!--android:layout_alignTop="@+id/textme"-->
-                    <!--android:layout_marginEnd="8dp"-->
-                    <!--android:background="@drawable/background_group"-->
-                    <!--android:text="修改個人資料"-->
-                    <!--android:textColor="@color/colorPrimaryDark" />-->
+                    <ImageView
+                        android:id="@+id/f1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                         />
+
+                    <ImageView
+                        android:id="@+id/f2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                          />
+
+                    <ImageView
+                        android:id="@+id/f3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                         />
+
+                    <ImageView
+                        android:id="@+id/f4"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                          />
+
+                    <ImageView
+                        android:id="@+id/f5"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/p_name"
+                          />
+                </LinearLayout>
             </RelativeLayout>
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/horizontal_line" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:id="@+id/textme"
                     android:layout_width="wrap_content"
@@ -350,7 +437,7 @@
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignTop="@+id/textme"
+                    android:layout_below="@+id/personalInfo"
                     android:layout_marginEnd="8dp"
                     android:background="@drawable/background_group"
                     android:text="修改個人資料"
@@ -358,5 +445,9 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>

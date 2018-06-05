@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ import com.makeramen.roundedimageview.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,11 +50,11 @@ import java.util.TimeZone;
 
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
+import myandroidhello.com.ap_project.Model.Item;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.CustomTimePickerDialog;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.Model.GlobalVariables;
-import myandroidhello.com.ap_project.Model.Item;
 
 
 /**
@@ -96,6 +98,8 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int start_time_hour,start_time_min,start_year,
             start_month,start_day,end_time,start_time;
     public ArrayAdapter<Integer> adapter;
+    private String status=null;
+
 
     public ReserveAdapter(List<Item> items) {
         this.items = items;
@@ -180,7 +184,18 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 viewHolderWithChild.commit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        saveReserveDataToDB();
+                        if(status.equals("blocked")){
+                            Toast.makeText(context, "該時段已被預約，請選擇其他時段", Toast.LENGTH_LONG).show();
+                        }else if(status.equals("ok") || Integer.parseInt(selectWorkoutTime)<Integer.parseInt(status)){
+                            saveReserveDataToDB();
+                        }else if(status.equals(null)){
+                            Toast.makeText(context, "請選擇預約時段", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            String text="請勿預約超過"+status+"分鐘";
+                            Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 });
                 //workout time spinner
@@ -203,36 +218,8 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         for (int i=start; i<=end; i++){
             list.add(i*10);
         }
-        adapter=new ArrayAdapter<Integer>(context,android.R.layout.simple_spinner_item,list){
-            @Override
-            public boolean isEnabled(int position){
-                if(position == 1)
-                {
-                    // Disable the second item from Spinner
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-
-            @Override
-            public View getDropDownView(int position, View convertView,
-                                        ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-                if(position==1) {
-                    // Set the disable item text color
-                    tv.setTextColor(Color.GRAY);
-                }
-                else {
-                    tv.setTextColor(Color.BLACK);
-                }
-                return view;
-            }
-        };;
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter=new ArrayAdapter<Integer>(context,android.R.layout.simple_spinner_item,list);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(adapter);
     }
 
@@ -299,14 +286,54 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     }
 
+    private String getDate(long time) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("GMT+08:00"));
+        cal.setTimeInMillis(time*1000L);
+        String date = DateFormat.format("hh:mm:ss", cal).toString();
+        return date;
+    }
+
     public void checkReserveTimeAvailable(final int start_time){
-        StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.CHECK_RESERVE_TIME_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             Log.d("success",response);
                             JSONObject jsonObject=new JSONObject(response);
+                            String r = jsonObject.getString("response");
+                            JSONArray subArray = jsonObject.getJSONArray("time");
+                            Log.d("success",r);
+                            if(r.equals("occupied")){
+                                long next=Long.parseLong(subArray.getJSONObject(0).getString("end_time"));
+                                String time=getDate(next);
+                                String text="該時段已被預約! 建議您在"+time+"後預約";
+                                Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+                                status="blocked";
+                            }else {
+//                                Log.d("success",jsonObject.getString("time"));
+                                if(jsonObject.getString("status").equals("ok")){
+                                    Toast.makeText(context, "以下時段皆可預約!", Toast.LENGTH_LONG).show();
+                                    status="ok";
+                                }else{
+                                    Log.d("success",subArray.getJSONObject(0).getString("start_time"));
+                                    int next=Integer.parseInt(subArray.getJSONObject(0).getString("start_time"));
+                                    int min=(next-start_time)/60;
+                                    if(min>80){
+                                        Toast.makeText(context, "以下時段皆可預約!", Toast.LENGTH_LONG).show();
+                                        status="ok";
+                                    }else{
+                                        String text=min+"分鐘後將有人預約，請您運動時間低於"+min+"分";
+                                        Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+                                        status=String.valueOf(min);
+                                    }
+
+                                }
+
+
+                            }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -324,10 +351,11 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
                 Mysql mysql=new Mysql();
-                String query=mysql.checkReserveTimeAvailable(eName);
+                String query=mysql.checkReserveTimeAvailable(eName,start_time);
                 int time=start_time;
                 params.put("query",query);
-                params.put("time",String.valueOf(time));
+                params.put("start",String.valueOf(time));
+                params.put("ename",eName);
                 return params;
             }
         };
@@ -353,7 +381,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
-                        viewHolderWithChild.buttonDate.setText(year + "-" + (monthOfYear + 1) + "-"
+                        viewHolderWithChild.buttonDate.setText(year + " - " + (monthOfYear + 1) + " - "
                                 + dayOfMonth);
                         date= year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
                         start_year=year;
@@ -362,6 +390,10 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     }
                 }, mYear, mMonth, mDay);
+//        c.add(Calendar.MONTH, -2); // subtract 2 years from now
+        dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        c.add(Calendar.DAY_OF_MONTH, 7); // add 4 years to min date to have 2 years after now
+        dpd.getDatePicker().setMaxDate(c.getTimeInMillis());
         dpd.show();
     }
 
@@ -371,7 +403,12 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         mHour = c.get(Calendar.HOUR_OF_DAY);
         mMinute = c.get(Calendar.MINUTE);
         boolean is24Hour = true;
-
+        Log.d("ttttt",String.valueOf(mHour));
+        if(mHour>22){
+            mHour=22;
+        }else if(mHour<7){
+            mHour=8;
+        }
         CustomTimePickerDialog customTimePickerDialog=new CustomTimePickerDialog(context,
                 new TimePickerDialog.OnTimeSetListener() {
                     public void onTimeSet(TimePicker view, int hourOfDay,

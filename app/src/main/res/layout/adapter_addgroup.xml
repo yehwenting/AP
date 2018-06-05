@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+
+
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            >
+
 
 
             <android.support.v4.view.ViewPager
@@ -35,14 +40,15 @@
                 app:srcCompat="@drawable/group_y" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/slogan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imageLogo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="22dp"
                 android:text="加入X特攻隊，同伴正在等著你"
-                android:textColor="@color/colorWhite" />
+                android:textColor="@color/colorWhite"
+                android:letterSpacing="0.1"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/addgroup_rv"
@@ -58,7 +64,7 @@
 
             </android.support.v7.widget.RecyclerView>
         </RelativeLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

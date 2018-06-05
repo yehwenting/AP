@@ -32,9 +32,11 @@
                 android:id="@+id/cga_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/uName"
-                android:layout_alignTop="@+id/groupImg"
-                android:layout_marginTop="9dp"
+                android:layout_above="@+id/textView"
+                android:layout_marginBottom="9dp"
+                android:layout_marginStart="19dp"
+                android:layout_toEndOf="@+id/groupImg"
+                android:letterSpacing="0.1"
                 android:text="TextView"
                 android:textSize="16sp" />
 
@@ -49,6 +51,7 @@
                 android:layout_alignStart="@+id/groupImg"
                 android:layout_below="@+id/groupImg"
                 android:layout_marginTop="20dp"
+                android:letterSpacing="0.1"
                 android:text="發起人"
                 android:textColor="#000000"
                 android:textSize="12sp" />
@@ -60,35 +63,38 @@
                 android:layout_alignStart="@+id/textView"
                 android:layout_below="@+id/textView"
                 android:layout_marginTop="5dp"
+                android:letterSpacing="0.1"
                 android:text="時間"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="85dp"
+                android:layout_width="80dp"
                 android:layout_height="25dp"
                 android:layout_alignStart="@+id/textView2"
-                android:layout_below="@+id/textView2"
-                android:layout_marginTop="5dp"
+                android:layout_below="@+id/cga_time"
+                android:layout_marginTop="8dp"
+                android:letterSpacing="0.1"
                 android:text="地點"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="85dp"
+                android:layout_width="80dp"
                 android:layout_height="25dp"
                 android:layout_alignStart="@+id/textView3"
                 android:layout_below="@+id/textView3"
                 android:layout_marginTop="5dp"
+                android:letterSpacing="0.1"
                 android:text="團員人數"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/cga_num"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView4"
                 android:layout_alignBottom="@+id/textView4"
@@ -99,37 +105,42 @@
 
             <TextView
                 android:id="@+id/cga_place"
-                android:layout_width="100dp"
+                android:layout_width="160dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView3"
                 android:layout_alignBottom="@+id/textView3"
                 android:layout_alignStart="@+id/cga_time"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                />
 
             <TextView
                 android:id="@+id/cga_time"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
+                android:layout_width="160dp"
+                android:layout_height="30dp"
                 android:layout_alignBaseline="@+id/textView2"
                 android:layout_alignBottom="@+id/textView2"
                 android:layout_alignStart="@+id/uName"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                />
 
             <TextView
                 android:id="@+id/uName"
-                android:layout_width="100dp"
+                android:layout_width="160dp"
                 android:layout_height="25dp"
-                android:layout_alignBaseline="@+id/textView"
-                android:layout_alignBottom="@+id/textView"
-                android:layout_marginStart="45dp"
-                android:layout_toEndOf="@+id/groupImg"
+                android:layout_above="@+id/textView2"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/textView"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                />
 
             <ImageView
                 android:id="@+id/groupImg"
@@ -143,48 +154,62 @@
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="85dp"
+                android:layout_width="80dp"
                 android:layout_height="25dp"
                 android:layout_alignStart="@+id/textView4"
                 android:layout_below="@+id/textView4"
                 android:layout_marginTop="5dp"
+                android:letterSpacing="0.1"
                 android:text="剩餘人數"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/cga_remain"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="25dp"
                 android:layout_alignBaseline="@+id/textView9"
                 android:layout_alignBottom="@+id/textView9"
                 android:layout_alignStart="@+id/cga_num"
                 android:text="TextView"
                 android:textColor="#000000"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:letterSpacing="0.1"
+                />
 
             <TextView
                 android:id="@+id/textView13"
-                android:layout_width="85dp"
+                android:layout_width="80dp"
                 android:layout_height="25dp"
                 android:layout_alignStart="@+id/textView9"
                 android:layout_below="@+id/textView9"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
+                android:letterSpacing="0.1"
                 android:text="備註"
                 android:textColor="#000000"
                 android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/cga_note"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="50dp"
                 android:layout_alignBaseline="@+id/textView13"
                 android:layout_alignBottom="@+id/textView13"
                 android:layout_alignStart="@+id/cga_remain"
+                android:letterSpacing="0.1"
                 android:text="TextView"
                 android:textColor="#000000"
                 android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/more"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignEnd="@+id/cga_num"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/information" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -198,7 +223,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/cardview_button"
-            android:text="+1"
+            android:text="加入X戰隊"
             android:textColor="#FFB800"
             android:textSize="14sp" />
     </RelativeLayout>

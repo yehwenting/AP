@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,33 +18,34 @@
                 android:id="@+id/type_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="運動項目："
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:text="運動項目：" />
 
             <TextView
                 android:id="@+id/type1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/type_tv"
-                android:text="籃球"/>
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/start_time"
+                android:text="籃球" />
 
             <TextView
                 android:id="@+id/startTime_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/type_tv"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:text="開始時間："/>
+                android:layout_marginTop="10dp"
+                android:text="開始時間：" />
 
             <TextView
                 android:id="@+id/start_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/startTime_tv"
-                android:layout_below="@+id/type_tv"
-                android:layout_marginTop="10dp"
-                android:text="10:00"/>
+                android:layout_centerVertical="true"
+                android:layout_marginStart="29dp"
+                android:layout_toEndOf="@+id/startTime_tv"
+                android:text="10:00" />
 
             <TextView
                 android:id="@+id/endTime_tv"
@@ -53,33 +54,21 @@
                 android:layout_below="@+id/startTime_tv"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="結束時間："/>
+                android:text="結束時間：" />
 
             <TextView
                 android:id="@+id/end_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/start_time"
-                android:layout_toRightOf="@id/endTime_tv"
-                android:layout_marginTop="10dp"
-                android:text="11:00"/>
+                android:layout_alignBaseline="@+id/endTime_tv"
+                android:layout_alignBottom="@+id/endTime_tv"
+                android:layout_alignStart="@+id/type1"
+                android:text="11:00" />
 
         </RelativeLayout>
 
 
-
-
-
-
-
     </RelativeLayout>
-
-
-
-
-
-
-
 
 
 </RelativeLayout>

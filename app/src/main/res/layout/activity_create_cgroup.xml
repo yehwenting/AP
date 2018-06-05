@@ -5,6 +5,14 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/viewPager7" />
+
     <Button
         android:id="@+id/cg_button"
         android:layout_width="108dp"
@@ -28,7 +36,9 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="21dp"
         android:text="團名"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+        />
 
     <TextView
         android:id="@+id/TextView2"
@@ -38,7 +48,9 @@
         android:layout_below="@+id/cgPlace"
         android:layout_marginTop="22dp"
         android:text="本團人數"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+        />
 
     <TextView
         android:id="@+id/TextView3"
@@ -48,7 +60,9 @@
         android:layout_below="@+id/TextView1"
         android:layout_marginTop="24dp"
         android:text="集氣時間"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+        />
 
     <TextView
         android:id="@+id/TextView4"
@@ -58,7 +72,9 @@
         android:layout_below="@+id/TextView3"
         android:layout_marginTop="22dp"
         android:text="集合地點"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+        />
 
     <TextView
         android:id="@+id/TextView5"
@@ -68,7 +84,9 @@
         android:layout_below="@+id/TextView2"
         android:layout_marginTop="22dp"
         android:text="備註"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+        />
 
     <EditText
         android:id="@+id/cgTime"
@@ -80,7 +98,10 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+
+        />
 
     <EditText
         android:id="@+id/cgName"
@@ -91,7 +112,11 @@
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:letterSpacing="0.1"
+
+        />
 
     <EditText
         android:id="@+id/cgNum"
@@ -101,8 +126,13 @@
         android:layout_alignBottom="@+id/TextView2"
         android:layout_marginStart="25dp"
         android:layout_toEndOf="@+id/TextView2"
-        android:inputType="number"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:inputType="phone"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:letterSpacing="0.1"
+
+        />
 
 
     <EditText
@@ -112,16 +142,21 @@
         android:layout_alignBaseline="@+id/TextView4"
         android:layout_alignBottom="@+id/TextView4"
         android:layout_alignStart="@+id/cgTime"
-        android:background="@drawable/rounded_corner" />
+        android:background="@drawable/rounded_corner"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:letterSpacing="0.1"
+
+        />
 
 
     <ImageView
         android:id="@+id/imageLogo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_below="@+id/com"
+        android:layout_below="@+id/viewPager7"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -131,7 +166,10 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
-        android:text="TextView" />
+        android:textSize="16sp"
+        android:letterSpacing="0.1"
+        android:text="TextView"
+        android:textColor="@color/colorOrange"/>
 
     <EditText
         android:id="@+id/cgContent"
@@ -141,7 +179,10 @@
         android:layout_alignTop="@+id/TextView5"
         android:background="@drawable/rounded_corner"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textSize="14sp"
+        android:letterSpacing="0.1"
+        />
 
 
 </RelativeLayout>

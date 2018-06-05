@@ -120,17 +120,24 @@ public class ReserveCheckActivity extends Navigation_BaseActivity {
                             }else{
                                 for(int i=0;i<subArray.length();i++){
                                     int start_time=Integer.parseInt(subArray.getJSONObject(i).getString("start_time"));
+                                    int end_time=Integer.parseInt(subArray.getJSONObject(i).getString("end_time"));
                                     Date time=new java.util.Date((long)start_time*1000);
                                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
                                     // give a timezone reference for formatting (see comment at the bottom)
                                     sdf.setTimeZone(TimeZone.getTimeZone("GMT+8"));
                                     String formattedDate = sdf.format(time);
+
+                                    Date endtime=new java.util.Date((long)end_time*1000);
+                                    SimpleDateFormat sdff = new SimpleDateFormat("HH:mm");
+                                    // give a timezone reference for formatting (see comment at the bottom)
+                                    sdff.setTimeZone(TimeZone.getTimeZone("GMT+8"));
+                                    String formattedDateEnd = sdff.format(endtime);
                                     String eName=subArray.getJSONObject(i).getString("eName");
                                     String img=subArray.getJSONObject(i).getString("url");
                                     String id=subArray.getJSONObject(i).getString("id");
 
                                     // insert reserve data into data
-                                    ReserveCheckAdapter.Data data = new ReserveCheckAdapter.Data(id,formattedDate, eName,img);
+                                    ReserveCheckAdapter.Data data = new ReserveCheckAdapter.Data(id,formattedDate, eName,img,formattedDateEnd);
                                     dataList.add(data);
                                 }
                             }

@@ -11,16 +11,13 @@
         android:id="@+id/textView"
         android:layout_width="411dp"
         android:layout_height="141dp"
-        android:layout_marginBottom="8dp"
         android:alpha="0.75"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/background_gradient"
         android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -36,72 +33,69 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="264dp"
-        android:orientation="vertical"
+    <ScrollView
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <EditText
-            android:id="@+id/login_text"
-            android:layout_width="320dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/loginbutton"
-            android:hint="@string/login_label"
-            android:inputType="textPersonName"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:textAlignment="center"
-            android:textColor="#666666"
-            android:textColorHint="#c1cdd8"
-            android:textSize="12sp"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="367dp" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/accountkit_button"
-        style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/login_button_selector"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:text="@string/accountkit_button_label"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0">
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebook_login_button"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="14dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="14dp"
-        android:textAllCaps="true"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountkit_button"
-        app:layout_constraintVertical_bias="0.062" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/login_text"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/loginbutton"
+                android:hint="@string/login_label"
+                android:inputType="textPersonName"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textAlignment="center"
+                android:textColor="#666666"
+                android:textColorHint="#c1cdd8"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/accountkit_button"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/login_button_selector"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/accountkit_button_label"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+
+                />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/facebook_login_button"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:paddingBottom="14dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="14dp"
+                android:textAllCaps="true"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

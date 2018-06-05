@@ -28,9 +28,10 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="8dp"
+            android:padding="10dp"
             android:text="this is item with child!"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:letterSpacing="0.1"/>
 
         <RelativeLayout
             android:id="@+id/childButton"
@@ -52,30 +53,33 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ael_duration="400"
-        app:ael_interpolator="bounce">
+        app:ael_duration="300"
+        app:ael_interpolator="bounce"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp">
             <TextView
                 android:id="@+id/reserve_date"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:text="日期"
                 android:textSize="12sp"
-                android:layout_weight = "1"/>
+                />
 
             <Button
                 android:id="@+id/reserve_date_button"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:text="選擇日期"
                 android:textSize="12sp"
-                android:layout_marginStart="30dp"
-                android:layout_weight = "1"/>
+                android:layout_marginStart="20dp"
+                android:background="@drawable/background_group"
+                />
         </LinearLayout>
 
 
@@ -83,48 +87,52 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp">
         <TextView
             android:id="@+id/reserve_time"
             android:padding="20dp"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="開始時間"
             android:textSize="12sp"
-            android:layout_weight = "1"/>
+            />
         <Button
             android:id="@+id/reserve_time_button"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:text="選擇開始時間"
+            android:background="@drawable/background_group"
             android:textSize="12sp"
-            android:layout_weight = "1"/>
+            android:layout_marginStart="20dp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp">
         <TextView
             android:id="@+id/workout_time_text"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:padding="20dp"
-            android:text="運動時間"
+            android:text="運動時間(分)"
             android:textSize="12sp"
-            android:layout_weight="1"/>
+            />
             <RelativeLayout
-                android:layout_marginTop="-10dp"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_spinner"
-                android:layout_weight="1">
+                android:layout_height="40dp"
+                android:background="@drawable/background_group"
+                android:layout_marginStart="20dp">
         <Spinner
             android:id="@+id/workout_time_spinner"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
-             />
+            android:layout_height="45dp"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            />
             </RelativeLayout>
         </LinearLayout>
 

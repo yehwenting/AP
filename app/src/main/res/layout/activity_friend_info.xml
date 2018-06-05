@@ -29,7 +29,7 @@
         android:id="@+id/viewPager3"
         android:layout_width="0dp"
         android:layout_height="203dp"
-        android:background="@drawable/background_gradient"
+        android:background="@color/ak_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user" />
+        app:srcCompat="@drawable/user_orange" />
 
     <TextView
         android:id="@+id/p_name1"
@@ -59,7 +59,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/personalPic1" />
+        app:layout_constraintTop_toBottomOf="@+id/personalPic1"
+        android:textColor="@color/colorWhite"/>
 
 
     <ScrollView
@@ -93,13 +94,21 @@
                     android:id="@+id/pintro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@+id/info"
+                    android:layout_alignStart="@+id/info"
+                    android:layout_below="@+id/info"
+                    android:layout_marginStart="43dp"
                     android:text="huhuh"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/horizontal_line" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -202,6 +211,13 @@
                 </LinearLayout>
 
             </RelativeLayout>
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="2dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/horizontal_line" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

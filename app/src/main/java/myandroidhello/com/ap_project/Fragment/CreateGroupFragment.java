@@ -42,9 +42,9 @@ import java.util.Map;
 import myandroidhello.com.ap_project.Activity.JFGroupActivity;
 import myandroidhello.com.ap_project.Data.MySingleTon;
 import myandroidhello.com.ap_project.Data.Mysql;
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Util.Values;
-import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 //import android.icu.util.Calendar;
 
@@ -89,7 +89,7 @@ public class CreateGroupFragment extends Fragment {
         button = (Button) creategroup.findViewById(R.id.buttonG);
         Name = (EditText) creategroup.findViewById(R.id.sName);
         Num = (EditText) creategroup.findViewById(R.id.sNum);
-        timeText = (TextView) creategroup.findViewById(R.id.sTime);
+        timeText =creategroup.findViewById(R.id.sTime);
         timeText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,14 +107,14 @@ public class CreateGroupFragment extends Fragment {
         final Spinner spinner = (Spinner)creategroup.findViewById(R.id.cgNum);
         final String[] typec = {"慢跑", "籃球", "網球","排球", "重訓", "足球","羽球","桌球"};
         ArrayAdapter typeList = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.spinner_item,
                 typec);
         spinner.setAdapter(typeList);
 
         final Spinner spinner2 = (Spinner)creategroup.findViewById(R.id.spinnerPlace);
         final String[] placec = {"五期", "六期", "體育館", "游泳館2F", "操場","網球場"};
         ArrayAdapter<String> placeList = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_spinner_dropdown_item,
+                R.layout.spinner_item,
                 placec);
         spinner2.setAdapter(placeList);
 
@@ -124,59 +124,67 @@ public class CreateGroupFragment extends Fragment {
                 name= Name.getText().toString();
                 type =spinner.getSelectedItem().toString();
                 place = spinner2.getSelectedItem().toString();
-                num = Integer.parseInt(Num.getText().toString());
-                remain = num-1;
+
                 time = timeText.getText().toString();
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, Values.lOGIN_SERVER_URL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    Log.d("rrrrr",response);
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    android.support.v7.app.AlertDialog.Builder alert=new android.support.v7.app.AlertDialog.Builder(getContext());
-                                    alert.setMessage("成功新增");
-                                    alert.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(getContext(),"來加入別人的團吧！",Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(getActivity(),JFGroupActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                    alert.show();
+                if(name.equals("")||type.equals("")||place.equals("")||Num.getText().toString().equals("")){
+                    Toast.makeText(context,"請輸入完整戰隊資料!",Toast.LENGTH_LONG).show();
+                }else{
+                    num = Integer.parseInt(Num.getText().toString());
+                    remain = num-1;
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, Values.CREATE_GROUP_URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    try {
+                                        Log.d("rrrrr",response);
+                                        JSONObject jsonObject = new JSONObject(response);
+                                        android.support.v7.app.AlertDialog.Builder alert=new android.support.v7.app.AlertDialog.Builder(getContext());
+                                        alert.setMessage("創團成功!");
+                                        alert.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                Toast.makeText(getContext(),"來加入別人的團吧！",Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getActivity(),JFGroupActivity.class);
+                                                startActivity(intent);
+                                            }
+                                        });
+                                        alert.show();
 
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
-
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                        Log.d("error","do not save group to mysql");
-                    }
-                }){
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Log.d("error","do not save group to mysql");
+                        }
+                    }){
 
 
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map<String,String> params=new HashMap<>();
-                        GlobalVariables user=(GlobalVariables)context.getApplicationContext();
-                        uid=user.getId();
-                        Mysql mysql=new Mysql();
-                        String query = mysql.createNewGroup(name,type,place,uid,time,num,remain);
-                        params.put("query", query);
-                        return params;
-                    }
-                };
-                stringRequest.setRetryPolicy(new DefaultRetryPolicy(
-                        10000,
-                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                MySingleTon.getmInstance(context).addToRequestque(stringRequest);
+                        @Override
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String,String> params=new HashMap<>();
+                            GlobalVariables user=(GlobalVariables)context.getApplicationContext();
+                            uid=user.getId();
+                            Mysql mysql=new Mysql();
+                            String query = mysql.createNewGroup(name,type,place,uid,time,num,remain);
+                            params.put("query", query);
+                            params.put("uid", uid);
+                            return params;
+                        }
+                    };
+                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                            10000,
+                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                    MySingleTon.getmInstance(context).addToRequestque(stringRequest);
+
+                }
+
 
 
             }

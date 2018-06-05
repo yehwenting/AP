@@ -232,7 +232,11 @@ public class AccountDetailActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.finishButton:
-                saveInfoToMysql();
+                if(ezcard.getText().toString().equals("")){
+                    Toast.makeText(AccountDetailActivity.this, "請填寫自我介紹!!", Toast.LENGTH_LONG).show();
+                }else{
+                    saveInfoToMysql();
+                }
                 break;
             case R.id.backButton:
                 startActivity(new Intent(AccountDetailActivity.this,AccountActivity.class));

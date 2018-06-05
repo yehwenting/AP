@@ -22,8 +22,8 @@ import com.github.aakira.expandablelayout.Utils;
 import java.util.List;
 
 import myandroidhello.com.ap_project.Activity.CreateCGroupActivity;
-import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.Model.Competitions;
+import myandroidhello.com.ap_project.R;
 
 /**
  * Created by Yehwenting on 2018/4/25.
@@ -33,7 +33,7 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
     public class CompetitionViewHolder extends RecyclerView.ViewHolder {
 
         TextView name,content,num,constraint,deadline;
-        Button create,findBtn;
+        Button create,findBtn,changeData,recentData;
         public ExpandableLinearLayout expandableLayout;
         RecyclerView recyclerView;
 
@@ -49,7 +49,8 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
             expandableLayout=itemView.findViewById(R.id.expendableLayout);
             findBtn=itemView.findViewById(R.id.detail);
             recyclerView=itemView.findViewById(R.id.cGroup_rv);
-
+            changeData=itemView.findViewById(R.id.changeData);
+            recentData=itemView.findViewById(R.id.recentData);
         }
     }
 
@@ -96,7 +97,26 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.recyclerView.setHasFixedSize(true);
         holder.recyclerView.setAdapter(competitionGroupAdapter);
-
+        holder.recyclerView.getParent().requestDisallowInterceptTouchEvent(true);
+        holder.recentData.setBackgroundResource(R.drawable.cardview_button2);
+        holder.changeData.setOnClickListener(view -> {
+            holder.recentData.setBackgroundResource(R.drawable.cardview_button);
+            holder.changeData.setBackgroundResource(R.drawable.cardview_button2);
+            CompetitionGroupAdapter1 competitionRecordGroupAdapter = new CompetitionGroupAdapter1(competition.getCompetitionsRecord());
+            holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            holder.recyclerView.setHasFixedSize(true);
+            holder.recyclerView.setAdapter(competitionRecordGroupAdapter);
+            holder.recyclerView.getParent().requestDisallowInterceptTouchEvent(true);
+        });
+        holder.recentData.setOnClickListener(view -> {
+            holder.recentData.setBackgroundResource(R.drawable.cardview_button2);
+            holder.changeData.setBackgroundResource(R.drawable.cardview_button);
+            CompetitionGroupAdapter competitionGroupAdapter1 = new CompetitionGroupAdapter(competition.getCompetitions());
+            holder.recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            holder.recyclerView.setHasFixedSize(true);
+            holder.recyclerView.setAdapter(competitionGroupAdapter1);
+            holder.recyclerView.getParent().requestDisallowInterceptTouchEvent(true);
+        });
         holder.name.setText(competition.getName());
         holder.content.setText(competition.getContent());
         holder.num.setText(competition.getNum());
@@ -107,6 +127,7 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
             public void onClick(View view) {
                 Intent intent=new Intent(context, CreateCGroupActivity.class);
                 intent.putExtra("activity",holder.name.getText());
+                intent.putExtra("maxnum",holder.constraint.getText());
                 context.startActivity(intent);
             }
         });
@@ -120,10 +141,12 @@ public class CompetitionAdapter extends RecyclerView.Adapter<CompetitionAdapter.
 //                changeRotate(viewHolderWithChild.buttonChild,180f,0f).start();
                 Log.d("hhhhh","preopen");
                 expendState.put(position,false);
+                holder.expandableLayout.getParent().requestDisallowInterceptTouchEvent(true);
             }
 
             @Override
             public void onPreClose() {
+                holder.expandableLayout.getParent().requestDisallowInterceptTouchEvent(true);
 //                viewHolderWithChild.main.setBackgroundColor(Color.parseColor("#ffffff"));
             }
         });

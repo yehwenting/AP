@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,7 +52,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
 
     public class GroupViewHolder extends RecyclerView.ViewHolder{
         TextView mGName,mGType,mGDate,mGPlace,mGRemain,mGNumber,textUname;
-        Button mAdd;
+        Button mAdd,member;
         ImageView groupImg;
         public GroupViewHolder(View itemView){
             super(itemView);
@@ -65,6 +66,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             mGNumber = itemView.findViewById(R.id.mGNumber);
             groupImg=itemView.findViewById(R.id.groupImg);
             mAdd = itemView.findViewById(R.id.create_button);
+            member = itemView.findViewById(R.id.member);
 
 
         }
@@ -121,7 +123,8 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                             if(jsonObject.getString("response").equals("null")){
 
                             }else{
-                                holder.mAdd.setText("-1");
+                                holder.mAdd.setText("退出");
+                                holder.mAdd.setClickable(true);
                                 Resources resource = context.getResources();
                                 ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.accountLabel);
                                 holder.mAdd.setTextColor(csl);
@@ -157,7 +160,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         holder.mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(holder.mAdd.getText().equals("+1")){
+                if(holder.mAdd.getText().equals("加入")){
                     String type="add";
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage(info)
@@ -194,7 +197,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                 }
             }
         });
-        holder.mGNumber.setOnClickListener(new View.OnClickListener() {
+        holder.member.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, GroupMemberActivity.class);
@@ -203,7 +206,13 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             }
         });
         displayProfilePic(holder.groupImg,addGroup.getUrl());
+        if(String.valueOf(addGroup.getRemain()).equals("0")){
+            Log.d("ttttt",holder.mAdd.getText().toString());
+                holder.mAdd.setTextColor(Color.RED);
+                holder.mAdd.setText("本團已滿");
+                holder.mAdd.setClickable(false);
 
+        }
 
     }
 

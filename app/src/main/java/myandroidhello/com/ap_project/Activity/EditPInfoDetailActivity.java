@@ -258,7 +258,11 @@ public class EditPInfoDetailActivity extends AppCompatActivity implements View.O
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.finishButton:
-                saveInfoToMysql();
+                if(ezcard.getText().toString().equals("")){
+                    Toast.makeText(EditPInfoDetailActivity.this, "請填寫自我介紹!!", Toast.LENGTH_LONG).show();
+                }else{
+                    saveInfoToMysql();
+                }
                 break;
             case R.id.backButton:
                 startActivity(new Intent(EditPInfoDetailActivity.this,EditPInfoActivity.class));

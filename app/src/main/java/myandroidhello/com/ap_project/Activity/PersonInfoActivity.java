@@ -26,7 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import myandroidhello.com.ap_project.Data.MySingleTon;
@@ -41,8 +43,11 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
     private ImageView pic;
     private TextView info,p_name;
     private Button edit;
-    private TextView fnum,gnum,exernum;
-    private LinearLayout ll;
+    private TextView fnum,gnum,exernum,more,medalmore;
+    private ImageView f1,f2,f3,f4,f5;
+    private List<ImageView> fs=new ArrayList<>();
+    private LinearLayout l1,exer,friendLL,groupLL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,38 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
         fnum=findViewById(R.id.fnum);
         gnum=findViewById(R.id.joinnum);
         exernum=findViewById(R.id.exernum);
+        f1=findViewById(R.id.f1);
+        f2=findViewById(R.id.f2);
+        f3=findViewById(R.id.f3);
+        f4=findViewById(R.id.f4);
+        f5=findViewById(R.id.f5);
+        fs.add(f1);
+        fs.add(f2);
+        fs.add(f3);
+        fs.add(f4);
+        fs.add(f5);
+        more=findViewById(R.id.more);
+        more.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,MessageActivity.class);
+            startActivity(intent);
+        });
+        medalmore=findViewById(R.id.more1);
+        medalmore.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,MedalActivity.class);
+            startActivity(intent);
+        });
+        friendLL=findViewById(R.id.friend_ll);
+        friendLL.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,FriendsActivity.class);
+            startActivity(intent);
+        });
+        groupLL=findViewById(R.id.group_ll);
+        groupLL.setOnClickListener(view -> {
+            Intent intent=new Intent(PersonInfoActivity.this,XfileActivity.class);
+            startActivity(intent);
+        });
+
+
 
         //toolbar
         toolbar.setTitle("");//設置ToolBar Title
@@ -100,7 +137,8 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
                 startActivity(intent);
             }
         });
-        pic.setOnClickListener(new View.OnClickListener() {
+        l1=findViewById(R.id.l1);
+        l1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent();
@@ -109,8 +147,8 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             }
         });
 
-        ll = (LinearLayout)findViewById(R.id.exernum_ll);
-        ll.setOnClickListener(new View.OnClickListener() {
+        exer = (LinearLayout)findViewById(R.id.exernum_ll);
+        exer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -157,7 +195,7 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
                             info.setText("電話 : "+phoneNum+
                                         "\n性別 : "+sex+"\n信箱 : "+email+
                                         "\n學號 : "+stuId+"\n身高 : "+height+
-                                        "\n體重 : "+weight+"\n悠遊卡卡號 : "+ezcard+
+                                        "\n體重 : "+weight+"\n自我介紹 : "+ezcard+
                                         "\n學院 : "+college+"\n學系 : "+department);
                             JSONArray friendAry = jsonObject.getJSONArray("friend");
                             int f=Integer.parseInt(friendAry.getJSONObject(0).getString("friendnum"))-1;
@@ -166,6 +204,10 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
                             exernum.setText(exerAry.getJSONObject(0).getString("exernum"));
                             JSONArray groupAry = jsonObject.getJSONArray("group");
                             gnum.setText(groupAry.getJSONObject(0).getString("groupnum"));
+                            JSONArray messageAry = jsonObject.getJSONArray("message");
+                            for(int i=0;i<messageAry.length();i++){
+                                displayProfilePic(fs.get(i),messageAry.getJSONObject(i).getString("pic_url"));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

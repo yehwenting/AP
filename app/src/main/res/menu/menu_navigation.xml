@@ -29,7 +29,7 @@
         android:icon="@drawable/logout"
         />
     <item android:id="@+id/navItemThree"
-            android:title="@string/view_three"
+            android:title=""
         />
     </group>
 </menu>

@@ -15,9 +15,11 @@ public class Competitions {
     private String goal;
     private Boolean isExpendable;
     private List<CompetitionGroup> competitions=new ArrayList<>();
+    private List<CompetitionGroup> competitionsRecord=new ArrayList<>();
+
 
     public Competitions(String name, String content, String num, String deadline, String goal,Boolean isExpendable,
-                        List<CompetitionGroup> competitions) {
+                        List<CompetitionGroup> competitions,List<CompetitionGroup> competitionsRecord) {
         this.name = name;
         this.content = content;
         this.num = num;
@@ -25,6 +27,7 @@ public class Competitions {
         this.goal = goal;
         this.isExpendable=isExpendable;
         this.competitions=competitions;
+        this.competitionsRecord=competitionsRecord;
     }
 
     public String getName() {
@@ -81,5 +84,13 @@ public class Competitions {
 
     public void setCompetitions(List<CompetitionGroup> competitions) {
         this.competitions = competitions;
+    }
+
+    public List<CompetitionGroup> getCompetitionsRecord() {
+        return competitionsRecord;
+    }
+
+    public void setCompetitionsRecord(List<CompetitionGroup> competitionsRecord) {
+        this.competitionsRecord = competitionsRecord;
     }
 }

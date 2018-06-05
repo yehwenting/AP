@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -42,6 +43,7 @@ public class MainpageActivity extends Navigation_BaseActivity {
 
     private BottomNavigationView bottomNavigationView;
     private TextView toolBar_title;
+    private ImageView refresh;
 
     private Context mContext = MainpageActivity.this;
 
@@ -56,6 +58,10 @@ public class MainpageActivity extends Navigation_BaseActivity {
         setContentView(R.layout.activity_mainpage);
 
         getGlobalData();
+        refresh=findViewById(R.id.refresh);
+        refresh.setOnClickListener(view -> {
+            recreate();
+        });
 
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         toolBar_title=findViewById(R.id.toolbar_title);

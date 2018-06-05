@@ -45,12 +45,14 @@ public class ReserveCheckAdapter extends RecyclerView.Adapter<ReserveCheckAdapte
         final String time;
         final String name;
         final String image;
+        final String endtime;
 
-        public Data(String id,String time, String name, String image) {
+        public Data(String id,String time, String name, String image,String endtime) {
             this.id=id;
             this.time = time;
             this.name = name;
             this.image = image;
+            this.endtime=endtime;
         }
     }
 
@@ -76,7 +78,7 @@ public class ReserveCheckAdapter extends RecyclerView.Adapter<ReserveCheckAdapte
         FontHelper.setCustomTypeface(holder.mView);
 
         // set name and display profile pic
-        holder.time.setText(data.time);
+        holder.time.setText(data.time+" - "+data.endtime);
         holder.eName.setText(data.name);
         displayProfilePic(holder.ePic, data.image);
         holder.delete.setOnClickListener(new View.OnClickListener() {

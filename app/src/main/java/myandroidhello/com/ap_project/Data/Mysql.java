@@ -50,8 +50,9 @@ public class Mysql {
         return data;
     }
 
-    public String checkReserveTimeAvailable(String equipment){
-        String data="SELECT start_time,end_time FROM `reserve` WHERE `eName`='"+equipment+"'";
+    public String checkReserveTimeAvailable(String equipment,int start_time){
+        String data="SELECT start_time,end_time FROM `reserve` WHERE `eName`='"+equipment+"' " +
+                "AND start_time<="+start_time+" AND end_time>"+start_time;
         return data;
     }
 
@@ -103,9 +104,9 @@ public class Mysql {
         return data;
     }
 
-    public String createCompetition(String uid,String name,String time,String place,String num,String note,String compete){
-        String data="INSERT INTO  `competitiongroup` (uid,cp_name,cp_time,cp_place,cp_num,note,cp_id)" +
-                "VALUES('"+uid+"','"+name+"','"+time+"','"+place+"','"+num+"','"+note+"','"+compete+"');";
+    public String createCompetition(String uid,String name,String time,String place,String num,String note,String compete,String remain){
+        String data="INSERT INTO  `competitiongroup` (uid,cp_name,cp_time,cp_place,cp_num,cp_remain,note,cp_id,status)" +
+                "VALUES('"+uid+"','"+name+"','"+time+"','"+place+"','"+num+"','"+remain+"','"+note+"','"+compete+"','true');";
         return data;
     }
 
@@ -139,6 +140,11 @@ public class Mysql {
 
     public String addMessage(String uid,String fid,String message){
         String data="INSERT INTO `message` (uid,fid,content) VALUES('"+uid+"','"+fid+"','"+message+"');";
+        return data;
+    }
+
+    public String getMessage(String id){
+        String data="SELECT m.uid,m.content,u.name,u.pic_url FROM `message` as m,`user` as u where fid='"+id+"' and m.uid=u.fb_id";
         return data;
     }
 

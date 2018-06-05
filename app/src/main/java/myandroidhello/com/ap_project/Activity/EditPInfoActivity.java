@@ -82,12 +82,14 @@ public class EditPInfoActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     //TODO check if the user has already got the account
                     Log.d("submit", "click!!");
-                    if (name.getText().toString() != null && sexT != null &&
-                            student_id.getText().toString() != null &&
-                            phoneNum.getText().toString() != null && email.getText().toString() != null) {
+                    if(name.getText().toString().equals("") || sexT== null ||
+                            student_id.getText().toString().equals("") ||
+                            phoneNum.getText().toString().equals("") || email.getText().toString().equals("")){
+                        Toast.makeText(EditPInfoActivity.this, "請填寫完整個人資料!!", Toast.LENGTH_LONG).show();
+                    }else if(!email.getText().toString().contains("@")){
+                        Toast.makeText(EditPInfoActivity.this, "電子信箱格式錯誤!!", Toast.LENGTH_LONG).show();
+                    }else{
                         saveInfoToMysql();
-                    } else {
-                        Toast.makeText(EditPInfoActivity.this, "please finish info above!!", Toast.LENGTH_LONG).show();
                     }
 
                 }

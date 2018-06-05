@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class GroupMemberActivity extends AppCompatActivity {
     private String HTTP_URL = "http://140.119.19.36:80/getmember.php";
     private String FinalJSonObject;
     private String gid;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,10 @@ public class GroupMemberActivity extends AppCompatActivity {
         Intent intent = getIntent();
         gid = intent.getStringExtra("group_number");
         mListView = (ListView)findViewById(R.id.member_lv);
+        back=findViewById(R.id.back);
+        back.setOnClickListener(view -> {
+            finish();
+        });
 
         getMember();
 
@@ -82,7 +88,7 @@ public class GroupMemberActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    private class ParseJSonDataClass extends AsyncTask<Void, Void, Void> {
+    class ParseJSonDataClass extends AsyncTask<Void, Void, Void> {
 
         public Context context;
 
@@ -131,6 +137,7 @@ public class GroupMemberActivity extends AppCompatActivity {
 
                             user.setUsername(jsonObject.getString("name"));
                             user.setPic_url(jsonObject.getString("pic_url"));
+                            user.setUser_id(jsonObject.getString("fb_id"));
 
 
                             // Adding subject list object into CustomSubjectNamesList.

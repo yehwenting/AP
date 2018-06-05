@@ -88,7 +88,7 @@
         android:layout_marginTop="13dp"
         android:ems="10"
         android:hint="@string/stuID"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         android:textColor="@color/ak_text"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
