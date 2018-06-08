@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -29,9 +28,9 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import myandroidhello.com.ap_project.Model.GlobalVariables;
 import myandroidhello.com.ap_project.R;
 import myandroidhello.com.ap_project.barcode.BarcodeCaptureActivity;
-import myandroidhello.com.ap_project.Model.GlobalVariables;
 
 public class IndoorStartActivity extends Navigation_BaseActivity {
     private static final String LOG_TAG = IndoorStartActivity.class.getSimpleName();
@@ -118,7 +117,9 @@ public class IndoorStartActivity extends Navigation_BaseActivity {
                     ename = getData;
 //                    mResultTextView.setText(barcode.displayValue);
                     requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    Log.d("22222","ename: "+ename);
+
+                    Log.d("123223", "onActivityResult: ename=" + ename);
+                    Log.d("22222","hello");
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                             (Request.Method.GET, showUri+"?getData="+getData, new Response.Listener<JSONObject>() {
                                 @Override
@@ -128,40 +129,72 @@ public class IndoorStartActivity extends Navigation_BaseActivity {
                                         //這邊要和上面json的名稱一樣
                                         JSONArray data = response.getJSONArray("data");
                                         Boolean canExercise = false;
+                                        Boolean isReserved = false;
                                         if (data.length()!=0){
                                             //get the smallest start_time
-                                            Long minStartTime = Long.parseLong(data.getJSONObject(0).getString("start_time"));
-                                            String minStartTimeUid = null;
-                                            Long minEndTime = Long.parseLong(data.getJSONObject(0).getString("end_time"));
+                                            Long reservedStartTime = Long.parseLong(data.getJSONObject(0).getString("start_time"))*1000;
+                                            String reservedUid = null;
+                                            Long reservedEndTime = Long.parseLong(data.getJSONObject(0).getString("end_time"))*1000;
                                             for (int i = 0; i < data.length(); i++) {
                                                 JSONObject jasonData = data.getJSONObject(i);
-                                                Long start_time = Long.parseLong(jasonData.getString("start_time"));
-                                                if (start_time<minStartTime){
-                                                    minStartTime = start_time;
-                                                    minStartTimeUid = jasonData.getString("uid");
-                                                    minEndTime = jasonData.getLong("end_time");
+                                                Long start_time = Long.parseLong(jasonData.getString("start_time"))*1000;
+                                                Long end_time = Long.parseLong(jasonData.getString("end_time"))*1000;
+                                                Log.d("IndoorStartActivity", "onResponse: start_time: " + start_time);
+                                                Log.d("IndoorStartActivity", "onResponse: reservedStartTime: " + reservedStartTime);
+                                                Log.d("IndoorStartActivity", "onResponse: currentTime: " + System.currentTimeMillis());
+                                                Log.d("IndoorStartActivity", "onResponse: reservedEndTime: " + reservedEndTime);
+                                                if (start_time<System.currentTimeMillis() && end_time > System.currentTimeMillis()){
+                                                    isReserved = true;
+
+                                                    reservedStartTime = start_time;
+                                                    reservedUid = jasonData.getString("uid");
+//                                                    reservedEndTime = jasonData.getLong("end_time")*1000;
+//                                                    Log.d("IndoorStartActivity", "onResponse: reservedEndTime: " + reservedEndTime);
                                                 }
                                             }
-                                            if (uid.equals(minStartTimeUid) ){
-                                                canExercise = true;
-                                            }else if(minStartTime-System.currentTimeMillis()<1800000 && minStartTime > System.currentTimeMillis()){
-                                                SimpleDateFormat simpleDateformat = new SimpleDateFormat("hh:mm");
-                                                Date date = new Date();
-                                                date.setTime(minStartTime);
-                                                String nextReservation = simpleDateformat.format(date);
-                                                Toast.makeText(IndoorStartActivity.this,"溫馨提醒：目前機台可以使用\n但下一位使用者的預約時間為" + nextReservation + "，請注意時間！",Toast.LENGTH_LONG).show();
-                                                canExercise = true;
-                                            }else if (minStartTime < System.currentTimeMillis() && minEndTime > System.currentTimeMillis()){
-                                                minStartTime = minStartTime + 300000;
-                                                SimpleDateFormat simpleDateformat = new SimpleDateFormat("hh:mm");
-                                                Date date = new Date();
-                                                date.setTime(minStartTime);
-                                                String availableTime = simpleDateformat.format(date);
-                                                mResultTextView.setText("現在有人預約\n若到" + availableTime + "預約者還沒來即可使用");
-                                                mResultTextView.setTextColor(Color.RED);
-                                            }else{
+                                            if (isReserved){
+                                                if (uid.equals(reservedUid) ){
+                                                    Log.d("IndoorStartActivity", "onResponse: reservedStartTime: " + reservedStartTime);
+                                                    Log.d("IndoorStartActivity", "onResponse: reservedEndTime: " + reservedEndTime);
+                                                    canExercise = true;
+                                                }else {
+                                                    reservedStartTime = reservedStartTime + 300000;
+                                                    SimpleDateFormat simpleDateformat = new SimpleDateFormat("hh:mm");
+                                                    Date date = new Date();
+                                                    date.setTime(reservedStartTime);
+                                                    String availableTime = simpleDateformat.format(date);
+                                                    mResultTextView.setText("現在有人預約\n若到" + availableTime + "預約者還沒來即可使用");
+                                                    mResultTextView.setTextColor(Color.RED);
+                                                }
+                                            }else {
                                                 canExercise = true;
                                             }
+//                                            if (uid.equals(reservedUid) ){
+//                                                Log.d("IndoorStartActivity", "onResponse: reservedStartTime: " + reservedStartTime);
+//                                                Log.d("IndoorStartActivity", "onResponse: reservedEndTime: " + reservedEndTime);
+//                                                canExercise = true;
+//                                            }else if(reservedStartTime-System.currentTimeMillis()<1800000 && reservedStartTime > System.currentTimeMillis()){
+//                                                SimpleDateFormat simpleDateformat = new SimpleDateFormat("hh:mm");
+//                                                Date date = new Date();
+//                                                date.setTime(reservedStartTime);
+//                                                String nextReservation = simpleDateformat.format(date);
+//                                                Toast.makeText(IndoorStartActivity.this,"溫馨提醒：目前機台可以使用\n但下一位使用者的預約時間為" + nextReservation + "，請注意時間！",Toast.LENGTH_LONG).show();
+//                                                Log.d("IndoorStartActivity", "onResponse: reservedStartTime: " + reservedStartTime);
+//                                                Log.d("IndoorStartActivity", "onResponse: reservedEndTime: " + reservedEndTime);
+//                                                canExercise = true;
+//                                            }else if (reservedStartTime < System.currentTimeMillis() && reservedEndTime > System.currentTimeMillis()){
+//                                                Log.d("IndoorStartActivity", "onResponse:reservedStartTime: " + reservedStartTime);
+//                                                Log.d("IndoorStartActivity", "onResponse: reservedEndTime: " + reservedEndTime);
+//                                                reservedStartTime = reservedStartTime + 300000;
+//                                                SimpleDateFormat simpleDateformat = new SimpleDateFormat("hh:mm");
+//                                                Date date = new Date();
+//                                                date.setTime(reservedStartTime);
+//                                                String availableTime = simpleDateformat.format(date);
+//                                                mResultTextView.setText("現在有人預約\n若到" + availableTime + "預約者還沒來即可使用");
+//                                                mResultTextView.setTextColor(Color.RED);
+//                                            }else{
+//                                                canExercise = true;
+//                                            }
 
                                         }else {
                                             canExercise = true;

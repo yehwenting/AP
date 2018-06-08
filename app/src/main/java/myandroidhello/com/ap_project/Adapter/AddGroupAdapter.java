@@ -108,9 +108,11 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         holder.mGNumber.setText(String.valueOf(addGroup.getNumber()));
         holder.mGRemain.setText(String.valueOf(addGroup.getRemain()));
 
+
         String info = "記得準時參加Ｘ特攻隊喔！\n團名： " + addGroup.getGname() + "\n揪團人： " + addGroup.getName() + "\n運動種類： " + addGroup.getType()
                 + "\n地點： " + addGroup.getPlace() + "\n時間： " + addGroup.getDate() + "\n本團人數： " + addGroup.getNumber()
                 + "\n剩餘人數： " + addGroup.getRemain();
+
 
         //check if the user has joined the group
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,

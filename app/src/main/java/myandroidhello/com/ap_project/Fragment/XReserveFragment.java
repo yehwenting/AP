@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.BounceInterpolator;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -22,7 +22,6 @@ import com.android.volley.toolbox.Volley;
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
-import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,8 +41,8 @@ public class XReserveFragment extends Fragment {
 
     //vars
     private ArrayList<XReserveitem> xReserveitems;
-//    private ListView mListView;
-    private SwipeMenuListView mListView;
+    private ListView mListView;
+//    private SwipeMenuListView mListView;
     private XReserveAdapter mAdapter;
     private String HTTP_URL = "http://140.119.19.36:80/xreserve.php";
     private String FinalJSonObject;
@@ -54,8 +53,8 @@ public class XReserveFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_xreserve, container, false);
-//        mListView = (ListView) view.findViewById(R.id.listView);
-        mListView = (SwipeMenuListView) view.findViewById(R.id.listView);
+        mListView = (ListView) view.findViewById(R.id.listView);
+//        mListView = (SwipeMenuListView) view.findViewById(R.id.listView);
         GlobalVariables user=(GlobalVariables)getContext().getApplicationContext();
         uid = user.getId();
         SwipeMenuCreator creator = new SwipeMenuCreator() {
@@ -95,8 +94,8 @@ public class XReserveFragment extends Fragment {
         };
 
         // set creator
-        mListView.setMenuCreator(creator);
-        mListView.setCloseInterpolator(new BounceInterpolator());
+//        mListView.setMenuCreator(creator);
+//        mListView.setCloseInterpolator(new BounceInterpolator());
 
         xReserveitems = new ArrayList<>();
 
