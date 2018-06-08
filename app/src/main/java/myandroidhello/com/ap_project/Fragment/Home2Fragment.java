@@ -169,7 +169,7 @@ public class Home2Fragment extends Fragment {
 
                             home2item.setContent(jsonObject.getString("content"));
                             home2item.setDate(convertTime(jsonObject.getString("date")));
-                            home2item.setPic_path(jsonObject.getString("icon_url"));
+                            home2item.setPic_path(jsonObject.getString("pic_url"));
                             home2item.setUid(jsonObject.getString("uid"));
                             home2item.setLongdate(Long.parseLong(jsonObject.getString("date")));
                             home2item.setSid(jsonObject.getString("sid"));
