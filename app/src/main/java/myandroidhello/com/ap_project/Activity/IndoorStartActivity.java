@@ -118,7 +118,7 @@ public class IndoorStartActivity extends Navigation_BaseActivity {
                     ename = getData;
 //                    mResultTextView.setText(barcode.displayValue);
                     requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    Log.d("22222","hello");
+                    Log.d("22222","ename: "+ename);
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                             (Request.Method.GET, showUri+"?getData="+getData, new Response.Listener<JSONObject>() {
                                 @Override

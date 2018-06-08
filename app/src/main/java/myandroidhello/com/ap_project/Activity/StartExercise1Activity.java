@@ -175,6 +175,7 @@ public class StartExercise1Activity extends AppCompatActivity {
                 intent.putExtra("exerciseDuration", timerValue.getText());
                 intent.putExtra("equipName", ename);
                 startActivity(intent);
+                finish();
             }
         });
 

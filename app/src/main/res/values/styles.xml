@@ -38,4 +38,17 @@
         <!-- Default color for the dropdown arrow and line -->
         <!--<item name="colorControlNormal">#ffc107</item>-->
     </style>
+
+        <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+            <!-- Used for the buttons -->
+            <item name="colorAccent">#ffa000</item>
+            <!-- Used for the title and text -->
+            <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
+            <!-- Used for the background -->
+            <item name="android:background">@color/colorWhite</item>
+            <item name="android:letterSpacing">0.1</item>
+            <item name="android:layout_margin">3dp</item>
+            <item name="android:lineSpacingExtra">5dp</item>
+        </style>
+
 </resources>

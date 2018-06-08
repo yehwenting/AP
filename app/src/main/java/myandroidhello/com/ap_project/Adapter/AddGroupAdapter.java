@@ -8,6 +8,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -107,9 +108,9 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         holder.mGNumber.setText(String.valueOf(addGroup.getNumber()));
         holder.mGRemain.setText(String.valueOf(addGroup.getRemain()));
 
-        String info = "記得準時參加Ｘ特攻隊喔！\n團名：" + addGroup.getGname() + "\n揪團人：" + addGroup.getName() + "\n運動種類：" + addGroup.getType()
-                + "\n地點：" + addGroup.getPlace() + "\n時間：" + addGroup.getDate() + "\n本團人數：" + addGroup.getNumber()
-                + "\n剩餘人數" + addGroup.getRemain();
+        String info = "記得準時參加Ｘ特攻隊喔！\n團名： " + addGroup.getGname() + "\n揪團人： " + addGroup.getName() + "\n運動種類： " + addGroup.getType()
+                + "\n地點： " + addGroup.getPlace() + "\n時間： " + addGroup.getDate() + "\n本團人數： " + addGroup.getNumber()
+                + "\n剩餘人數： " + addGroup.getRemain();
 
         //check if the user has joined the group
         StringRequest stringRequest=new StringRequest(Request.Method.POST, Values.READ_DATA_URL,
@@ -162,7 +163,8 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
             public void onClick(View view) {
                 if(holder.mAdd.getText().equals("加入")){
                     String type="add";
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.AlertDialogCustom));
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setMessage(info)
                             .setTitle("你已是X特攻隊一員哩！！");
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -176,8 +178,8 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                     dialog.show();
                     saveJoinToDB(addGroup.getGid(),type);
                 }else{
-                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    alert.setMessage("不想參加了");
+                    AlertDialog.Builder alert = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.AlertDialogCustom));
+                    alert.setMessage("不想參加了?");
                     alert.setPositiveButton("退意已決", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -236,7 +238,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
                             }else{
                                 title="殘念!你就這樣脫離X特攻隊";
                                 JSONObject jsonObject = new JSONObject(response);
-                                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                                AlertDialog.Builder alert = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.AlertDialogCustom));
                                 alert.setTitle(title);
                                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     @Override
