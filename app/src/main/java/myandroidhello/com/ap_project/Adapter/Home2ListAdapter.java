@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import org.json.JSONObject;
 
@@ -116,8 +119,10 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
         holder.date.setText(String.valueOf(getItem(position).getDate()));
 
         //set the icon image
-        final ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(getItem(position).getPic_path(), holder.sportIcon);
+        displayProfilePic(holder.sportIcon, getItem(position).getPic_path());
+//        final ImageLoader imageLoader = ImageLoader.getInstance();
+//        imageLoader.displayImage(getItem(position).getPic_path(), holder.sportIcon);
+
 
         holder.heart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,6 +228,19 @@ public class Home2ListAdapter extends ArrayAdapter<Home2item> {
         }
 
         return convertView;
+    }
+
+    private void displayProfilePic(ImageView imageView, String url) {
+        // helper method to load the profile pic in a circular imageview
+        Transformation transformation = new RoundedTransformationBuilder()
+                .cornerRadiusDp(30)
+                .oval(true)
+                .build();
+        Picasso.with(imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.user)
+                .transform(transformation)
+                .into(imageView);
     }
 
     private boolean reachedEndOfList(int position){
