@@ -37,7 +37,8 @@ public class FriendInfoActivity extends AppCompatActivity {
     Button addfriend, sent;
     ImageView pic, back;
     EditText message;
-    TextView pName, intro;
+    TextView pName, intro,gold,silver,brown;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,17 @@ public class FriendInfoActivity extends AppCompatActivity {
         sent.setOnClickListener(view -> {
             savemessage(id);
         });
+
+        gold=findViewById(R.id.gold);
+        silver=findViewById(R.id.silver);
+        brown=findViewById(R.id.brown);
+        int num1=(int)((Math.random())*4+1);
+        int num2=(int)((Math.random())*8+1);
+        int num3=(int)((Math.random())*12+1);
+        gold.setText("金牌: "+num1);
+        silver.setText("銀牌: "+num2);
+        brown.setText("銅牌: "+num3);
+
 
     }
 

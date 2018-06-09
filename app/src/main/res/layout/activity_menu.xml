@@ -107,6 +107,7 @@
         android:layout_below="@+id/imageView13"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
-        android:text="想從哪裡開始記錄你的運動里程?" />
+        android:text="想從哪裡開始記錄你的運動里程?"
+        android:letterSpacing="0.1"/>
 
 </RelativeLayout>

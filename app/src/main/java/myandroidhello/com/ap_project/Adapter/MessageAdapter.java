@@ -1,6 +1,7 @@
 package myandroidhello.com.ap_project.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.squareup.picasso.Transformation;
 
 import java.util.List;
 
+import myandroidhello.com.ap_project.Activity.FriendInfoActivity;
 import myandroidhello.com.ap_project.Font.FontHelper;
 import myandroidhello.com.ap_project.R;
 
@@ -58,6 +60,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         holder.mName.setText(messageItem.name);
         displayProfilePic(holder.mimg, messageItem.image);
         holder.mContent.setText(messageItem.content);
+        holder.mimg.setOnClickListener(view -> {
+            Intent intent = new Intent(context, FriendInfoActivity.class);
+            intent.putExtra("id",messageItem.id);
+            context.startActivity(intent);
+        });
 
     }
 

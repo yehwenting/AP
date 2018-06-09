@@ -199,7 +199,7 @@ public class ReserveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 });
                 //workout time spinner
-                addItemsOnSpinner(viewHolderWithChild.workout_time,0,8);
+                addItemsOnSpinner(viewHolderWithChild.workout_time,1,8);
                 viewHolderWithChild.workout_time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
                     public void onItemSelected(AdapterView adapterView, View view, int position, long id){
                         selectWorkoutTime=adapterView.getSelectedItem().toString();

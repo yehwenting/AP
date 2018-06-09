@@ -292,7 +292,7 @@ public class AddGroupAdapter extends RecyclerView.Adapter<AddGroupAdapter.GroupV
         // helper method to load the profile pic in a circular imageview
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(30)
-                .oval(false)
+                .oval(true)
                 .build();
         Picasso.with(context)
                 .load(url)

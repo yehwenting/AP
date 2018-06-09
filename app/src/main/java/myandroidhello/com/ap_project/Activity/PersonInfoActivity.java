@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -47,6 +48,7 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
     private ImageView f1,f2,f3,f4,f5;
     private List<ImageView> fs=new ArrayList<>();
     private LinearLayout l1,exer,friendLL,groupLL;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -91,6 +93,8 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
             Intent intent=new Intent(PersonInfoActivity.this,XfileActivity.class);
             startActivity(intent);
         });
+
+//        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
 
 
 

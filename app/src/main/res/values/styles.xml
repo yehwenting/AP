@@ -51,4 +51,12 @@
             <item name="android:lineSpacingExtra">5dp</item>
         </style>
 
+    <style name="MyProgressBarTwo" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorButtonNormal">#f50057</item>
+        <item name="colorControlActivated">#FEB800</item>
+        <item name="colorControlHighlight">#ff6d00</item>
+        <item name="android:progressDrawable">@drawable/progressbar</item>
+        <item name="android:minWidth">200dp</item>
+    </style>
+
 </resources>

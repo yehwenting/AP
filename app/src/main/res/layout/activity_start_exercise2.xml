@@ -31,22 +31,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="22dp"
+                android:layout_below="@+id/minute_tv"
+                android:layout_marginStart="20dp"
                 android:text="45"
                 android:textColor="@color/colorWhite"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:layout_marginTop="10dp"/>
 
             <TextView
                 android:id="@+id/minute_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/exerciseSummary"
+                android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/exerciseSummary"
-                android:layout_marginBottom="19dp"
-                android:text="時間"
+                android:layout_marginTop="13dp"
+                android:text="運動時間"
                 android:textColor="@color/colorWhite"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/exerciseSummary"
+                android:layout_below="@+id/exerciseSummary"
+                android:layout_marginTop="10dp"
+                android:text="消耗熱量"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/consume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/textView22"
+                android:layout_below="@+id/textView22"
+                android:layout_marginTop="10dp"
+                android:text="0"
+                android:textColor="@color/colorWhite"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/consume"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/exerciseSummary"
+                android:text="大卡"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp"/>
 
         </RelativeLayout>
 
@@ -54,13 +88,14 @@
         <Button
             android:id="@+id/postBtn"
             android:layout_width="80dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@drawable/radius5_ffb800_btn"
             android:text="@string/postbtn"
             android:textColor="@color/colorWhite"
-            android:textSize="19dp" />
+            android:textSize="16dp"
+            android:letterSpacing="0.2"/>
 
         <TextView
             android:id="@+id/equip_name"
@@ -70,6 +105,7 @@
             android:layout_alignParentLeft="true"
             android:background="@drawable/story_box"
             android:text="直立式腳踏車"
+            android:paddingTop="35dp"
             android:textAlignment="center"
             android:textColor="#FFD300"
             android:textSize="14sp" />
@@ -82,6 +118,7 @@
             android:layout_toLeftOf="@+id/postBtn"
             android:background="@drawable/story_box"
             android:text="重訓室"
+            android:paddingTop="30dp"
             android:textAlignment="center"
             android:textColor="#FFD300"
             android:textSize="14sp" />
@@ -97,8 +134,28 @@
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_white_run" />
+                app:srcCompat="@drawable/ic_white_dumbbell"
+                />
         </RelativeLayout>
+
+        <!--@drawable/radius5_ffb800_btn"-->
+        <View
+            android:id="@+id/facebook"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/place_tv"
+            android:layout_toEndOf="@+id/place_tv"
+            android:background="@drawable/radius5_ffb800_btn" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/place_tv"
+            android:layout_toEndOf="@+id/place_tv"
+            app:srcCompat="@drawable/facebook"
+            android:layout_marginStart="25dp"/>
+
 
     </RelativeLayout>
 

@@ -174,6 +174,7 @@ public class StartExercise1Activity extends AppCompatActivity {
                 Intent intent = new Intent(StartExercise1Activity.this, StartExercise2Activity.class);
                 intent.putExtra("exerciseDuration", timerValue.getText());
                 intent.putExtra("equipName", ename);
+                intent.putExtra("placeName",pname);
                 startActivity(intent);
                 finish();
             }
@@ -286,7 +287,7 @@ public class StartExercise1Activity extends AppCompatActivity {
             mins = mins % 60;
             secs = secs % 60;
             int milliseconds = (int)(updatedTime % 1000);
-            timerValue.setText(hours + ":" + mins + ":"
+            timerValue.setText(String.format("%02d", hours) + ":" + String.format("%02d", mins) + ":"
                     + String.format("%02d", secs) );
             customHandler.postDelayed(this,0);
 
