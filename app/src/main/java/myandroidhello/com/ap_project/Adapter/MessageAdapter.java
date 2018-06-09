@@ -86,7 +86,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         // helper method to load the profile pic in a circular imageview
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(30)
-                .oval(false)
+                .oval(true)
                 .build();
         Picasso.with(imageView.getContext())
                 .load(url)

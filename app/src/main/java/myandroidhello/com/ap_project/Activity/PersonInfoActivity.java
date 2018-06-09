@@ -163,7 +163,7 @@ public class PersonInfoActivity extends Navigation_BaseActivity {
         // helper method to load the profile pic in a circular imageview
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(30)
-                .oval(false)
+                .oval(true)
                 .build();
         Picasso.with(this)
                 .load(url)

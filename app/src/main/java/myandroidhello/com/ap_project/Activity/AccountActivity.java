@@ -300,7 +300,7 @@ public class AccountActivity extends AppCompatActivity {
         // helper method to load the profile pic in a circular imageview
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(30)
-                .oval(false)
+                .oval(true)
                 .build();
         Picasso.with(AccountActivity.this)
                 .load(uri)

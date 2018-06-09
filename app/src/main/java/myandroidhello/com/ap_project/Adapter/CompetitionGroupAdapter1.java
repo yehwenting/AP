@@ -93,7 +93,7 @@ public class CompetitionGroupAdapter1 extends  RecyclerView.Adapter<CompetitionG
         // helper method to load the profile pic in a circular imageview
         Transformation transformation = new RoundedTransformationBuilder()
                 .cornerRadiusDp(30)
-                .oval(false)
+                .oval(true)
                 .build();
         Picasso.with(context)
                 .load(url)
